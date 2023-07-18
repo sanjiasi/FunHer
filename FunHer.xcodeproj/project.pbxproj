@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21C02F5D8914DCDE983A938E /* Pods_FunHer_FunHerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */; };
+		36360CF60FA250277678AE94 /* Pods_FunHer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF1DD6E71AE6EE758C1C4B7 /* Pods_FunHer.framework */; };
+		671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD12A66622A006140A8 /* AppDelegate.m */; };
+		671CAAD52A66622A006140A8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD42A66622A006140A8 /* SceneDelegate.m */; };
+		671CAAD82A66622A006140A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD72A66622A006140A8 /* ViewController.m */; };
+		671CAADB2A66622A006140A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671CAAD92A66622A006140A8 /* Main.storyboard */; };
+		671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 671CAADC2A66622B006140A8 /* Assets.xcassets */; };
+		671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */; };
+		671CAAE32A66622B006140A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAE22A66622B006140A8 /* main.m */; };
+		671CAAED2A66622B006140A8 /* FunHerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAEC2A66622B006140A8 /* FunHerTests.m */; };
+		671CAAF72A66622B006140A8 /* FunHerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAF62A66622B006140A8 /* FunHerUITests.m */; };
+		671CAAF92A66622B006140A8 /* FunHerUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAF82A66622B006140A8 /* FunHerUITestsLaunchTests.m */; };
+		884558B0789C48F809F1F254 /* Pods_FunHerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DEA04AF20251D1C522233A /* Pods_FunHerTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		671CAAE92A66622B006140A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 671CAAC52A66622A006140A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 671CAACC2A66622A006140A8;
+			remoteInfo = FunHer;
+		};
+		671CAAF32A66622B006140A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 671CAAC52A66622A006140A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 671CAACC2A66622A006140A8;
+			remoteInfo = FunHer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0AF1DD6E71AE6EE758C1C4B7 /* Pods_FunHer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunHer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2A187D1FD5CB01EA752829 /* Pods-FunHer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer.debug.xcconfig"; path = "Target Support Files/Pods-FunHer/Pods-FunHer.debug.xcconfig"; sourceTree = "<group>"; };
+		47DEA04AF20251D1C522233A /* Pods_FunHerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunHerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		671CAACD2A66622A006140A8 /* FunHer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunHer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		671CAAD02A66622A006140A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		671CAAD12A66622A006140A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		671CAAD32A66622A006140A8 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		671CAAD42A66622A006140A8 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		671CAAD62A66622A006140A8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		671CAAD72A66622A006140A8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		671CAADA2A66622A006140A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		671CAADC2A66622B006140A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		671CAADF2A66622B006140A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		671CAAE12A66622B006140A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		671CAAE22A66622B006140A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		671CAAE82A66622B006140A8 /* FunHerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunHerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		671CAAEC2A66622B006140A8 /* FunHerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunHerTests.m; sourceTree = "<group>"; };
+		671CAAF22A66622B006140A8 /* FunHerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunHerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		671CAAF62A66622B006140A8 /* FunHerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunHerUITests.m; sourceTree = "<group>"; };
+		671CAAF82A66622B006140A8 /* FunHerUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunHerUITestsLaunchTests.m; sourceTree = "<group>"; };
+		6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunHer_FunHerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.debug.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.release.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A9D2876EAEDE7A21A84452BF /* Pods-FunHerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHerTests.release.xcconfig"; path = "Target Support Files/Pods-FunHerTests/Pods-FunHerTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE0751C380392153ECB3C515 /* Pods-FunHerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHerTests.debug.xcconfig"; path = "Target Support Files/Pods-FunHerTests/Pods-FunHerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6A7C5640D4271641CFD015E /* Pods-FunHer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer.release.xcconfig"; path = "Target Support Files/Pods-FunHer/Pods-FunHer.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		671CAACA2A66622A006140A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36360CF60FA250277678AE94 /* Pods_FunHer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAE52A66622B006140A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				884558B0789C48F809F1F254 /* Pods_FunHerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAEF2A66622B006140A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21C02F5D8914DCDE983A938E /* Pods_FunHer_FunHerUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A511140D4303BACA56D02AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AF1DD6E71AE6EE758C1C4B7 /* Pods_FunHer.framework */,
+				6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */,
+				47DEA04AF20251D1C522233A /* Pods_FunHerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59445706A85853B14B987BAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E2A187D1FD5CB01EA752829 /* Pods-FunHer.debug.xcconfig */,
+				D6A7C5640D4271641CFD015E /* Pods-FunHer.release.xcconfig */,
+				766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */,
+				98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */,
+				CE0751C380392153ECB3C515 /* Pods-FunHerTests.debug.xcconfig */,
+				A9D2876EAEDE7A21A84452BF /* Pods-FunHerTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		671CAAC42A66622A006140A8 = {
+			isa = PBXGroup;
+			children = (
+				671CAACF2A66622A006140A8 /* FunHer */,
+				671CAAEB2A66622B006140A8 /* FunHerTests */,
+				671CAAF52A66622B006140A8 /* FunHerUITests */,
+				671CAACE2A66622A006140A8 /* Products */,
+				59445706A85853B14B987BAF /* Pods */,
+				3A511140D4303BACA56D02AD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		671CAACE2A66622A006140A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				671CAACD2A66622A006140A8 /* FunHer.app */,
+				671CAAE82A66622B006140A8 /* FunHerTests.xctest */,
+				671CAAF22A66622B006140A8 /* FunHerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		671CAACF2A66622A006140A8 /* FunHer */ = {
+			isa = PBXGroup;
+			children = (
+				671CAAD02A66622A006140A8 /* AppDelegate.h */,
+				671CAAD12A66622A006140A8 /* AppDelegate.m */,
+				671CAAD32A66622A006140A8 /* SceneDelegate.h */,
+				671CAAD42A66622A006140A8 /* SceneDelegate.m */,
+				671CAAD62A66622A006140A8 /* ViewController.h */,
+				671CAAD72A66622A006140A8 /* ViewController.m */,
+				671CAAD92A66622A006140A8 /* Main.storyboard */,
+				671CAADC2A66622B006140A8 /* Assets.xcassets */,
+				671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */,
+				671CAAE12A66622B006140A8 /* Info.plist */,
+				671CAAE22A66622B006140A8 /* main.m */,
+			);
+			path = FunHer;
+			sourceTree = "<group>";
+		};
+		671CAAEB2A66622B006140A8 /* FunHerTests */ = {
+			isa = PBXGroup;
+			children = (
+				671CAAEC2A66622B006140A8 /* FunHerTests.m */,
+			);
+			path = FunHerTests;
+			sourceTree = "<group>";
+		};
+		671CAAF52A66622B006140A8 /* FunHerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				671CAAF62A66622B006140A8 /* FunHerUITests.m */,
+				671CAAF82A66622B006140A8 /* FunHerUITestsLaunchTests.m */,
+			);
+			path = FunHerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		671CAACC2A66622A006140A8 /* FunHer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 671CAAFC2A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHer" */;
+			buildPhases = (
+				D7069CB064AF8CBD916A6BBE /* [CP] Check Pods Manifest.lock */,
+				671CAAC92A66622A006140A8 /* Sources */,
+				671CAACA2A66622A006140A8 /* Frameworks */,
+				671CAACB2A66622A006140A8 /* Resources */,
+				0A8576F4805A85E4351FA5CE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FunHer;
+			productName = FunHer;
+			productReference = 671CAACD2A66622A006140A8 /* FunHer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		671CAAE72A66622B006140A8 /* FunHerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 671CAAFF2A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHerTests" */;
+			buildPhases = (
+				6B9CFA30A7ADF0F74BD2FD8A /* [CP] Check Pods Manifest.lock */,
+				671CAAE42A66622B006140A8 /* Sources */,
+				671CAAE52A66622B006140A8 /* Frameworks */,
+				671CAAE62A66622B006140A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				671CAAEA2A66622B006140A8 /* PBXTargetDependency */,
+			);
+			name = FunHerTests;
+			productName = FunHerTests;
+			productReference = 671CAAE82A66622B006140A8 /* FunHerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		671CAAF12A66622B006140A8 /* FunHerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 671CAB022A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHerUITests" */;
+			buildPhases = (
+				ED29C1F9A36765326DF31735 /* [CP] Check Pods Manifest.lock */,
+				671CAAEE2A66622B006140A8 /* Sources */,
+				671CAAEF2A66622B006140A8 /* Frameworks */,
+				671CAAF02A66622B006140A8 /* Resources */,
+				241842C05DB33A073DB00AFE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				671CAAF42A66622B006140A8 /* PBXTargetDependency */,
+			);
+			name = FunHerUITests;
+			productName = FunHerUITests;
+			productReference = 671CAAF22A66622B006140A8 /* FunHerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		671CAAC52A66622A006140A8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					671CAACC2A66622A006140A8 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					671CAAE72A66622B006140A8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 671CAACC2A66622A006140A8;
+					};
+					671CAAF12A66622B006140A8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 671CAACC2A66622A006140A8;
+					};
+				};
+			};
+			buildConfigurationList = 671CAAC82A66622A006140A8 /* Build configuration list for PBXProject "FunHer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 671CAAC42A66622A006140A8;
+			productRefGroup = 671CAACE2A66622A006140A8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				671CAACC2A66622A006140A8 /* FunHer */,
+				671CAAE72A66622B006140A8 /* FunHerTests */,
+				671CAAF12A66622B006140A8 /* FunHerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		671CAACB2A66622A006140A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */,
+				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
+				671CAADB2A66622A006140A8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAE62A66622B006140A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAF02A66622B006140A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A8576F4805A85E4351FA5CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FunHer/Pods-FunHer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FunHer/Pods-FunHer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FunHer/Pods-FunHer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		241842C05DB33A073DB00AFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B9CFA30A7ADF0F74BD2FD8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FunHerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7069CB064AF8CBD916A6BBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FunHer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED29C1F9A36765326DF31735 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FunHer-FunHerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		671CAAC92A66622A006140A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
+				671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */,
+				671CAAE32A66622B006140A8 /* main.m in Sources */,
+				671CAAD52A66622A006140A8 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAE42A66622B006140A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671CAAED2A66622B006140A8 /* FunHerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671CAAEE2A66622B006140A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671CAAF92A66622B006140A8 /* FunHerUITestsLaunchTests.m in Sources */,
+				671CAAF72A66622B006140A8 /* FunHerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		671CAAEA2A66622B006140A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 671CAACC2A66622A006140A8 /* FunHer */;
+			targetProxy = 671CAAE92A66622B006140A8 /* PBXContainerItemProxy */;
+		};
+		671CAAF42A66622B006140A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 671CAACC2A66622A006140A8 /* FunHer */;
+			targetProxy = 671CAAF32A66622B006140A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		671CAAD92A66622A006140A8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				671CAADA2A66622A006140A8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				671CAADF2A66622B006140A8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		671CAAFA2A66622B006140A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		671CAAFB2A66622B006140A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		671CAAFD2A66622B006140A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E2A187D1FD5CB01EA752829 /* Pods-FunHer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FunHer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		671CAAFE2A66622B006140A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6A7C5640D4271641CFD015E /* Pods-FunHer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FunHer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		671CAB002A66622B006140A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE0751C380392153ECB3C515 /* Pods-FunHerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunHer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FunHer";
+			};
+			name = Debug;
+		};
+		671CAB012A66622B006140A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9D2876EAEDE7A21A84452BF /* Pods-FunHerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunHer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FunHer";
+			};
+			name = Release;
+		};
+		671CAB032A66622B006140A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FunHer;
+			};
+			name = Debug;
+		};
+		671CAB042A66622B006140A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FunHer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		671CAAC82A66622A006140A8 /* Build configuration list for PBXProject "FunHer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671CAAFA2A66622B006140A8 /* Debug */,
+				671CAAFB2A66622B006140A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		671CAAFC2A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671CAAFD2A66622B006140A8 /* Debug */,
+				671CAAFE2A66622B006140A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		671CAAFF2A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671CAB002A66622B006140A8 /* Debug */,
+				671CAB012A66622B006140A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		671CAB022A66622B006140A8 /* Build configuration list for PBXNativeTarget "FunHerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671CAB032A66622B006140A8 /* Debug */,
+				671CAB042A66622B006140A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 671CAAC52A66622A006140A8 /* Project object */;
+}
