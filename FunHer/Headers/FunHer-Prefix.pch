@@ -1,0 +1,42 @@
+//
+//  FunHer-Prefix.pch
+//  FunHer
+//
+//  Created by GLA on 2023/7/21.
+//
+
+#ifndef FunHer_Prefix_pch
+#define FunHer_Prefix_pch
+
+#pragma mark -- 宏定义
+#import "FunHer-Marco.h"
+
+#pragma mark -- Native
+#import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h> // 麦克风、相机
+#import <Photos/Photos.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
+#pragma mark -- Library
+#import <Masonry/Masonry.h>
+#import <YYModel/YYModel.h>
+
+#pragma mark -- 分类
+/// -- NSDate
+#import "NSDate+Format.h"
+/// -- NSString
+#import "NSString+Json.h"
+#import "NSString+Encrypt.h"
+#import "NSString+TextSize.h"
+#import "NSString+Path.h"
+/// -- VC
+#import "UIViewController+Alert.h"
+/// -- NSArray
+#import "NSArray+Json.h"
+/// -- NSDictionary
+#import "NSDictionary+Json.h"
+/// -- NSObject
+#import "NSObject+Swizzle.h"
+#import "NSObject+Properties.h"
+
+#endif /* FunHer_Prefix_pch */

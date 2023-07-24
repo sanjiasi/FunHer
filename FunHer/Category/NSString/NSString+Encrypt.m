@@ -13,7 +13,7 @@
 #pragma mark -- one-way hash 单向散列
 - (NSString *)hashedValue {
     NSString *userAccountName = self;
-    const int HASH_SIZE = 32;
+    const int HASH_SIZE = CC_SHA256_DIGEST_LENGTH;
     unsigned char hashedChars[HASH_SIZE];
     const char *accountName = [userAccountName UTF8String];
     size_t accountNameLen = strlen(accountName);

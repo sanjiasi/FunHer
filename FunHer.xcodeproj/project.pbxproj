@@ -28,6 +28,23 @@
 		671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB1E2A677712006140A8 /* NSString+Encrypt.m */; };
 		671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB212A67C0EB006140A8 /* NSString+TextSize.m */; };
 		671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB252A67C546006140A8 /* NSDate+Format.m */; };
+		6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */; };
+		6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */; };
+		6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */; };
+		6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEAD2A6A12CF005F0DB9 /* FHAppearanceCommand.m */; };
+		6774FEB12A6A1309005F0DB9 /* FHLibraryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEB02A6A1309005F0DB9 /* FHLibraryCommand.m */; };
+		6774FEB92A6A2D02005F0DB9 /* InAppStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEB82A6A2D02005F0DB9 /* InAppStoreManager.m */; };
+		6774FEBB2A6A2DD9005F0DB9 /* StoreList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6774FEBA2A6A2DD9005F0DB9 /* StoreList.plist */; };
+		6774FEC02A6A707F005F0DB9 /* LZNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEBF2A6A707F005F0DB9 /* LZNetWorkManager.m */; };
+		6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEC42A6A710C005F0DB9 /* LZDBService.m */; };
+		6774FECC2A6E1BF5005F0DB9 /* ImageRLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FECB2A6E1BF5005F0DB9 /* ImageRLM.m */; };
+		6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FECE2A6E1C0C005F0DB9 /* DocRLM.m */; };
+		6774FED22A6E1C28005F0DB9 /* FolderRLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FED12A6E1C28005F0DB9 /* FolderRLM.m */; };
+		6774FED52A6E2AE3005F0DB9 /* LZFolderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FED42A6E2AE3005F0DB9 /* LZFolderManager.m */; };
+		6774FEDC2A6E6745005F0DB9 /* LZDocManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEDB2A6E6745005F0DB9 /* LZDocManager.m */; };
+		6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEDE2A6E69BA005F0DB9 /* LZImageManager.m */; };
+		6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */; };
+		6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEE52A6E7913005F0DB9 /* NSString+Path.m */; };
 		884558B0789C48F809F1F254 /* Pods_FunHerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DEA04AF20251D1C522233A /* Pods_FunHerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +105,42 @@
 		671CAB242A67C546006140A8 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
 		671CAB252A67C546006140A8 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
 		671CAB292A67C850006140A8 /* FHServiceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceCommand.h; sourceTree = "<group>"; };
+		6774FEA32A6A1177005F0DB9 /* FHServiceComandsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceComandsManager.h; sourceTree = "<group>"; };
+		6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHServiceComandsManager.m; sourceTree = "<group>"; };
+		6774FEA62A6A11E9005F0DB9 /* FHRootVCCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHRootVCCommand.h; sourceTree = "<group>"; };
+		6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHRootVCCommand.m; sourceTree = "<group>"; };
+		6774FEA92A6A126F005F0DB9 /* FHRealmDBCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHRealmDBCommand.h; sourceTree = "<group>"; };
+		6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHRealmDBCommand.m; sourceTree = "<group>"; };
+		6774FEAC2A6A12CF005F0DB9 /* FHAppearanceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHAppearanceCommand.h; sourceTree = "<group>"; };
+		6774FEAD2A6A12CF005F0DB9 /* FHAppearanceCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHAppearanceCommand.m; sourceTree = "<group>"; };
+		6774FEAF2A6A1309005F0DB9 /* FHLibraryCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHLibraryCommand.h; sourceTree = "<group>"; };
+		6774FEB02A6A1309005F0DB9 /* FHLibraryCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHLibraryCommand.m; sourceTree = "<group>"; };
+		6774FEB32A6A1686005F0DB9 /* FunHer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FunHer-Prefix.pch"; sourceTree = "<group>"; };
+		6774FEB42A6A18C9005F0DB9 /* FunHer-Marco.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FunHer-Marco.h"; sourceTree = "<group>"; };
+		6774FEB72A6A2D02005F0DB9 /* InAppStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InAppStoreManager.h; sourceTree = "<group>"; };
+		6774FEB82A6A2D02005F0DB9 /* InAppStoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppStoreManager.m; sourceTree = "<group>"; };
+		6774FEBA2A6A2DD9005F0DB9 /* StoreList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = StoreList.plist; sourceTree = "<group>"; };
+		6774FEBE2A6A707F005F0DB9 /* LZNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZNetWorkManager.h; sourceTree = "<group>"; };
+		6774FEBF2A6A707F005F0DB9 /* LZNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZNetWorkManager.m; sourceTree = "<group>"; };
+		6774FEC32A6A710C005F0DB9 /* LZDBService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDBService.h; sourceTree = "<group>"; };
+		6774FEC42A6A710C005F0DB9 /* LZDBService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDBService.m; sourceTree = "<group>"; };
+		6774FEC62A6E1152005F0DB9 /* LZRLMObjectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZRLMObjectProtocol.h; sourceTree = "<group>"; };
+		6774FECA2A6E1BF5005F0DB9 /* ImageRLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageRLM.h; sourceTree = "<group>"; };
+		6774FECB2A6E1BF5005F0DB9 /* ImageRLM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageRLM.m; sourceTree = "<group>"; };
+		6774FECD2A6E1C0C005F0DB9 /* DocRLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocRLM.h; sourceTree = "<group>"; };
+		6774FECE2A6E1C0C005F0DB9 /* DocRLM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocRLM.m; sourceTree = "<group>"; };
+		6774FED02A6E1C28005F0DB9 /* FolderRLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FolderRLM.h; sourceTree = "<group>"; };
+		6774FED12A6E1C28005F0DB9 /* FolderRLM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FolderRLM.m; sourceTree = "<group>"; };
+		6774FED32A6E2AE3005F0DB9 /* LZFolderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZFolderManager.h; sourceTree = "<group>"; };
+		6774FED42A6E2AE3005F0DB9 /* LZFolderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZFolderManager.m; sourceTree = "<group>"; };
+		6774FEDA2A6E6745005F0DB9 /* LZDocManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDocManager.h; sourceTree = "<group>"; };
+		6774FEDB2A6E6745005F0DB9 /* LZDocManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDocManager.m; sourceTree = "<group>"; };
+		6774FEDD2A6E69BA005F0DB9 /* LZImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZImageManager.h; sourceTree = "<group>"; };
+		6774FEDE2A6E69BA005F0DB9 /* LZImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZImageManager.m; sourceTree = "<group>"; };
+		6774FEE12A6E6DF0005F0DB9 /* FHFileDataSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileDataSession.h; sourceTree = "<group>"; };
+		6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileDataSession.m; sourceTree = "<group>"; };
+		6774FEE42A6E7913005F0DB9 /* NSString+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
+		6774FEE52A6E7913005F0DB9 /* NSString+Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Path.m"; sourceTree = "<group>"; };
 		6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunHer_FunHerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.debug.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.release.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +231,9 @@
 				671CAAD42A66622A006140A8 /* SceneDelegate.m */,
 				671CAAD62A66622A006140A8 /* ViewController.h */,
 				671CAAD72A66622A006140A8 /* ViewController.m */,
+				6774FEB22A6A148E005F0DB9 /* Headers */,
+				6774FEBC2A6A6FF7005F0DB9 /* Domain */,
+				6774FEB52A6A2C31005F0DB9 /* Application */,
 				671CAB272A67C6B2006140A8 /* Components */,
 				671CAB052A676C4E006140A8 /* Category */,
 				671CAAD92A66622A006140A8 /* Main.storyboard */,
@@ -266,6 +322,8 @@
 				671CAB1E2A677712006140A8 /* NSString+Encrypt.m */,
 				671CAB202A67C0EB006140A8 /* NSString+TextSize.h */,
 				671CAB212A67C0EB006140A8 /* NSString+TextSize.m */,
+				6774FEE42A6E7913005F0DB9 /* NSString+Path.h */,
+				6774FEE52A6E7913005F0DB9 /* NSString+Path.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -291,8 +349,127 @@
 			isa = PBXGroup;
 			children = (
 				671CAB292A67C850006140A8 /* FHServiceCommand.h */,
+				6774FEA32A6A1177005F0DB9 /* FHServiceComandsManager.h */,
+				6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */,
+				6774FEA62A6A11E9005F0DB9 /* FHRootVCCommand.h */,
+				6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */,
+				6774FEA92A6A126F005F0DB9 /* FHRealmDBCommand.h */,
+				6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */,
+				6774FEAC2A6A12CF005F0DB9 /* FHAppearanceCommand.h */,
+				6774FEAD2A6A12CF005F0DB9 /* FHAppearanceCommand.m */,
+				6774FEAF2A6A1309005F0DB9 /* FHLibraryCommand.h */,
+				6774FEB02A6A1309005F0DB9 /* FHLibraryCommand.m */,
 			);
 			path = AppDelegateService;
+			sourceTree = "<group>";
+		};
+		6774FEB22A6A148E005F0DB9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEB32A6A1686005F0DB9 /* FunHer-Prefix.pch */,
+				6774FEB42A6A18C9005F0DB9 /* FunHer-Marco.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		6774FEB52A6A2C31005F0DB9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEE02A6E6BB7005F0DB9 /* FileDataManager */,
+				6774FEB62A6A2C58005F0DB9 /* InAppPurchase */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6774FEB62A6A2C58005F0DB9 /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEB72A6A2D02005F0DB9 /* InAppStoreManager.h */,
+				6774FEB82A6A2D02005F0DB9 /* InAppStoreManager.m */,
+				6774FEBA2A6A2DD9005F0DB9 /* StoreList.plist */,
+			);
+			path = InAppPurchase;
+			sourceTree = "<group>";
+		};
+		6774FEBC2A6A6FF7005F0DB9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEC12A6A7089005F0DB9 /* DB */,
+				6774FEBD2A6A700C005F0DB9 /* NetWork */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6774FEBD2A6A700C005F0DB9 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEBE2A6A707F005F0DB9 /* LZNetWorkManager.h */,
+				6774FEBF2A6A707F005F0DB9 /* LZNetWorkManager.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		6774FEC12A6A7089005F0DB9 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEC92A6E13E3005F0DB9 /* ImageRoot */,
+				6774FEC82A6E13D2005F0DB9 /* DocRoot */,
+				6774FEC72A6E1182005F0DB9 /* FolderRoot */,
+				6774FEC22A6A70BC005F0DB9 /* Service */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		6774FEC22A6A70BC005F0DB9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEC32A6A710C005F0DB9 /* LZDBService.h */,
+				6774FEC42A6A710C005F0DB9 /* LZDBService.m */,
+				6774FEC62A6E1152005F0DB9 /* LZRLMObjectProtocol.h */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6774FEC72A6E1182005F0DB9 /* FolderRoot */ = {
+			isa = PBXGroup;
+			children = (
+				6774FED02A6E1C28005F0DB9 /* FolderRLM.h */,
+				6774FED12A6E1C28005F0DB9 /* FolderRLM.m */,
+				6774FED32A6E2AE3005F0DB9 /* LZFolderManager.h */,
+				6774FED42A6E2AE3005F0DB9 /* LZFolderManager.m */,
+			);
+			path = FolderRoot;
+			sourceTree = "<group>";
+		};
+		6774FEC82A6E13D2005F0DB9 /* DocRoot */ = {
+			isa = PBXGroup;
+			children = (
+				6774FECD2A6E1C0C005F0DB9 /* DocRLM.h */,
+				6774FECE2A6E1C0C005F0DB9 /* DocRLM.m */,
+				6774FEDA2A6E6745005F0DB9 /* LZDocManager.h */,
+				6774FEDB2A6E6745005F0DB9 /* LZDocManager.m */,
+			);
+			path = DocRoot;
+			sourceTree = "<group>";
+		};
+		6774FEC92A6E13E3005F0DB9 /* ImageRoot */ = {
+			isa = PBXGroup;
+			children = (
+				6774FECA2A6E1BF5005F0DB9 /* ImageRLM.h */,
+				6774FECB2A6E1BF5005F0DB9 /* ImageRLM.m */,
+				6774FEDD2A6E69BA005F0DB9 /* LZImageManager.h */,
+				6774FEDE2A6E69BA005F0DB9 /* LZImageManager.m */,
+			);
+			path = ImageRoot;
+			sourceTree = "<group>";
+		};
+		6774FEE02A6E6BB7005F0DB9 /* FileDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				6774FEE12A6E6DF0005F0DB9 /* FHFileDataSession.h */,
+				6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */,
+			);
+			path = FileDataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +582,7 @@
 			files = (
 				671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
+				6774FEBB2A6A2DD9005F0DB9 /* StoreList.plist in Resources */,
 				671CAADB2A66622A006140A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,17 +711,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */,
+				6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */,
+				6774FEDC2A6E6745005F0DB9 /* LZDocManager.m in Sources */,
 				671CAB102A6771F8006140A8 /* NSDictionary+Json.m in Sources */,
 				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
 				671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */,
+				6774FED52A6E2AE3005F0DB9 /* LZFolderManager.m in Sources */,
 				671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */,
 				671CAB182A6773B2006140A8 /* UIViewController+Alert.m in Sources */,
+				6774FEB12A6A1309005F0DB9 /* FHLibraryCommand.m in Sources */,
+				6774FEB92A6A2D02005F0DB9 /* InAppStoreManager.m in Sources */,
+				6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */,
+				6774FECC2A6E1BF5005F0DB9 /* ImageRLM.m in Sources */,
 				671CAB0B2A67708A006140A8 /* NSObject+Properties.m in Sources */,
 				671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */,
+				6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */,
+				6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */,
+				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
+				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
+				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
 				671CAAD52A66622A006140A8 /* SceneDelegate.m in Sources */,
+				6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */,
 				671CAB152A677354006140A8 /* NSArray+Json.m in Sources */,
+				6774FEC02A6A707F005F0DB9 /* LZNetWorkManager.m in Sources */,
 				671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */,
+				6774FED22A6E1C28005F0DB9 /* FolderRLM.m in Sources */,
 				671CAB082A676EC3006140A8 /* NSObject+Swizzle.m in Sources */,
 				671CAB1C2A6775F2006140A8 /* NSString+Json.m in Sources */,
 			);
@@ -720,6 +914,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
@@ -754,6 +950,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";

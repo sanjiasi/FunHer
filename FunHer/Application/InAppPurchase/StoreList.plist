@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Subscriptions</key>
+	<array>
+		<string>subs_year</string>
+		<string>subs_month</string>
+	</array>
+	<key>ProductDetail</key>
+	<dict>
+		<key>subs_year</key>
+		<dict>
+			<key>type</key>
+			<string>subs</string>
+			<key>plan</key>
+			<string>年订阅</string>
+			<key>periodUnit</key>
+			<string>year</string>
+		</dict>
+		<key>subs_month</key>
+		<dict>
+			<key>type</key>
+			<string>subs</string>
+			<key>plan</key>
+			<string>月订阅</string>
+			<key>periodUnit</key>
+			<string>month</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
