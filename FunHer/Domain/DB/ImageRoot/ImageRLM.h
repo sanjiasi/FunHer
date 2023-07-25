@@ -24,10 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property NSString *pathId;
 /**
- *  文件夹路径 **不存数据库 设置忽略属性
- */
-@property (nonatomic) NSString *filePath;
-/**
  *  文件名字 自动生成
  */
 @property NSString *name;

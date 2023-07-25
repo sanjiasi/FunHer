@@ -11,6 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDate (Format)
 
+/// -- 时间戳 秒
++ (NSTimeInterval)utcStamp;
+
+/// utcStamp --> 字符串 秒
++ (NSString *)utcStampStr;
+
+/// utcStamp --> 字符串 毫秒
++ (NSString *)utcStampMilliStr;
+
 /// --  date --> str
 + (NSString *)timeFormatString:(NSString *)format withDate:(NSDate *)date;
 /// --  str --> date

@@ -9,6 +9,20 @@
 
 @implementation NSDate (Format)
 
++ (NSTimeInterval)utcStamp {
+    return [[NSDate date] timeIntervalSince1970];
+}
+
++ (NSString *)utcStampStr {
+    NSString *syncTime = [NSString stringWithFormat:@"%.0f",[self utcStamp]];
+    return syncTime;
+}
+
++ (NSString *)utcStampMilliStr {
+    NSString *syncTime = [NSString stringWithFormat:@"%.0f",([self utcStamp] * 1000)];
+    return syncTime;
+}
+
 + (NSString *)timeFormatString:(NSString *)format withDate:(NSDate *)date {
     NSDateFormatter *dateformatter = [self defaultFormatter];
     [dateformatter setDateFormat:format];

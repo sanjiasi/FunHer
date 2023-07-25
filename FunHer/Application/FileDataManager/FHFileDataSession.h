@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - parentId: 上级目录id
 + (NSDictionary *)addFolder:(NSString *)name atParent:(NSString *)parentId;
 
+/// -- 删除文件夹
+/// - Parameter objId: 主键
++ (void)deleteFolderWithId:(NSString *)objId;
+
 /// ** 文档
 
 

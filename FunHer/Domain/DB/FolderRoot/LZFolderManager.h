@@ -68,10 +68,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -- 删
 /// 删除FolderRLM
+/// @param obj  实体
++ (void)removeEntity:(FolderRLM *)obj;
+
+/// 批量删除FolderRLM
+/// @param objs  实体数组
++ (void)removeEntityList:(id)objs;
+
+/// 删除FolderRLM
 /// @param objId 主键
 + (void)deleteEntityWithId:(NSString *)objId;
+
 /// 批量删除FolderRLM
-/// @param objIds  主键
+/// @param objIds  主键数组
 + (void)batchDeleteWithEntityIds:(NSArray *)objIds;
 
 @end

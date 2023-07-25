@@ -45,6 +45,7 @@
 		6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEDE2A6E69BA005F0DB9 /* LZImageManager.m */; };
 		6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */; };
 		6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEE52A6E7913005F0DB9 /* NSString+Path.m */; };
+		6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEE82A6EA6F5005F0DB9 /* FHReadFileSession.m */; };
 		884558B0789C48F809F1F254 /* Pods_FunHerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DEA04AF20251D1C522233A /* Pods_FunHerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,8 @@
 		6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileDataSession.m; sourceTree = "<group>"; };
 		6774FEE42A6E7913005F0DB9 /* NSString+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
 		6774FEE52A6E7913005F0DB9 /* NSString+Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Path.m"; sourceTree = "<group>"; };
+		6774FEE72A6EA6F5005F0DB9 /* FHReadFileSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHReadFileSession.h; sourceTree = "<group>"; };
+		6774FEE82A6EA6F5005F0DB9 /* FHReadFileSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHReadFileSession.m; sourceTree = "<group>"; };
 		6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunHer_FunHerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.debug.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunHer-FunHerUITests.release.xcconfig"; path = "Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 			children = (
 				6774FEE12A6E6DF0005F0DB9 /* FHFileDataSession.h */,
 				6774FEE22A6E6DF0005F0DB9 /* FHFileDataSession.m */,
+				6774FEE72A6EA6F5005F0DB9 /* FHReadFileSession.h */,
+				6774FEE82A6EA6F5005F0DB9 /* FHReadFileSession.m */,
 			);
 			path = FileDataManager;
 			sourceTree = "<group>";
@@ -729,6 +734,7 @@
 				6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */,
 				6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */,
 				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
+				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,

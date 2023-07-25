@@ -92,15 +92,23 @@
 
 #pragma mark ** 删
 #pragma mark -- 删除文件夹
++ (void)removeEntity:(FolderRLM *)obj {
+    [LZDBService removeObject:obj];
+}
+
 + (void)deleteEntityWithId:(NSString *)objId {
     FolderRLM *target = [self entityWithId:objId];
-    [LZDBService removeObject:target];
+    [self removeEntity:target];
 }
 
 #pragma mark -- 批量删除文件夹
++ (void)removeEntityList:(id)objs {
+    [LZDBService removeAllObjects:objs];
+}
+
 + (void)batchDeleteWithEntityIds:(NSArray *)objIds {
     RLMResults<FolderRLM *> *objs = [self entityListWithIds:objIds];
-    [LZDBService removeAllObjects:objs];
+    [self removeEntityList:objs];
 }
 
 @end

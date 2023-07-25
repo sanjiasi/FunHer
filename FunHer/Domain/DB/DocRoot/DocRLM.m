@@ -20,7 +20,7 @@
 
 //设置忽略属性,即不存到realm数据库中
 + (NSArray<NSString *> *)ignoredProperties {
-    return @[@"filePath", ];
+    return @[ ];
 }
 
 //构造数据库模型--DocRLM
