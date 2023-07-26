@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -- 删
 /// 删除ImageRLM
 /// @param obj  实体
-+ (void)removeEntity:(DocRLM *)obj;
++ (void)removeEntity:(ImageRLM *)obj;
 
 /// 批量删除ImageRLM
 /// @param objs  实体数组

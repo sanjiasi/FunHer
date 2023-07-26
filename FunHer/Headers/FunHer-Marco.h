@@ -51,6 +51,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #define StringFormat(a) [NSString stringWithFormat:@"%@",a]
 
+#pragma mark -- const
+// -- 首页文件夹、文档的父id
+#define FHParentIdByHome @"FF_00"
+
 #pragma mark -- variable
 // ----------  布局
 // 屏幕宽、高
@@ -99,5 +103,15 @@ if (@available(iOS 11.0, *)) {\
 #define PingFang_M_FONT_(s)   [UIFont systemFontOfSize:s weight:UIFontWeightMedium] // //PingFangSC-Medium//中
 #define PingFang_S_FONT_(s)   [UIFont systemFontOfSize:s weight:UIFontWeightSemibold]//PingFangSC-Semibold//粗
 
+#pragma mark -- 颜色
+#define RGB(r,g,b)          [UIColor colorWithRed:(r)/255.f \
+                                            green:(g)/255.f \
+                                             blue:(b)/255.f \
+                                            alpha:1.f]
+
+#define RGBA(r,g,b,a)       [UIColor colorWithRed:(r)/255.f \
+                                            green:(g)/255.f \
+                                             blue:(b)/255.f \
+                                            alpha:(a)]
 
 #endif /* FunHer_Marco_h */

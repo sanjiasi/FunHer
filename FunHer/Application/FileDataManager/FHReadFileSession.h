@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
 
-@class FolderRLM;
+@class FolderRLM, DocRLM, ImageRLM;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FHReadFileSession : NSObject
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 根据父id(文件夹上级目录id)查询folders 默认排序
 + (RLMResults<FolderRLM *> *)foldersByParentId:(NSString *)parentId;
 
-/// -- 查询首页的文件夹 默认排序
+/// -- 查询首页的文件夹 
 + (RLMResults<FolderRLM *> *)homeFoldersBySorted;
 
 /// -- 查询某个文件夹下的所有folder 可用于计数
@@ -33,6 +33,50 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// -- 先加第一层全部，后加第一层文件的子文件 -- 类推 01, 02, 01/101, 02/102
 + (NSMutableArray *)foldersByParentId:(NSString *)parentId data:(NSMutableArray *)allData;
+
+#pragma mark -- 文档
+/// 文件夹内的文档(非首页的文档)
++ (RLMResults<DocRLM *> *)allDocumentsAtFoler;
+
+/// -- 查询所有的文档 最近浏览时间排序
++ (RLMResults<DocRLM *> *)allDocumentsByRecent;
+
+/// -- 根据父id(文档上级目录id)查询documents 默认排序
++ (RLMResults<DocRLM *> *)documentsByParentId:(NSString *)parentId;
+
+/// -- 查询首页的文档 默认排序
++ (RLMResults<DocRLM *> *)homeDocumentsBySorted;
+
+/// -- 查询某个文件夹下的所有文档 可用于计数
++ (RLMResults<DocRLM *> *)documentsAtFoler:(NSString *)folderId;
+
+#pragma mark -- 图片
+/// -- 根据图片名称和父id(图片上级目录id)查询images
++ (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name;
+
+/// -- 计数某个目录下的所有图片个数 pathId:路径id
++ (RLMResults<ImageRLM *> *)imagesAtPath:(NSString *)pathId;
+
+/// -- 某个文件夹下的所有图片 folderId:文件夹id 带排序
++ (RLMResults<ImageRLM *> *)allImagesAtFolder:(NSString *)folderId;
+
+/// 查询相同的图片
++ (ImageRLM *)imageRLMWithCloudUrl:(NSString *)url;
+
+///  查询某个文档中已经同步完成的图片
++ (RLMResults<ImageRLM *> *)imageRLMsSyncDoneAtDoc:(NSString *)docId;
+
+/// -- 根据父id(图片上级目录id)查询images
++ (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId;
+
+/// -- 根据父id(图片上级目录id)查询images 并排序
++ (NSArray *)sortImageRLMsByParentId:(NSString *)parentId;
+
+/// -- 根据ids查询images
++ (RLMResults<ImageRLM *> *)imageRLMsWithImageIds:(NSArray *)imgIds;
+
+/// -- 根据ids顺序查询images
++ (NSMutableArray *)imageRLMsOrderByImageIds:(NSArray *)imgIds;
 
 @end
 

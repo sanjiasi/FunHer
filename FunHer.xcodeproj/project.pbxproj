@@ -28,6 +28,9 @@
 		671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB1E2A677712006140A8 /* NSString+Encrypt.m */; };
 		671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB212A67C0EB006140A8 /* NSString+TextSize.m */; };
 		671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB252A67C546006140A8 /* NSDate+Format.m */; };
+		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
+		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
+		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
 		6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */; };
 		6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */; };
 		6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */; };
@@ -106,6 +109,12 @@
 		671CAB242A67C546006140A8 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
 		671CAB252A67C546006140A8 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
 		671CAB292A67C850006140A8 /* FHServiceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceCommand.h; sourceTree = "<group>"; };
+		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
+		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
+		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
+		676D7CEE2A70EF550077762A /* GCDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
+		676D7CF22A70F1030077762A /* FHToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHToast.h; sourceTree = "<group>"; };
+		676D7CF32A70F1030077762A /* FHToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHToast.m; sourceTree = "<group>"; };
 		6774FEA32A6A1177005F0DB9 /* FHServiceComandsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceComandsManager.h; sourceTree = "<group>"; };
 		6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHServiceComandsManager.m; sourceTree = "<group>"; };
 		6774FEA62A6A11E9005F0DB9 /* FHRootVCCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHRootVCCommand.h; sourceTree = "<group>"; };
@@ -285,6 +294,8 @@
 				671CAB072A676EC3006140A8 /* NSObject+Swizzle.m */,
 				671CAB092A67708A006140A8 /* NSObject+Properties.h */,
 				671CAB0A2A67708A006140A8 /* NSObject+Properties.m */,
+				676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */,
+				676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -343,6 +354,8 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				676D7CF12A70F0CE0077762A /* Toast */,
+				676D7CEC2A70EF190077762A /* Timer */,
 				671CAB282A67C7D6006140A8 /* AppDelegateService */,
 			);
 			path = Components;
@@ -364,6 +377,24 @@
 				6774FEB02A6A1309005F0DB9 /* FHLibraryCommand.m */,
 			);
 			path = AppDelegateService;
+			sourceTree = "<group>";
+		};
+		676D7CEC2A70EF190077762A /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				676D7CED2A70EF550077762A /* GCDTimer.h */,
+				676D7CEE2A70EF550077762A /* GCDTimer.m */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		676D7CF12A70F0CE0077762A /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				676D7CF22A70F1030077762A /* FHToast.h */,
+				676D7CF32A70F1030077762A /* FHToast.m */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		6774FEB22A6A148E005F0DB9 /* Headers */ = {
@@ -729,12 +760,14 @@
 				6774FEB92A6A2D02005F0DB9 /* InAppStoreManager.m in Sources */,
 				6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */,
 				6774FECC2A6E1BF5005F0DB9 /* ImageRLM.m in Sources */,
+				676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */,
 				671CAB0B2A67708A006140A8 /* NSObject+Properties.m in Sources */,
 				671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */,
 				6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */,
 				6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */,
 				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
 				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
+				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
@@ -746,6 +779,7 @@
 				6774FED22A6E1C28005F0DB9 /* FolderRLM.m in Sources */,
 				671CAB082A676EC3006140A8 /* NSObject+Swizzle.m in Sources */,
 				671CAB1C2A6775F2006140A8 /* NSString+Json.m in Sources */,
+				676D7CF42A70F1030077762A /* FHToast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

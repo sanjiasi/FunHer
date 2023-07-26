@@ -16,13 +16,14 @@
 
 @implementation FHReadFileSession
 
-#pragma mark -- 根据父id(文件夹上级目录id)查询folders 默认排序
+#pragma mark ** 文件夹
+#pragma mark -- 根据父id(文件夹上级目录id)查询folders 排序
 + (RLMResults<FolderRLM *> *)foldersByParentId:(NSString *)parentId {
-    RLMResults<FolderRLM *> *folders = [LZFolderManager defaultSortByResults:[FolderRLM objectsWhere:@"parentId = %@",parentId]];
+    RLMResults<FolderRLM *> *folders = [self sortResults:[FolderRLM objectsWhere:@"parentId = %@",parentId]];
     return folders;
 }
 
-#pragma mark -- 查询首页的文件夹 默认排序
+#pragma mark -- 查询首页的文件夹 排序
 + (RLMResults<FolderRLM *> *)homeFoldersBySorted {
     RLMResults<FolderRLM *> *folders = [self foldersByParentId:@"000000"];
     return folders;
@@ -91,6 +92,156 @@
         [self foldersByParentId:folderObj.Id data:allData];
     }
     return allData;
+}
+
+#pragma mark ** 文档
+#pragma mark 文件夹内的文档(非首页的文档)
++ (RLMResults<DocRLM *> *)allDocumentsAtFoler {
+    RLMResults<DocRLM *> *documents = [self sortResults:[DocRLM objectsWhere:@"parentId != '000000'"]];
+    return documents;
+}
+
+#pragma mark -- 查询所有的文档 最近浏览时间排序
++ (RLMResults<DocRLM *> *)allDocumentsByRecent {
+    RLMResults<DocRLM *> *documents = [[DocRLM allObjects] sortedResultsUsingKeyPath:@"rtime" ascending:NO];
+    return documents;
+}
+
+#pragma mark -- 根据父id(文档上级目录id)查询documents 默认排序
++ (RLMResults<DocRLM *> *)documentsByParentId:(NSString *)parentId {
+    RLMResults<DocRLM *> *documents = [self sortResults:[DocRLM objectsWhere:@"parentId = %@",parentId]];
+    return documents;
+}
+
+#pragma mark -- 查询首页的文档 默认排序
++ (RLMResults<DocRLM *> *)homeDocumentsBySorted {
+    RLMResults<DocRLM *> *documents = [self documentsByParentId:@"000000"];
+    return documents;
+}
+
+#pragma mark -- 查询某个文件夹下的所有文档 可用于计数
++ (RLMResults<DocRLM *> *)documentsAtFoler:(NSString *)folderId {
+    FolderRLM *folder = [LZFolderManager entityWithId:folderId];
+    RLMResults<DocRLM *> *documents = [DocRLM objectsWhere:@"pathId CONTAINS %@", folder.pathId];
+    return documents;
+}
+
+#pragma mark ** 图片
+#pragma mark -- 根据图片名称和父id(图片上级目录id)查询images
++ (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"parentId = %@ AND name = %@",parentId, name];
+    return images;
+}
+
+#pragma mark -- 计数某个目录下的所有图片个数 pathId:路径id
++ (RLMResults<ImageRLM *> *)imagesAtPath:(NSString *)pathId {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"pathId CONTAINS %@", pathId];
+    return images;
+}
+
+#pragma mark -- 某个文件夹下的所有图片 folderId:文件夹id 带排序
++ (RLMResults<ImageRLM *> *)allImagesAtFolder:(NSString *)folderId {
+    FolderRLM *target = [LZFolderManager entityWithId:folderId];
+    RLMResults<ImageRLM *> *images = [self imagesAtPath:target.pathId];
+    return images;
+}
+
+#pragma mark 查询相同的图片
++ (ImageRLM *)imageRLMWithCloudUrl:(NSString *)url {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"cloudUrl == %@",url];
+    if (images.count) {
+        ImageRLM *image = images.firstObject;
+        return image;
+    }
+    return nil;
+}
+
+#pragma mark  查询某个文档中已经同步完成的图片
++ (RLMResults<ImageRLM *> *)imageRLMsSyncDoneAtDoc:(NSString *)docId {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"parentId = %@ AND syncDone = 1",docId];
+    return images;
+}
+
+#pragma mark -- 根据父id(图片上级目录id)查询images
++ (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"parentId = %@",parentId];
+    return images;
+}
+
+#pragma mark -- 根据父id(图片上级目录id)查询images 并排序
++ (NSArray *)sortImageRLMsByParentId:(NSString *)parentId {
+    RLMResults<ImageRLM *> *images = [self imageRLMsByParentId:parentId];
+    NSArray *imageArr = [LZDBService convertToArray:images];
+    NSArray *sortArray = [imageArr sortedArrayUsingComparator:^NSComparisonResult(ImageRLM *file1, ImageRLM *file2) {
+        NSString *sortNO1 = file1.picIndex;
+        NSString *sortNO2 = file2.picIndex;
+        return [sortNO1 compare:sortNO2 options:NSNumericSearch];
+    }];
+    return sortArray;
+}
+
+#pragma mark -- 根据ids查询images
++ (RLMResults<ImageRLM *> *)imageRLMsWithImageIds:(NSArray *)imgIds {
+    RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"Id IN %@", imgIds];
+    return images;
+}
+
+#pragma mark -- 根据ids顺序查询images
++ (NSMutableArray *)imageRLMsOrderByImageIds:(NSArray *)imgIds {
+    NSMutableArray *sortImages = @[].mutableCopy;
+    for (NSString *imgId in imgIds) {
+        ImageRLM *target = [LZImageManager entityWithId:imgId];
+        if (target) {
+            [sortImages addObject:target];
+        }
+    }
+    return sortImages;
+}
+
+
+#pragma mark -- 对查询结果进行排序 默认排序类型排序
++ (RLMResults *)sortResults:(RLMResults *)results {
+    NSString *sortKey = [self sortRule][@"sortKey"];
+    BOOL asceding = [[self sortRule][@"asceding"] boolValue];
+    RLMResults *res = [results sortedResultsUsingKeyPath:sortKey ascending:asceding];
+    return res;
+}
+
+#pragma mark -- 默认排序规则
++ (NSDictionary *)sortRule {
+    NSInteger type = 2;//[ScanerShare sortType];
+    NSString *sortKey = @"uTime";
+    BOOL asceding = YES;
+    switch (type) {
+        case 0:
+            sortKey = @"cTime";
+            asceding = NO;
+            break;
+        case 1:
+            sortKey = @"cTime";
+            asceding = YES;
+            break;
+        case 2:
+            sortKey = @"uTime";
+            asceding = NO;
+            break;
+        case 3:
+            sortKey = @"uTime";
+            asceding = YES;
+            break;
+        case 4:
+            sortKey = @"name";
+            asceding = YES;
+            break;
+        case 5:
+            sortKey = @"name";
+            asceding = NO;
+            break;
+            
+        default:
+            break;
+    }
+    return @{@"sortKey":sortKey, @"asceding":@(asceding)};
 }
 
 @end

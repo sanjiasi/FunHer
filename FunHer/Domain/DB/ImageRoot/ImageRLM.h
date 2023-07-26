@@ -34,7 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  图片名 01，02，03 **不存数据库 设置忽略属性
  */
-@property NSString *fileName;
+@property (readonly) NSString *fileName;
+/**
+ *  图片排序索引 截取根据图片名后缀
+ */
+@property (readonly) NSString *picIndex;
 /**
  *  创建时间
  */
