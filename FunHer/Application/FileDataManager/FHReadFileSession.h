@@ -70,7 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId;
 
 /// -- 根据父id(图片上级目录id)查询images 并排序
-+ (NSArray *)sortImageRLMsByParentId:(NSString *)parentId;
++ (RLMResults<ImageRLM *> *)sortImageRLMsByParentId:(NSString *)parentId;
+
+/// -- 当前文档中图片最大索引
++ (NSInteger)lastImageIndexByParentId:(NSString *)parentId;
 
 /// -- 根据ids查询images
 + (RLMResults<ImageRLM *> *)imageRLMsWithImageIds:(NSArray *)imgIds;

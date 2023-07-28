@@ -28,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property NSString *name;
 /**
+ *  图片路径 **不存数据库 设置忽略属性
+ */
+@property (readonly) NSString *filePath;
+/**
  *  文件大小 Bit
  */
 @property long fileLength;
@@ -36,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (readonly) NSString *fileName;
 /**
- *  图片排序索引 截取根据图片名后缀
+ *  图片排序索引
  */
-@property (readonly) NSString *picIndex;
+@property NSInteger picIndex;
 /**
  *  创建时间
  */

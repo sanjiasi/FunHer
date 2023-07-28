@@ -16,12 +16,38 @@
 
 //设置属性默认值
 + (NSDictionary *)defaultPropertyValues{
-    return @{@"syncDone":@0, };
+    return @{@"syncDone":@0, @"cloudUrl":@"", };
 }
 
 //设置忽略属性,即不存到realm数据库中
 + (NSArray<NSString *> *)ignoredProperties {
-    return @[@"fileName", @"picIndex"];
+    return @[@"fileName", @"filePath", ];
+}
+
+- (NSString *)filePath {
+    NSString *path = [[self thumbPath] stringByAppendingPathComponent:self.name];
+    return path;
+}
+
+- (NSString *)thumbPath {
+    NSString *path = [[self imageBox] stringByAppendingPathComponent:@"thumbs"];
+    return path;
+}
+
+- (NSString *)originalPath {
+    NSString *path = [[self imageBox] stringByAppendingPathComponent:@"originals"];
+    return path;
+}
+
+- (NSString *)imageBox {
+    NSString *box = [[self appBox] stringByAppendingPathComponent:@"Image_File"];
+    return box;
+}
+
+- (NSString *)appBox {
+    NSString *supportDir = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *box = [supportDir stringByAppendingPathComponent:@"FunHerBox"];
+    return box;
 }
 
 //构造数据库模型--ImageRLM

@@ -29,8 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 所有数据对象 不排序
 + (RLMResults<ImageRLM *> *)allEntityList;
 
-/// 所有数据对象 uTime降序
-+ (RLMResults<ImageRLM *> *)allEntityListBySorted;
+/// -- 对查询结果进行排序 默认升序
++ (RLMResults *)sortResults:(RLMResults *)results bySortKey:(NSString *)sortKey;
 
 /// 根据自定义条件查询
 /// - Parameter predicate: 谓词搜索
@@ -41,9 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param predicate 谓词
 + (RLMResults<ImageRLM *> *)entityListWithTargets:(RLMResults<ImageRLM *> *)targets byCondition:(NSPredicate *)predicate;
 
-/// 默认uTime降序
-/// - Parameter results: 上一阶段的查询结果
-+ (RLMResults *)defaultSortByResults:(RLMResults *)results;
 
 #pragma mark -- 增
 /// 添加ImageRLM

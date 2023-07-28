@@ -169,15 +169,20 @@
 }
 
 #pragma mark -- 根据父id(图片上级目录id)查询images 并排序
-+ (NSArray *)sortImageRLMsByParentId:(NSString *)parentId {
++ (RLMResults<ImageRLM *> *)sortImageRLMsByParentId:(NSString *)parentId {
     RLMResults<ImageRLM *> *images = [self imageRLMsByParentId:parentId];
-    NSArray *imageArr = [LZDBService convertToArray:images];
-    NSArray *sortArray = [imageArr sortedArrayUsingComparator:^NSComparisonResult(ImageRLM *file1, ImageRLM *file2) {
-        NSString *sortNO1 = file1.picIndex;
-        NSString *sortNO2 = file2.picIndex;
-        return [sortNO1 compare:sortNO2 options:NSNumericSearch];
-    }];
-    return sortArray;
+    RLMResults<ImageRLM *> *results = [LZImageManager sortResults:images bySortKey:@"picIndex"];
+    return results;
+}
+
+#pragma mark -- 当前文档中图片最大索引
++ (NSInteger)lastImageIndexByParentId:(NSString *)parentId {
+    RLMResults<ImageRLM *> *results = [self sortImageRLMsByParentId:parentId];
+    if (results.count > 0) {
+        ImageRLM *lastObj = results.lastObject;
+        return lastObj.picIndex;
+    }
+    return 0;
 }
 
 #pragma mark -- 根据ids查询images

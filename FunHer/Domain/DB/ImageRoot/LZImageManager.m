@@ -38,12 +38,6 @@
     return resluts;
 }
 
-#pragma mark -- 所有ImageRLM uTime降序(默认排序)
-+ (RLMResults<ImageRLM *> *)allEntityListBySorted {
-    RLMResults<ImageRLM *> *resluts = [self defaultSortByResults:[self allEntityList]];
-    return resluts;
-}
-
 #pragma mark -- 根据自定义条件查询
 + (RLMResults<ImageRLM *> *)entityListWithCondition:(NSPredicate *)predicate {
     RLMResults<ImageRLM *> *resluts = [ImageRLM objectsWithPredicate:predicate];
@@ -56,10 +50,14 @@
     return results;
 }
 
-#pragma mark --  默认uTime(更新时间)降序
-+ (RLMResults *)defaultSortByResults:(RLMResults *)results {
-    return [results sortedResultsUsingKeyPath:@"uTime" ascending:NO];
+
+#pragma mark -- 对查询结果进行排序 默认升序
++ (RLMResults *)sortResults:(RLMResults *)results bySortKey:(NSString *)sortKey  {
+    BOOL ascending = YES;
+    RLMResults *res = [results sortedResultsUsingKeyPath:sortKey ascending:ascending];
+    return res;
 }
+
 
 #pragma mark ** 增
 #pragma mark -- 新增文档

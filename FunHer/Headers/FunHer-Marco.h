@@ -54,6 +54,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #pragma mark -- const
 // -- 首页文件夹、文档的父id
 #define FHParentIdByHome @"FF_00"
+// -- 图片后缀
+#define FHFilePathExtension @".jpg"
 
 #pragma mark -- variable
 // ----------  布局
