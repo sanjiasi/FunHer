@@ -38,11 +38,11 @@
     return resluts;
 }
 
-#pragma mark -- 所有FolderRLM uTime降序(默认排序)
-+ (RLMResults<FolderRLM *> *)allEntityListBySorted {
-    RLMResults<FolderRLM *> *resluts = [self defaultSortByResults:[self allEntityList]];
-    return resluts;
-}
+//#pragma mark -- 所有FolderRLM uTime降序(默认排序)
+//+ (RLMResults<FolderRLM *> *)allEntityListBySorted {
+//    RLMResults<FolderRLM *> *resluts = [self defaultSortByResults:[self allEntityList]];
+//    return resluts;
+//}
 
 #pragma mark -- 根据自定义条件查询
 + (RLMResults<FolderRLM *> *)entityListWithCondition:(NSPredicate *)predicate {
@@ -56,10 +56,6 @@
     return results;
 }
 
-#pragma mark --  默认uTime(更新时间)降序
-+ (RLMResults *)defaultSortByResults:(RLMResults *)results {
-    return [results sortedResultsUsingKeyPath:@"uTime" ascending:NO];
-}
 
 #pragma mark ** 增
 #pragma mark -- 新增文件夹

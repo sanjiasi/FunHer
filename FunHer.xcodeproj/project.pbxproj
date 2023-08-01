@@ -10,9 +10,7 @@
 		21C02F5D8914DCDE983A938E /* Pods_FunHer_FunHerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B75A1A216A845ACEB2FC777 /* Pods_FunHer_FunHerUITests.framework */; };
 		36360CF60FA250277678AE94 /* Pods_FunHer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF1DD6E71AE6EE758C1C4B7 /* Pods_FunHer.framework */; };
 		671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD12A66622A006140A8 /* AppDelegate.m */; };
-		671CAAD52A66622A006140A8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD42A66622A006140A8 /* SceneDelegate.m */; };
 		671CAAD82A66622A006140A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAD72A66622A006140A8 /* ViewController.m */; };
-		671CAADB2A66622A006140A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671CAAD92A66622A006140A8 /* Main.storyboard */; };
 		671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 671CAADC2A66622B006140A8 /* Assets.xcassets */; };
 		671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */; };
 		671CAAE32A66622B006140A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAAE22A66622B006140A8 /* main.m */; };
@@ -28,6 +26,12 @@
 		671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB1E2A677712006140A8 /* NSString+Encrypt.m */; };
 		671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB212A67C0EB006140A8 /* NSString+TextSize.m */; };
 		671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB252A67C546006140A8 /* NSDate+Format.m */; };
+		67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */; };
+		67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB92A77882C00E87AF5 /* FHFileListVC.m */; };
+		67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BBC2A77963600E87AF5 /* FHFileListPresent.m */; };
+		67406BC02A77967500E87AF5 /* FHFileCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BBF2A77967500E87AF5 /* FHFileCellModel.m */; };
+		67406BC32A7796B700E87AF5 /* FHFileCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BC22A7796B700E87AF5 /* FHFileCollectionCell.m */; };
+		67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BC62A77A14200E87AF5 /* FHFileModel.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -76,11 +80,8 @@
 		671CAACD2A66622A006140A8 /* FunHer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunHer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		671CAAD02A66622A006140A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		671CAAD12A66622A006140A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		671CAAD32A66622A006140A8 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		671CAAD42A66622A006140A8 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		671CAAD62A66622A006140A8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		671CAAD72A66622A006140A8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		671CAADA2A66622A006140A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		671CAADC2A66622B006140A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		671CAADF2A66622B006140A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		671CAAE12A66622B006140A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +110,18 @@
 		671CAB242A67C546006140A8 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
 		671CAB252A67C546006140A8 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
 		671CAB292A67C850006140A8 /* FHServiceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceCommand.h; sourceTree = "<group>"; };
+		67406BB32A77861600E87AF5 /* FHCollectionAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCollectionAdapter.h; sourceTree = "<group>"; };
+		67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCollectionAdapter.m; sourceTree = "<group>"; };
+		67406BB82A77882C00E87AF5 /* FHFileListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileListVC.h; sourceTree = "<group>"; };
+		67406BB92A77882C00E87AF5 /* FHFileListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileListVC.m; sourceTree = "<group>"; };
+		67406BBB2A77963600E87AF5 /* FHFileListPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileListPresent.h; sourceTree = "<group>"; };
+		67406BBC2A77963600E87AF5 /* FHFileListPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileListPresent.m; sourceTree = "<group>"; };
+		67406BBE2A77967500E87AF5 /* FHFileCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileCellModel.h; sourceTree = "<group>"; };
+		67406BBF2A77967500E87AF5 /* FHFileCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileCellModel.m; sourceTree = "<group>"; };
+		67406BC12A7796B700E87AF5 /* FHFileCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileCollectionCell.h; sourceTree = "<group>"; };
+		67406BC22A7796B700E87AF5 /* FHFileCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileCollectionCell.m; sourceTree = "<group>"; };
+		67406BC52A77A14200E87AF5 /* FHFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileModel.h; sourceTree = "<group>"; };
+		67406BC62A77A14200E87AF5 /* FHFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileModel.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -239,16 +252,15 @@
 			children = (
 				671CAAD02A66622A006140A8 /* AppDelegate.h */,
 				671CAAD12A66622A006140A8 /* AppDelegate.m */,
-				671CAAD32A66622A006140A8 /* SceneDelegate.h */,
-				671CAAD42A66622A006140A8 /* SceneDelegate.m */,
 				671CAAD62A66622A006140A8 /* ViewController.h */,
 				671CAAD72A66622A006140A8 /* ViewController.m */,
 				6774FEB22A6A148E005F0DB9 /* Headers */,
 				6774FEBC2A6A6FF7005F0DB9 /* Domain */,
 				6774FEB52A6A2C31005F0DB9 /* Application */,
+				67406BB62A77878900E87AF5 /* Presentations */,
 				671CAB272A67C6B2006140A8 /* Components */,
 				671CAB052A676C4E006140A8 /* Category */,
-				671CAAD92A66622A006140A8 /* Main.storyboard */,
+				67406BCA2A77AE1F00E87AF5 /* Resources */,
 				671CAADC2A66622B006140A8 /* Assets.xcassets */,
 				671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */,
 				671CAAE12A66622B006140A8 /* Info.plist */,
@@ -354,6 +366,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				67406BB22A77858C00E87AF5 /* Adapter */,
 				676D7CF12A70F0CE0077762A /* Toast */,
 				676D7CEC2A70EF190077762A /* Timer */,
 				671CAB282A67C7D6006140A8 /* AppDelegateService */,
@@ -377,6 +390,55 @@
 				6774FEB02A6A1309005F0DB9 /* FHLibraryCommand.m */,
 			);
 			path = AppDelegateService;
+			sourceTree = "<group>";
+		};
+		67406BB22A77858C00E87AF5 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				67406BB32A77861600E87AF5 /* FHCollectionAdapter.h */,
+				67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		67406BB62A77878900E87AF5 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				67406BC42A77A11100E87AF5 /* FileModel */,
+				67406BB72A7787CE00E87AF5 /* FileList */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		67406BB72A7787CE00E87AF5 /* FileList */ = {
+			isa = PBXGroup;
+			children = (
+				67406BB82A77882C00E87AF5 /* FHFileListVC.h */,
+				67406BB92A77882C00E87AF5 /* FHFileListVC.m */,
+				67406BBB2A77963600E87AF5 /* FHFileListPresent.h */,
+				67406BBC2A77963600E87AF5 /* FHFileListPresent.m */,
+				67406BBE2A77967500E87AF5 /* FHFileCellModel.h */,
+				67406BBF2A77967500E87AF5 /* FHFileCellModel.m */,
+				67406BC12A7796B700E87AF5 /* FHFileCollectionCell.h */,
+				67406BC22A7796B700E87AF5 /* FHFileCollectionCell.m */,
+			);
+			path = FileList;
+			sourceTree = "<group>";
+		};
+		67406BC42A77A11100E87AF5 /* FileModel */ = {
+			isa = PBXGroup;
+			children = (
+				67406BC52A77A14200E87AF5 /* FHFileModel.h */,
+				67406BC62A77A14200E87AF5 /* FHFileModel.m */,
+			);
+			path = FileModel;
+			sourceTree = "<group>";
+		};
+		67406BCA2A77AE1F00E87AF5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -619,7 +681,6 @@
 				671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
 				6774FEBB2A6A2DD9005F0DB9 /* StoreList.plist in Resources */,
-				671CAADB2A66622A006140A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +815,8 @@
 				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
 				671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */,
 				6774FED52A6E2AE3005F0DB9 /* LZFolderManager.m in Sources */,
+				67406BC02A77967500E87AF5 /* FHFileCellModel.m in Sources */,
+				67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */,
 				671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */,
 				671CAB182A6773B2006140A8 /* UIViewController+Alert.m in Sources */,
 				6774FEB12A6A1309005F0DB9 /* FHLibraryCommand.m in Sources */,
@@ -766,17 +829,20 @@
 				6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */,
 				6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */,
 				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
+				67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */,
 				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
 				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
+				67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
-				671CAAD52A66622A006140A8 /* SceneDelegate.m in Sources */,
 				6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */,
 				671CAB152A677354006140A8 /* NSArray+Json.m in Sources */,
 				6774FEC02A6A707F005F0DB9 /* LZNetWorkManager.m in Sources */,
 				671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */,
+				67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */,
 				6774FED22A6E1C28005F0DB9 /* FolderRLM.m in Sources */,
+				67406BC32A7796B700E87AF5 /* FHFileCollectionCell.m in Sources */,
 				671CAB082A676EC3006140A8 /* NSObject+Swizzle.m in Sources */,
 				671CAB1C2A6775F2006140A8 /* NSString+Json.m in Sources */,
 				676D7CF42A70F1030077762A /* FHToast.m in Sources */,
@@ -816,14 +882,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		671CAAD92A66622A006140A8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				671CAADA2A66622A006140A8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -961,7 +1019,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -997,7 +1054,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

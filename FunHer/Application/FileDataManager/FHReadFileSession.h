@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 先加第一层全部，后加第一层文件的子文件 -- 类推 01, 02, 01/101, 02/102
 + (NSMutableArray *)foldersByParentId:(NSString *)parentId data:(NSMutableArray *)allData;
 
+/// 默认uTime降序
+/// - Parameter results: 上一阶段的查询结果
++ (RLMResults *)defaultSortByResults:(RLMResults *)results;
+
 #pragma mark -- 文档
 /// 文件夹内的文档(非首页的文档)
 + (RLMResults<DocRLM *> *)allDocumentsAtFoler;

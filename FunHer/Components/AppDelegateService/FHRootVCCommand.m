@@ -6,12 +6,12 @@
 //
 
 #import "FHRootVCCommand.h"
-#import "ViewController.h"
+#import "FHFileListVC.h"
 
 @implementation FHRootVCCommand
 
 - (void)execute {
-    ViewController *vc = [[ViewController alloc] init];
+    FHFileListVC *vc = [[FHFileListVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     KAppDelegate.window.rootViewController = nav;
 }

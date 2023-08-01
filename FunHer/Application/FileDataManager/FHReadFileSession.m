@@ -29,6 +29,12 @@
     return folders;
 }
 
+
+#pragma mark --  默认uTime(更新时间)降序
++ (RLMResults *)defaultSortByResults:(RLMResults *)results {
+    return [results sortedResultsUsingKeyPath:@"uTime" ascending:NO];
+}
+
 #pragma mark -- 查询某个文件夹下的所有folder 可用于计数
 + (RLMResults<FolderRLM *> *)foldersAtFile:(NSString *)folderId {
     RLMResults<FolderRLM *> *folders = [FolderRLM objectsWhere:@"pathId CONTAINS %@ AND Id != %@", folderId, folderId];

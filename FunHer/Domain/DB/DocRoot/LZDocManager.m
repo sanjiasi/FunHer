@@ -38,11 +38,6 @@
     return resluts;
 }
 
-#pragma mark -- 所有DocRLM uTime降序(默认排序)
-+ (RLMResults<DocRLM *> *)allEntityListBySorted {
-    RLMResults<DocRLM *> *resluts = [self defaultSortByResults:[self allEntityList]];
-    return resluts;
-}
 
 #pragma mark -- 根据自定义条件查询
 + (RLMResults<DocRLM *> *)entityListWithCondition:(NSPredicate *)predicate {
@@ -56,10 +51,6 @@
     return results;
 }
 
-#pragma mark --  默认uTime(更新时间)降序
-+ (RLMResults *)defaultSortByResults:(RLMResults *)results {
-    return [results sortedResultsUsingKeyPath:@"uTime" ascending:NO];
-}
 
 #pragma mark ** 增
 #pragma mark -- 新增文档
