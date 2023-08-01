@@ -115,5 +115,6 @@ if (@available(iOS 11.0, *)) {\
                                             green:(g)/255.f \
                                              blue:(b)/255.f \
                                             alpha:(a)]
+#define kThemeColor            RGBA(61, 131, 215, 1.0)
 
 #endif /* FunHer_Marco_h */

@@ -10,6 +10,7 @@
 #import "FHFileCollectionCell.h"
 #import "FHFileCellModel.h"
 #import "FHFileListPresent.h"
+#import "FHPhotoLibrary.h"
 
 NSString *const reuserId = @"reuserId";
 
@@ -18,6 +19,7 @@ NSString *const reuserId = @"reuserId";
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) FHFileListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
+@property (nonatomic, weak) UIViewController *photoSender;
 
 
 @end
@@ -41,12 +43,29 @@ NSString *const reuserId = @"reuserId";
 
 
 #pragma mark -- event response
+- (void)addPhotoFromLibrary {
+    [FHPhotoLibrary configPhotoPickerDismissWithMaxImagesCount:0 sender:self selectedImageCompletion:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal, UIViewController * _Nonnull selecter) {
+        self.photoSender = selecter;
+        [self handleAssets:assets];
+    }];
+}
 
+#pragma mark -- 批量处理Assets
+- (void)handleAssets:(NSArray *)assets {
+    __weak typeof(self) weakSelf = self;
+    [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
+            
+    }];
+}
 
 #pragma mark -- public methods
 
 
 #pragma mark -- private methods
+- (void)configNavBar {
+    [self setRigthButton:@"Add" withSelector:@selector(addPhotoFromLibrary)];
+}
+
 - (void)configContentView {
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
@@ -65,15 +84,26 @@ NSString *const reuserId = @"reuserId";
 }
 
 - (void)configData {
-    
+    [self.collectionAdapter addDataArray:self.present.dataArray];
 }
+
+- (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    btn.tag = 115;
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = barItem;
+}
+
 
 #pragma mark -- getter and setters
 - (FHCollectionAdapter *)collectionAdapter {
     __weak typeof(self) weakSelf = self;
     if (!_collectionAdapter) {
-        FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:reuserId configureBlock:^(id  _Nonnull cell, id  _Nonnull model, NSIndexPath * _Nonnull indexPath) {
-            
+        FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:reuserId configureBlock:^(FHFileCollectionCell *cell, FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
+            cell.showImg.image = [UIImage imageWithContentsOfFile:model.thumbNail];
+            cell.titleLab.text = model.fileName;
         }];
         _collectionAdapter = adapter;
     }

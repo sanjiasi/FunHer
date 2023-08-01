@@ -181,6 +181,24 @@
     return results;
 }
 
+#pragma mark -- 当前文档的图片首张图片作为封面
++ (ImageRLM *)firstImageByParentId:(NSString *)parentId {
+    RLMResults<ImageRLM *> *results = [self sortImageRLMsByParentId:parentId];
+    if (results.count > 0) {
+        ImageRLM *firstObj = results.firstObject;
+        return firstObj;
+    }
+    return nil;
+}
+
++ (NSDictionary *)firstImageDicByDoc:(NSString *)docId {
+    ImageRLM *firstObj = [self firstImageByParentId:docId];
+    if (firstObj) {
+        return [self entityToDic:firstObj];
+    }
+    return nil;
+}
+
 #pragma mark -- 当前文档中图片最大索引
 + (NSInteger)lastImageIndexByParentId:(NSString *)parentId {
     RLMResults<ImageRLM *> *results = [self sortImageRLMsByParentId:parentId];
@@ -222,7 +240,7 @@
 + (NSDictionary *)sortRule {
     NSInteger type = 2;//[ScanerShare sortType];
     NSString *sortKey = @"uTime";
-    BOOL asceding = YES;
+    BOOL asceding = NO;
     switch (type) {
         case 0:
             sortKey = @"cTime";
@@ -253,6 +271,35 @@
             break;
     }
     return @{@"sortKey":sortKey, @"asceding":@(asceding)};
+}
+
++ (NSMutableArray<NSDictionary *> *)entityListToDic:(id<NSFastEnumeration>)results {
+    NSMutableArray *temp = @[].mutableCopy;
+    for (id<LZRLMObjectProtocol> object in results) {
+        NSDictionary *dic = [self entityToDic:object];
+        if (dic) {
+            [temp addObject:dic];
+        }
+    }
+    return temp;
+}
+
++ (NSDictionary *)entityToDic:(id<LZRLMObjectProtocol>)entity {
+    if (!entity) {
+        return nil;
+    }
+    NSDictionary *dic = [entity modelToDic];
+    NSMutableDictionary *temp = [dic mutableCopy];
+    NSString *type = @"1";
+    if ([entity isKindOfClass:[FolderRLM class]]) {
+        type = @"1";
+    } else if ([entity isKindOfClass:[DocRLM class]]) {
+        type = @"2";
+    } else {//ImageRLM
+        type = @"3";
+    }
+    temp[@"type"] = type;
+    return [NSDictionary dictionaryWithDictionary:temp];
 }
 
 @end

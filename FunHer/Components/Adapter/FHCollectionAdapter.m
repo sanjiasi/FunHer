@@ -18,15 +18,11 @@
 }
 
 
-- (void)addDataArray:(NSArray *)datas{
-    if(!datas) return;
-    
+- (void)addDataArray:(NSArray *)datas {
     if (self.dataArray.count>0) {
         [self.dataArray removeAllObjects];
     }
-
     [self.dataArray addObjectsFromArray:datas];
-    
 }
 
 - (id)modelsAtIndexPath:(NSIndexPath *)indexPath {

@@ -15,30 +15,38 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - Masonry (1.1.0)
+  - MJRefresh (3.7.5)
   - Realm (10.29.0):
     - Realm/Headers (= 10.29.0)
   - Realm/Headers (10.29.0)
+  - SVProgressHUD (2.2.5)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0.1)
   - Masonry (~> 1.1.0)
+  - MJRefresh (~> 3.7.5)
   - Realm (~> 10.29.0)
+  - SVProgressHUD (~> 2.2.5)
   - YYModel (~> 1.0.4)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Masonry
+    - MJRefresh
     - Realm
+    - SVProgressHUD
     - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Realm: 5596770daeff1ad76c8eb10d5947dc10472da779
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: a1f0a2b6d39d4724f1c98aa095b96e3e41b1c335
+PODFILE CHECKSUM: c035791e55feada74c7bafc84ee7f9d018a551a0
 
 COCOAPODS: 1.12.1

@@ -16,10 +16,13 @@
 #import <AVFoundation/AVFoundation.h> // 麦克风、相机
 #import <Photos/Photos.h>
 #import <MessageUI/MFMailComposeViewController.h>
+/// 文件管理
+#import "LZFileManager.h"
 
 #pragma mark -- Library
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
+#import <SVProgressHUD.h>
 
 #pragma mark -- 分类
 /// -- NSDate
@@ -43,5 +46,11 @@
 #pragma mark -- Components
 /// toast
 #import "FHToast.h"
+/// 串行队列池
+#import "YYDispatchQueuePool.h"
+/// 本地相册
+#import "FHPhotoLibrary.h"
+/// 计时器
+#import "GCDTimer.h"
 
 #endif /* FunHer_Prefix_pch */

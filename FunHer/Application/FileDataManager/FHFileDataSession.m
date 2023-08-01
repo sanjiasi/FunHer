@@ -411,7 +411,7 @@
             ImageRLM *imgEntity = images[i];
             NSInteger picIndex = i + start;
             ImageRLM *copyImg = [self buildImageWithName:imgEntity.name byIndex:picIndex atPath:newDoc.pathId];
-            [newImages addObject:imgEntity];
+            [newImages addObject:copyImg];
         }
     }
     [self batchCreateImages:newImages];

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<ListPresentDelegate> delegate;
 
+/// 解析图片
+- (void)anialysisAssets:(NSArray *)assets completion:(void (^)(NSArray *imagePaths))completion;
 
 @end
 

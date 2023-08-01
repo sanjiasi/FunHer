@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
+#import "LZRLMObjectProtocol.h"
 
 @class FolderRLM, DocRLM, ImageRLM;
 NS_ASSUME_NONNULL_BEGIN
@@ -76,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 根据父id(图片上级目录id)查询images 并排序
 + (RLMResults<ImageRLM *> *)sortImageRLMsByParentId:(NSString *)parentId;
 
+/// -- 当前文档的图片首张图片作为封面
++ (ImageRLM * _Nullable)firstImageByParentId:(NSString *)parentId;
+
++ (NSDictionary *)firstImageDicByDoc:(NSString *)docId;
+
 /// -- 当前文档中图片最大索引
 + (NSInteger)lastImageIndexByParentId:(NSString *)parentId;
 
@@ -84,6 +90,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// -- 根据ids顺序查询images
 + (NSMutableArray *)imageRLMsOrderByImageIds:(NSArray *)imgIds;
+
+/// 批量处理-数据库对象转模型
+/// - Parameter results: 查询结果
++ (NSMutableArray<NSDictionary *> *)entityListToDic:(id<NSFastEnumeration>)results;
+
+/// 数据库对象转模型
+/// - Parameter entity: 数据库对象
++ (NSDictionary *)entityToDic:(id<LZRLMObjectProtocol> _Nullable)entity;
 
 @end
 

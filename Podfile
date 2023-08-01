@@ -11,7 +11,8 @@ target 'FunHer' do
   pod 'Masonry', '~> 1.1.0'
   pod 'Realm', '~> 10.29.0'#数据库
   pod 'MJRefresh', '~> 3.7.5'#拉下刷新组件  https://www.yii666.com/blog/143543.html
-
+  pod 'SVProgressHUD', '~> 2.2.5'
+  
   target 'FunHerTests' do
     inherit! :search_paths
     # Pods for testing
