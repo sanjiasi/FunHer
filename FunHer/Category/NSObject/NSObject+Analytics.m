@@ -13,7 +13,9 @@
 - (void)getEventWithName:(NSString *)name {
     NSString *func = [self eventNameWithFunc:name];
     NSLog(@"analytics = %@",func);
-    [[FHToast shareInstance] makeToast:func];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[FHToast shareInstance] makeToast:func];
+    });
 }
 
 - (void)getEvent:(NSString *)name parameters:(NSDictionary *)params {

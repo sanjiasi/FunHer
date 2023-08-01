@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol ListPresentDelegate <NSObject>
 
 @optional
@@ -14,8 +16,6 @@
 - (void)selectItemCount:(NSString *)num indexPath:(NSIndexPath *)indexPath;
 
 @end
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface FHFileListPresent : NSObject<ListPresentDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;

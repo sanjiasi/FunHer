@@ -22,9 +22,9 @@
 #import "ZLCustomCamera.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ZLInteractiveAnimateProtocol.h"
-#import "CameraCropSetView.h"
-#import "CameraFilterView.h"
-#import "UIButton+Inset.h"
+//#import "CameraCropSetView.h"
+//#import "CameraFilterView.h"
+//#import "UIButton+Inset.h"
 #import "SSPopListView.h"
 
 typedef NS_ENUM(NSUInteger, SlideSelectType) {
@@ -67,9 +67,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 @property (nonatomic, assign) NSInteger columnLayout;//分几列 默认3列
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic ,strong) UIView * coverView;//覆盖层
-@property (nonatomic ,strong) CameraCropSetView * cropView;
-@property (nonatomic ,strong) CameraFilterView * filterView;
-@property (nonatomic ,strong) ImageTitleButton *btnShowPhotos;
+//@property (nonatomic ,strong) CameraCropSetView * cropView;
+//@property (nonatomic ,strong) CameraFilterView * filterView;
+@property (nonatomic ,strong) UIButton *btnShowPhotos;
 @property (nonatomic, strong) NSMutableArray<ZLAlbumListModel *> *arrayDataSources;
 @property (nonatomic, strong) NSArray<ZLAlbumListModel *> *albumArt;
 
@@ -461,14 +461,14 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     [backItem setImage:[UIImage imageNamed:@"close_navItem"] forState:UIControlStateNormal];
     [backItem addTarget:self action:@selector(navRightBtn_Click) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backItem];
-    [backItem setTintColor:kWhiteColor];
+    [backItem setTintColor:[UIColor whiteColor]];
 
     if (!IS_IPAD) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 44, 44);
         [btn setImage:[UIImage imageNamed:@"layout_set"] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"layout_min"] forState:UIControlStateSelected];
-        [btn setTintColor:kWhiteColor];
+        [btn setTintColor:[UIColor whiteColor]];
         [btn addTarget:self action:@selector(layoutChange:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     }
@@ -513,16 +513,16 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 
 #pragma mark -- 自动裁剪设置
 - (void)cropAuto_Click:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        [self.view addSubview:self.coverView];
-        [self.view addSubview:self.cropView];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.cropView.alpha = 1;
-        }];
-    }else{
-        [self hideCropView];
-    }
+//    sender.selected = !sender.selected;
+//    if (sender.selected) {
+//        [self.view addSubview:self.coverView];
+//        [self.view addSubview:self.cropView];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.cropView.alpha = 1;
+//        }];
+//    }else{
+//        [self hideCropView];
+//    }
 }
 
 #pragma mark -- 覆盖层手势事件
@@ -534,17 +534,17 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 
 #pragma mark -- 隐藏视图
 - (void)hideCropView{
-    [UIView animateWithDuration:0.2 animations:^{
-        self.cropView.alpha = 0;
-        self.filterView.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.coverView removeFromSuperview];
-        [self.cropView removeFromSuperview];
-        [self.filterView removeFromSuperview];
-        self.cropView = nil;
-        self.filterView = nil;
-        self.coverView = nil;
-    }];
+//    [UIView animateWithDuration:0.2 animations:^{
+//        self.cropView.alpha = 0;
+//        self.filterView.alpha = 0;
+//    } completion:^(BOOL finished) {
+//        [self.coverView removeFromSuperview];
+//        [self.cropView removeFromSuperview];
+//        [self.filterView removeFromSuperview];
+//        self.cropView = nil;
+//        self.filterView = nil;
+//        self.coverView = nil;
+//    }];
 }
 
 #pragma mark -- 滤镜选择
@@ -553,9 +553,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     sender.selected = !sender.selected;
     if (sender.selected) {
         [self.view addSubview:self.coverView];
-        [self.view addSubview:self.filterView];
+//        [self.view addSubview:self.filterView];
         [UIView animateWithDuration:0.2 animations:^{
-            self.filterView.alpha = 1;
+//            self.filterView.alpha = 1;
         }];
     }else{
         [self hideCropView];
@@ -567,10 +567,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 }
 
 #pragma mark -- 渲染模式列表cell的点击事件
-- (void)filterViewCellAction:(ReEditModel *)model{
+- (void)filterViewCellAction:(id)model{
     [self hideCropView];
     self.filterSetBtn.selected = NO;
-    [[TACornerToast shareInstance] makeToast:model.dic[@"name"]];
+//    [[TACornerToast shareInstance] makeToast:model.dic[@"name"]];
 //    self.showFilterLab.alpha = 1;
 //    self.showFilterLab.text = model.dic[@"name"];
 //    CGFloat getWidth = [DocumentHelper getSizeWithStr:self.showFilterLab.text Height:45 Font:18].width+45;
@@ -1360,26 +1360,26 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 }
 
 #pragma mark -- lazy
-- (CameraFilterView *)filterView{
-    WS(weakSelf);
-    if (!_filterView) {
-        _filterView = [[CameraFilterView alloc]initWithFrame:CGRectMake(0, (kScreenHeight - 44 - kBottomSafeHeight - kNavBarAndStatusBarHeight - 100), kScreenWidth, 100)];
-        _filterView.alpha = 0;
-        _filterView.sendProcessStateTip = ^(ReEditModel * _Nonnull model, NSInteger index) {
-            [ScanerShare writeDefaultProcessType:[[PictureProcessTool processTypeArray][index] integerValue]];
-            [weakSelf filterViewCellAction:model];
-        };
-    }
-    return _filterView;
-}
+//- (CameraFilterView *)filterView{
+//    WS(weakSelf);
+//    if (!_filterView) {
+//        _filterView = [[CameraFilterView alloc]initWithFrame:CGRectMake(0, (kScreenHeight - 44 - kBottomSafeHeight - kNavBarAndStatusBarHeight - 100), kScreenWidth, 100)];
+//        _filterView.alpha = 0;
+//        _filterView.sendProcessStateTip = ^(ReEditModel * _Nonnull model, NSInteger index) {
+//            [ScanerShare writeDefaultProcessType:[[PictureProcessTool processTypeArray][index] integerValue]];
+//            [weakSelf filterViewCellAction:model];
+//        };
+//    }
+//    return _filterView;
+//}
 
-- (CameraCropSetView *)cropView{
-    if (!_cropView) {
-        _cropView = [[CameraCropSetView alloc]initWithFrame:CGRectMake(0, (kScreenHeight - 44 - kBottomSafeHeight - kNavBarAndStatusBarHeight - 50), 190, 50)];
-        _cropView.alpha = 0;
-    }
-    return _cropView;
-}
+//- (CameraCropSetView *)cropView{
+//    if (!_cropView) {
+//        _cropView = [[CameraCropSetView alloc]initWithFrame:CGRectMake(0, (kScreenHeight - 44 - kBottomSafeHeight - kNavBarAndStatusBarHeight - 50), 190, 50)];
+//        _cropView.alpha = 0;
+//    }
+//    return _cropView;
+//}
 
 - (UIView *)coverView{
     if (!_coverView) {
@@ -1391,19 +1391,17 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     return _coverView;
 }
 
-- (ImageTitleButton *)btnShowPhotos {
+- (UIButton *)btnShowPhotos {
     if (!_btnShowPhotos) {
-        ImageTitleButton *btn = [[ImageTitleButton alloc] initWithStyle:(ETitleLeftImageRightCenter)];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, kScreenWidth-150, 44);
-        [btn setImage:[UIImage imageNamed:@"bule_arrowdown"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"bule_arrowup"] forState:UIControlStateSelected];
+//        [btn setImage:[UIImage imageNamed:@"bule_arrowdown"] forState:UIControlStateNormal];
+//        [btn setImage:[UIImage imageNamed:@"bule_arrowup"] forState:UIControlStateSelected];
         [btn setTitle:self.albumListModel.title forState:UIControlStateNormal];//All
         btn.titleLabel.font = PingFang_M_FONT_(18);
-        [btn setTitleColor:[UIColor textColor:kWhiteColor defaultColor:kBlackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [btn addTarget:self action:@selector(showPhotoLibrary:) forControlEvents:UIControlEventTouchUpInside];
-        btn.padding = CGSizeMake(5, 0);
-//        [btn layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleRight imageTitleSpace:5];
         _btnShowPhotos = btn;
     }
     return _btnShowPhotos;

@@ -19,7 +19,7 @@ static NSUInteger  const REALM_SCHAME_VERSION = 1;
 + (void)configDBWithIdentifier:(NSString *)identifier {
     if ([identifier length]) {
         NSString *dbName = [NSString stringWithFormat:@"%@%@.realm",DBFilePrefix,identifier];//数据库名
-        NSString *dbPath = DBFilePrefix;//[CNSandbox getDBPathString];//数据库目录//getMessagePhotoPathString
+        NSString *dbPath = [NSString dbBox];//数据库目录
         NSString *dbFile = [dbPath stringByAppendingPathComponent:dbName];//数据库文件路径
 
         RLMRealmConfiguration *defaultConfig = [RLMRealmConfiguration defaultConfiguration];

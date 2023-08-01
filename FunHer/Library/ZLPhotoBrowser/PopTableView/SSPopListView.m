@@ -78,7 +78,7 @@ UITableViewDataSource
 
 - (void)addTapHandler {
     UIView *hitView = [[UIView alloc] init];
-    hitView.backgroundColor = [UIColor viewControllerBackGroundColor:RGBA(0, 0, 0, 0.5) defaultColor:RGBA(0, 0, 0, 0.3)];
+    hitView.backgroundColor = RGBA(0, 0, 0, 0.3);
     [self addSubview:hitView];
     self.maskLayer = hitView;
     [self.maskLayer mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -163,7 +163,7 @@ UITableViewDataSource
 - (UIView *)settingView {
     if (!_settingView) {
         _settingView = [[UIView alloc] init];
-        _settingView.backgroundColor = [UIColor viewControllerBackGroundColor:KViewMainDarkColor defaultColor:[UIColor whiteColor]];
+        _settingView.backgroundColor = [UIColor whiteColor];
     }
     return _settingView;
 }

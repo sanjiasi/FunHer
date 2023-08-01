@@ -43,18 +43,37 @@
     return fileName;
 }
 
+
++ (NSString *)nameByRemoveIndex:(NSString *)fileName {
+    NSArray *arr = [fileName componentsSeparatedByString:@"_"];
+    if (arr.count) {
+        NSString *name = arr.firstObject;
+        return [NSString stringWithFormat:@"%@%@",name, FHFilePathExtension];
+    }
+    return fileName;
+}
+
+- (NSString *)fileIndex {
+    NSString *fileName = (NSString *)self;
+    NSArray *arr = [fileName componentsSeparatedByString:@"_"];
+    if (arr.count) {
+        NSString *name = arr.lastObject;
+        return [name stringByDeletingPathExtension];
+    }
+    return [fileName stringByDeletingPathExtension];
+}
+
 #pragma mark ** 目录
 + (NSString *)imagePathAtTempDocWithIndex:(NSInteger)idx {
     NSInteger num = idx + 1;
-    NSString *imageName = [NSString stringWithFormat:@"%@%@",@(num), FHFilePathExtension];
+    NSString *imageName = [NSString stringWithFormat:@"%@_%@%@",[self imageName], @(num), FHFilePathExtension];
     NSString *imgPath = [[self tempDocPath] stringByAppendingPathComponent:imageName];
     return imgPath;
 }
 
 + (NSString *)imageName {
     NSString *uuid = [[NSUUID UUID] UUIDString];
-    NSString *uuidMD5 = [uuid md5Str];
-    NSString *name = [NSString stringWithFormat:@"%@%@",uuidMD5, FHFilePathExtension];
+    NSString *name = [uuid md5Str];
     return name;
 }
 
@@ -89,6 +108,13 @@
 #pragma mark -- 存储图片的根目录
 + (NSString *)imageBox {
     NSString *box = [[self appBox] stringByAppendingPathComponent:@"Image_File"];
+    [self verifyExistsAtPath:box];
+    return box;
+}
+
+#pragma mark -- 存储数据库的根目录
++ (NSString *)dbBox {
+    NSString *box = [[self appBox] stringByAppendingPathComponent:@"DB_File"];
     [self verifyExistsAtPath:box];
     return box;
 }

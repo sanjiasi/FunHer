@@ -22,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 文件后缀
 - (NSString *)fileSuffix;
 
+/// 去掉索引
+/// - Parameter fileName: 图片名
++ (NSString *)nameByRemoveIndex:(NSString *)fileName;
+
+/// 图片索引 排序
+- (NSString *)fileIndex;
+
 #pragma mark -- 目录
 ///  临时文档的图片路径
 /// - Parameter idx: 索引
@@ -42,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 存储图片的根目录
 + (NSString *)imageBox;
+
+/// 数据库根目录
++ (NSString *)dbBox;
 
 ///  存储用户数据的根目录
 + (NSString *)appBox;

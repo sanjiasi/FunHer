@@ -52,10 +52,10 @@
     configuration.showCaptureImageOnTakePhotoBtn = YES;
     configuration.sortAscending = YES;
     configuration.showSelectBtn = NO;
-    configuration.navBarColor = [UIColor textColor:KSubjectColor defaultColor:[UIColor whiteColor]];
-    configuration.navTitleColor = [UIColor textColor:[UIColor whiteColor] defaultColor:KSubjectColor];
+    configuration.navBarColor = [UIColor whiteColor];
+    configuration.navTitleColor = [UIColor blackColor];
     configuration.previewTextColor = [UIColor blackColor];
-    configuration.bottomViewBgColor = [UIColor textColor:kRGB(44, 45, 46) defaultColor:[UIColor whiteColor]];
+    configuration.bottomViewBgColor = [UIColor whiteColor];
     configuration.bottomBtnsNormalTitleColor = [UIColor whiteColor];
     configuration.bottomBtnsDisableTitleColor = kRGB(168, 168, 168);
     configuration.bottomBtnsNormalBgColor = kRGB(80, 169, 52);

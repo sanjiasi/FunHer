@@ -11,6 +11,7 @@
 #import "FHFileCellModel.h"
 #import "FHFileListPresent.h"
 #import "FHPhotoLibrary.h"
+#import "LZDBService.h"
 
 NSString *const reuserId = @"reuserId";
 
@@ -32,8 +33,11 @@ NSString *const reuserId = @"reuserId";
     // Do any additional setup after loading the view.
     self.title = @"Files";
     self.view.backgroundColor = UIColor.whiteColor;
-    
-    
+    [LZDBService clearRealmDB];
+    [LZFileManager removeItemAtPath:[LZFileManager appSupportDir]];
+    [self configNavBar];
+    [self configContentView];
+    [self configData];
 }
 
 
@@ -52,9 +56,12 @@ NSString *const reuserId = @"reuserId";
 
 #pragma mark -- 批量处理Assets
 - (void)handleAssets:(NSArray *)assets {
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     __weak typeof(self) weakSelf = self;
     [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
-            
+        [SVProgressHUD dismiss];
+        [weakSelf.collectionView reloadData];
     }];
 }
 
