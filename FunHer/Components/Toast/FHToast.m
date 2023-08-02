@@ -104,12 +104,14 @@
 
 //totast消失
 - (void)hiddenToast {
-    if (self.toastLab.alpha == 1.0) {
-        self.toastLab.alpha = 0;
-        [self.toastLab removeFromSuperview];
-        [self.maskView removeFromSuperview];
-        self.maskView = nil;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.toastLab.alpha == 1.0) {
+            self.toastLab.alpha = 0;
+            [self.toastLab removeFromSuperview];
+            [self.maskView removeFromSuperview];
+            self.maskView = nil;
+        }
+    });
 }
 
 #pragma mark -- 加载动画

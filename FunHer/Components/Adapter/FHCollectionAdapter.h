@@ -10,16 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^CellConfigureBefore)(id cell, id model, NSIndexPath * indexPath);
+typedef void (^CellConfigureBefore)(id cell, id model, NSIndexPath *indexPath);
+typedef void (^DidSelectedCell)(id model, NSIndexPath *indexPath);
 
 @interface FHCollectionAdapter : NSObject<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;//数据源
 @property (nonatomic, copy) NSString *cellIdentifier;
 @property (nonatomic, copy) CellConfigureBefore cellConfigureBefore;
+@property (nonatomic, copy) DidSelectedCell selectedBlock;//点击cell回调
 
 /// 自定义
-- (id)initWithIdentifier:(NSString *)identifier configureBlock:(CellConfigureBefore)before;
+- (id)initWithIdentifier:(NSString *)identifier configureBlock:(CellConfigureBefore)before didSelectedBlock:(DidSelectedCell)selected;
 
 /// 设置数据源
 - (void)addDataArray:(NSArray *)datas;

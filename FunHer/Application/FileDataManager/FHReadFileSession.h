@@ -85,6 +85,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 当前文档中图片最大索引
 + (NSInteger)lastImageIndexByParentId:(NSString *)parentId;
 
+/// -- 当前文档的图片数量
++ (NSInteger)imageCountAtDoc:(NSString *)docId;
+
 /// -- 根据ids查询images
 + (RLMResults<ImageRLM *> *)imageRLMsWithImageIds:(NSArray *)imgIds;
 

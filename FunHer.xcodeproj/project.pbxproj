@@ -69,6 +69,7 @@
 		67406C3C2A78CA8100E87AF5 /* ZLPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C1A2A78CA8100E87AF5 /* ZLPhotoConfiguration.m */; };
 		67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C3F2A78CDDE00E87AF5 /* FHPhotoLibrary.m */; };
 		67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */; };
+		67406C462A79EC3C00E87AF5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 67406C452A79EC3C00E87AF5 /* placeholder.png */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -234,6 +235,7 @@
 		67406C3F2A78CDDE00E87AF5 /* FHPhotoLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHPhotoLibrary.m; sourceTree = "<group>"; };
 		67406C422A78DD1100E87AF5 /* YYDispatchQueuePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDispatchQueuePool.h; sourceTree = "<group>"; };
 		67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDispatchQueuePool.m; sourceTree = "<group>"; };
+		67406C452A79EC3C00E87AF5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 		67406BCA2A77AE1F00E87AF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67406C452A79EC3C00E87AF5 /* placeholder.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				67406C362A78CA8100E87AF5 /* ZLPhotoBrowserCell.xib in Resources */,
 				67406C342A78CA8100E87AF5 /* ZLPhotoBrowser.bundle in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
+				67406C462A79EC3C00E87AF5 /* placeholder.png in Resources */,
 				67406C352A78CA8100E87AF5 /* ZLPhotoActionSheet.xib in Resources */,
 				6774FEBB2A6A2DD9005F0DB9 /* StoreList.plist in Resources */,
 			);

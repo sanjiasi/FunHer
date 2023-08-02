@@ -14,7 +14,7 @@
 @implementation FHServiceComandsManager
 
 + (NSArray<id<FHServiceCommand>> *)configurations {
-    return @[[FHLibraryCommand new],
+    return @[[FHRealmDBCommand new],
              [FHLibraryCommand new],
              [FHAppearanceCommand new],
              [FHRootVCCommand new], ];

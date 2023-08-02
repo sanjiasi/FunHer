@@ -25,7 +25,7 @@
 
 #pragma mark -- 查询首页的文件夹 排序
 + (RLMResults<FolderRLM *> *)homeFoldersBySorted {
-    RLMResults<FolderRLM *> *folders = [self foldersByParentId:@"000000"];
+    RLMResults<FolderRLM *> *folders = [self foldersByParentId:FHParentIdByHome];
     return folders;
 }
 
@@ -44,13 +44,13 @@
 #pragma mark -- 查询所有的文件夹 根据第一级目录排序：用于复制、移动的文件夹数据
 + (NSMutableArray *)allFoldersByFatherDirectorySorted {
     NSMutableArray *allData = @[].mutableCopy;
-    NSMutableArray *folders = [self foldersByDocId:@"000000" data:allData];
+    NSMutableArray *folders = [self foldersByDocId:FHParentIdByHome data:allData];
     return folders;
 }
 
 //先加第一层的第一个文件及其所有子文件，后加第二个文件及其所有 -- 类推 01, 01/101, 02, 02/102
 + (NSMutableArray *)foldersByDocId:(NSString *)docId data:(NSMutableArray *)allData {
-    if ([docId isEqualToString:@"000000"]) {
+    if ([docId isEqualToString:FHParentIdByHome]) {
         RLMResults<FolderRLM *> *folders = [self foldersByParentId:docId];
         if (folders.count) {
             for (FolderRLM *obj in folders) {
@@ -81,7 +81,7 @@
 #pragma mark -- 查询所有的文件夹 根据目录排序
 + (NSMutableArray *)allFoldersByDirectorySorted {
     NSMutableArray *allData = @[].mutableCopy;
-    NSMutableArray *folders = [self foldersByParentId:@"000000" data:allData];
+    NSMutableArray *folders = [self foldersByParentId:FHParentIdByHome data:allData];
     return folders;
 }
 
@@ -121,7 +121,7 @@
 
 #pragma mark -- 查询首页的文档 默认排序
 + (RLMResults<DocRLM *> *)homeDocumentsBySorted {
-    RLMResults<DocRLM *> *documents = [self documentsByParentId:@"000000"];
+    RLMResults<DocRLM *> *documents = [self documentsByParentId:FHParentIdByHome];
     return documents;
 }
 
@@ -207,6 +207,12 @@
         return lastObj.picIndex;
     }
     return 0;
+}
+
+#pragma mark -- 当前文档的图片数量
++ (NSInteger)imageCountAtDoc:(NSString *)docId {
+    RLMResults<ImageRLM *> *images = [self imageRLMsByParentId:docId];
+    return images.count;
 }
 
 #pragma mark -- 根据ids查询images
