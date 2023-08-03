@@ -129,6 +129,7 @@
             cell.showImg.image = [UIImage imageWithContentsOfFile:model.thumbNail];
             cell.titleLab.text = model.fileName;
             cell.numLab.text = model.countNum;
+            cell.uTimeLab.text = model.uDate;
         } didSelectedBlock:^(FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
             [weakSelf collectionViewDidSelected:indexPath WithModel:model];
         }];
@@ -143,14 +144,14 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         CGFloat width = MIN(kScreenWidth, kScreenHeight);
-        NSInteger columnCount = 2;
+        NSInteger columnCount = 3;
         
-        CGFloat xSpace = 5;
-        CGFloat itemW = (width-xSpace*(columnCount+1))/columnCount;
-        layout.itemSize = CGSizeMake(itemW, itemW);
-        layout.minimumInteritemSpacing = xSpace;
-        layout.minimumLineSpacing = xSpace;
-        layout.sectionInset = UIEdgeInsetsMake(3, xSpace, 3, xSpace);
+        CGFloat spacing = 15;
+        CGFloat itemW = (width-spacing*(columnCount+1))/columnCount;
+        layout.itemSize = CGSizeMake(itemW, itemW * 1.4);
+        layout.minimumInteritemSpacing = spacing;
+        layout.minimumLineSpacing = 10;
+        layout.sectionInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
         
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

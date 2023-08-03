@@ -7,6 +7,7 @@
 
 #import "FHFileCellModel.h"
 #import "FHFileModel.h"
+#import "FHReadFileSession.h"
 
 @implementation FHFileCellModel
 
@@ -18,6 +19,8 @@
     FHFileModel *fileObj = [FHFileModel createModelWithParam:param];
     FHFileCellModel *model = [[FHFileCellModel alloc] init];
     model.fileObj = fileObj;
+    model.uDate = [NSDate timeDefaultFormatterWithDate:[fileObj.uTime doubleValue]];
+    model.countNum = [NSString stringWithFormat:@"%@",@([FHReadFileSession imageCountAtDoc:fileObj.objId])];
     return model;
 }
 

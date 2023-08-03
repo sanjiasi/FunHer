@@ -58,7 +58,7 @@
 
 #pragma mark -- timeString
 + (NSString *)timeDefaultFormatterWithDate:(NSTimeInterval)interval {
-    NSDate *creatDate = [NSDate dateWithTimeIntervalSince1970:interval/1000];
+    NSDate *creatDate = [NSDate dateWithTimeIntervalSince1970:interval];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];

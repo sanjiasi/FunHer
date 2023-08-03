@@ -92,7 +92,6 @@
         NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
         if (firstImg) {
             model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
-            model.countNum = [NSString stringWithFormat:@"%@",@([FHReadFileSession imageCountAtDoc:model.fileObj.objId])];
         }
         [temp addObject:model];
     }
