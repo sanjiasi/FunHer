@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark ** 文件夹
 /// -- 增加文件夹
 ///   - name:  文件夹名
-///   - parentId: 上级目录id
+///   - parentId: 上级目录主键iid
 + (NSDictionary *)addFolder:(NSString *)name atParent:(NSString *)parentId;
 
 /// -- 删除文件夹
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// -- 修改文件夹路径：移动
 ///   - objId: 文件夹主键id
-///   - parentId: 上层目录Id
+///   - parentId: 上层目录主键iId
 + (void)editFolderPath:(NSString *)objId withParentId:(NSString *)parentId;
 
 /// -- 根据parentId获取上层目录的pathId
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// ** 文档
 /// -- 增加文档
 ///   - name:  文档名
-///   - parentId: 上层目录Id
+///   - parentId: 上层目录主键iId
 + (NSDictionary *)addDocument:(NSString *)name withParentId:(NSString *)parentId;
 
 /// -- 删除文档
@@ -75,12 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// -- 修改文档路径：移动
 ///   - objId: 文档主键Id
-///   - parentId: 上层目录Id
+///   - parentId: 上层目录主键iId
 + (void)editDocumentPath:(NSString *)objId withParentId:(NSString *)parentId;
 
 /// -- 拷贝文档
 ///   - objId: 文档主键Id
-///   - parentId:  上层目录Id
+///   - parentId:  上层目录主键iId
 + (void)copyDocument:(NSString *)objId withParentId:(NSString *)parentId;
 
 

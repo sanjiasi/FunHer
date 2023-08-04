@@ -70,16 +70,7 @@
 
 #pragma mark -- 修改文件夹路径：移动
 + (void)editFolderPath:(NSString *)objId withParentId:(NSString *)parentId  {
-    NSString *pathId = parentId;
-    if (![parentId isEqualToString:FHParentIdByHome]) {//区分是首页的文件夹
-        FolderRLM *folderEntity = [LZFolderManager entityWithId:parentId];
-        if (folderEntity) {
-            pathId = folderEntity.pathId;
-            [self updateFolder:parentId byTransaction:^{
-                folderEntity.uTime = [NSDate utcStamp];
-            }];
-        }
-    }
+    NSString *pathId = [self pathIdByParentId:parentId];
     FolderRLM *appFolder = [LZFolderManager entityWithId:objId];
     NSString *oldPathId = appFolder.pathId;
     NSString *newPathId =  [pathId stringByAppendingPathComponent:objId];

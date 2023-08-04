@@ -45,6 +45,8 @@
 #import "NSObject+Analytics.h"
 
 #pragma mark -- Components
+/// GCD
+#import "LZDispatchManager.h"
 /// toast
 #import "FHToast.h"
 /// 串行队列池

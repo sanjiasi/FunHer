@@ -20,7 +20,9 @@
     FHFileCellModel *model = [[FHFileCellModel alloc] init];
     model.fileObj = fileObj;
     model.uDate = [NSDate timeDefaultFormatterWithDate:[fileObj.uTime doubleValue]];
-    model.countNum = [NSString stringWithFormat:@"%@",@([FHReadFileSession imageCountAtDoc:fileObj.objId])];
+    NSInteger imgCount = [fileObj.type isEqualToString:@"1"] ? [FHReadFileSession docCountAtFolder:fileObj.objId] : [FHReadFileSession imageCountAtDoc:fileObj.objId];
+    imgCount = MIN(imgCount, 999);
+    model.countNum = [NSString stringWithFormat:@"%@ ",@(imgCount)];
     return model;
 }
 

@@ -1,103 +1,53 @@
 //
-//  FHFileListVC.m
+//  FHImageListVC.m
 //  FunHer
 //
-//  Created by GLA on 2023/7/31.
+//  Created by GLA on 2023/8/4.
 //
 
-#import "FHFileListVC.h"
-#import "FHCollectionAdapter.h"
-#import "FHFileCollectionCell.h"
-#import "FHFileCellModel.h"
-#import "FHFileListPresent.h"
-#import "FHPhotoLibrary.h"
-#import "LZDBService.h"
-#import "UIViewController+Alert.h"
-#import "FHFileChildListVC.h"
-#import "FHFileModel.h"
 #import "FHImageListVC.h"
+#import "FHCollectionAdapter.h"
+#import "FHImageCollectionCell.h"
+#import "FHImageCellModel.h"
+#import "FHImageListPresent.h"
+#import "FHPhotoLibrary.h"
+#import "FHFileModel.h"
+#import "SSFaxImageBrowserVC.h"
 
-@interface FHFileListVC ()
+@interface FHImageListVC ()
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) FHFileListPresent *present;
+@property (nonatomic, strong) FHImageListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
-@property (nonatomic, weak) UIViewController *photoSender;
-
 
 @end
 
-@implementation FHFileListVC
+@implementation FHImageListVC
 
-#pragma mark -- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.title = @"Files";
+    self.present.fileObjId = self.fileObjId;
+    self.title = self.fileName;
     self.view.backgroundColor = UIColor.whiteColor;
     [self configNavBar];
     [self configContentView];
 }
 
-//    [LZDBService clearRealmDB];
-//    [LZFileManager removeItemAtPath:[NSString imageBox]];
-
 #pragma mark -- Delegate
-- (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHFileCellModel *)model {
-    if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
-        [self goToPushFolderVC:model];
-    } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
-        [self goToPushDocVC:model];
-    }
+- (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHImageCellModel *)model {
+    SSFaxImageBrowserVC *vc = [[SSFaxImageBrowserVC alloc] init];
+    vc.dataArray = self.present.dataArray;
+    vc.currentIndex = idxPath.item;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -- event response
-#pragma mark -- 跳转文件夹界面
-- (void)goToPushFolderVC:(FHFileCellModel *)model {
-    if (NULLString(model.fileObj.objId)) {
-        [self getEventWithName:@"no objId"];
-        return;
-    }
-    FHFileChildListVC *childVC = [[FHFileChildListVC alloc] init];
-    childVC.fileObjId = model.fileObj.objId;
-    childVC.fileName = model.fileName;
-    [self.navigationController pushViewController:childVC animated:YES];
-}
-
-#pragma mark -- 跳转文档界面
-- (void)goToPushDocVC:(FHFileCellModel *)model {
-    if (NULLString(model.fileObj.objId)) {
-        [self getEventWithName:@"no objId"];
-        return;
-    }
-    FHImageListVC *childVC = [[FHImageListVC alloc] init];
-    childVC.fileObjId = model.fileObj.objId;
-    childVC.fileName = model.fileName;
-    [self.navigationController pushViewController:childVC animated:YES];
-}
+#pragma mark -- 查看大图
 
 #pragma mark -- 打开相册找照片
 - (void)addPhotoFromLibrary {
     [FHPhotoLibrary configPhotoPickerWithMaxImagesCount:0 sender:self selectedImageCompletion:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
         [self handleAssets:assets];
-    }];
-}
-
-#pragma mark -- 新建文件夹
-- (void)addNewFolder {
-    __weak typeof(self) weakSelf = self;
-    [self takeAlertWithTitle:@"Create new folder" placeHolder:@"New Folder" actionBlock:^(NSString * _Nonnull fieldText) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf handleCreateFolder:fieldText];
-    } cancelBlock:^{
-        NSLog(@"cancel");
-    }];
-}
-
-- (void)handleCreateFolder:(NSString *)name {
-    [LZDispatchManager globalQueueHandler:^{
-        [self.present createFolderWithName:name];
-        [self refreshWithNewData];
     }];
 }
 
@@ -135,23 +85,10 @@
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.leading.trailing.equalTo(self.view).offset(0);
-        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
+        make.bottom.equalTo(self.view).offset(0);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(-60);
-    }];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"Create Folder" forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addNewFolder) forControlEvents:UIControlEventTouchUpInside];
-    [self.superContentView addSubview:btn];
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.superContentView);
-        make.size.mas_equalTo(CGSizeMake(160, 60));
-        make.bottom.equalTo(self.superContentView);
+        make.top.bottom.leading.trailing.equalTo(self.superContentView);
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -200,12 +137,10 @@
 - (FHCollectionAdapter *)collectionAdapter {
     __weak typeof(self) weakSelf = self;
     if (!_collectionAdapter) {
-        FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHFileCollectionCell class]) configureBlock:^(FHFileCollectionCell *cell, FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            cell.showImg.image = NULLString(model.thumbNail) ? [UIImage imageNamed:@"new_folder"] : [UIImage imageWithContentsOfFile:model.thumbNail];
+        FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHImageCollectionCell class]) configureBlock:^(FHImageCollectionCell *cell, FHImageCellModel *model, NSIndexPath * _Nonnull indexPath) {
+            cell.showImg.image = NULLString(model.thumbNail) ? [UIImage imageNamed:@"placeHolder"] : [UIImage imageWithContentsOfFile:model.thumbNail];
             cell.titleLab.text = model.fileName;
-            cell.numLab.text = model.countNum;
-            cell.uTimeLab.text = model.uDate;
-        } didSelectedBlock:^(FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
+        } didSelectedBlock:^(FHImageCellModel *model, NSIndexPath * _Nonnull indexPath) {
             [weakSelf collectionViewDidSelected:indexPath WithModel:model];
         }];
         _collectionAdapter = adapter;
@@ -219,7 +154,8 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         CGFloat width = MIN(kScreenWidth, kScreenHeight);
-        NSInteger columnCount = 3;
+        NSInteger columnCount = 2;
+        
         CGFloat margin = 15;
         CGFloat padding = 10;
         CGFloat itemW = (width - padding*(columnCount-1) - margin*2)/columnCount;
@@ -228,17 +164,18 @@
         layout.minimumLineSpacing = padding;
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
         
+        
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         colView.backgroundColor = RGB(244, 244, 244);
-        [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
+        [colView registerClass:[FHImageCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHImageCollectionCell class])];
         _collectionView = colView;
     }
     return _collectionView;
 }
 
-- (FHFileListPresent *)present {
+- (FHImageListPresent *)present {
     if (!_present) {
-        _present = [[FHFileListPresent alloc] init];
+        _present = [[FHImageListPresent alloc] init];
     }
     return _present;
 }
@@ -251,5 +188,5 @@
     }
     return _superContentView;
 }
-    
+
 @end

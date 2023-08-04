@@ -1,32 +1,27 @@
 //
-//  FHFileListPresent.m
+//  FHFileChildListPresent.m
 //  FunHer
 //
-//  Created by GLA on 2023/7/31.
+//  Created by GLA on 2023/8/4.
 //
 
-#import "FHFileListPresent.h"
+#import "FHFileChildListPresent.h"
 #import "FHFileCellModel.h"
 #import "FHReadFileSession.h"
 #import "FHFileModel.h"
 #import "FHFileDataSession.h"
 
-@implementation FHFileListPresent
-
-#pragma mark -- Delegate
-- (void)selectItemCount:(NSString *)num indexPath:(NSIndexPath *)indexPath {
-    
-}
+@implementation FHFileChildListPresent
 
 #pragma mark -- public methods
 #pragma mark -- 新建文件夹
 - (void)createFolderWithName:(NSString *)name {
-    [FHFileDataSession addFolder:name atParent:FHParentIdByHome];
+    [FHFileDataSession addFolder:name atParent:self.fileObjId];
 }
 
 #pragma mark -- 新建文档
 - (void)createDocWithImages:(NSArray *)imgs {
-    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
+    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.fileObjId];
     [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *thumbName = [NSString nameByRemoveIndex:name];
         [FHFileDataSession addImage:thumbName byIndex:idx withParentId:doc[@"Id"]];
@@ -85,8 +80,8 @@
 #pragma mark -- private methods
 - (void)loadData {
     NSMutableArray *temp = @[].mutableCopy;
-    NSArray *homeFolderList = [FHReadFileSession entityListToDic:[FHReadFileSession homeFoldersBySorted]];
-    NSArray *homeDocList = [FHReadFileSession entityListToDic:[FHReadFileSession homeDocumentsBySorted]];
+    NSArray *homeFolderList = [FHReadFileSession entityListToDic:[FHReadFileSession foldersByParentId:self.fileObjId]];
+    NSArray *homeDocList = [FHReadFileSession entityListToDic:[FHReadFileSession documentsByParentId:self.fileObjId]];
     NSMutableArray *dataArr = [NSMutableArray arrayWithArray:homeFolderList];
     [dataArr addObjectsFromArray:homeDocList];
     [dataArr enumerateObjectsUsingBlock:^(NSDictionary *object, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -113,19 +108,3 @@
 }
 
 @end
-
-//    [assets enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
-//        dispatch_queue_t serial_queue = YYDispatchQueueGetForQOS(NSQualityOfServiceUserInitiated);
-//        dispatch_group_async(groupE, serial_queue, ^{
-//            NSData *data = [FHPhotoLibrary syncFetchOriginalImageDataWithAsset:asset];
-//            [self saveOriginalPhoto:data atIndex:idx];
-//        });
-//    }];
-//    dispatch_group_notify(groupE, dispatch_get_main_queue(), ^{
-//        NSArray *array = [self coverPicArrayAtPath:[NSString tempDocPath]];
-//        [self createDocWithImages:array];
-//        [self refreshData];
-//        if (completion) {
-//            completion(array);
-//        }
-//    });

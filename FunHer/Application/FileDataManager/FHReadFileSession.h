@@ -55,6 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 查询某个文件夹下的所有文档 可用于计数
 + (RLMResults<DocRLM *> *)documentsAtFoler:(NSString *)folderId;
 
+/// - 统计某个文件夹下的所有文档个数
+/// - Parameter folderId:
++ (NSInteger)docCountAtFolder:(NSString *)folderId;
+
 #pragma mark -- 图片
 /// -- 根据图片名称和父id(图片上级目录id)查询images
 + (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name;

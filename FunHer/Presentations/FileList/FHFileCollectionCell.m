@@ -41,16 +41,19 @@
         make.height.mas_equalTo(25);
     }];
     
+    [self.numLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.bgView).offset(-5);
+        make.centerY.equalTo(self.titleLab.mas_centerY).offset(0);
+        make.leading.equalTo(self.titleLab.mas_trailing).offset(5);
+        make.width.greaterThanOrEqualTo(@15);
+    }];
+    
     [self.uTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.bgView).offset(5);
         make.bottom.equalTo(self.bgView);
         make.top.equalTo(self.titleLab.mas_bottom).offset(0);
-        make.height.mas_equalTo(20);
-    }];
-    
-    [self.numLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.bgView).offset(-5);
-        make.centerY.equalTo(self.uTimeLab.mas_centerY).offset(0);
+        make.height.mas_equalTo(20);
     }];
 }
 
@@ -58,7 +61,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = RGB(244, 244, 244);
+        view.backgroundColor = UIColor.whiteColor;
         view.layer.cornerRadius = 5;
         view.clipsToBounds = YES;
         _bgView = view;
@@ -104,10 +107,15 @@
 - (UILabel *)numLab {
     if (!_numLab) {
         UILabel *lab = [[UILabel alloc] init];
-        lab.textColor = RGBA(153, 153, 153, 1.0);
-        lab.textAlignment = NSTextAlignmentNatural;
+        lab.textColor = UIColor.grayColor;
+        lab.textAlignment = NSTextAlignmentCenter;
         lab.font = PingFang_R_FONT_(10);
         lab.lineBreakMode = NSLineBreakByTruncatingTail;
+        lab.layer.cornerRadius = 3;
+        lab.layer.borderColor = RGBA(153, 153, 153, 1.0).CGColor;
+        lab.layer.borderWidth = 0.5;
+        lab.layer.masksToBounds = YES;
+        [lab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         _numLab = lab;
     }
     return _numLab;

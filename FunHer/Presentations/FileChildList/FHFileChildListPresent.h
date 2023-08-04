@@ -1,26 +1,18 @@
 //
-//  FHFileListPresent.h
+//  FHFileChildListPresent.h
 //  FunHer
 //
-//  Created by GLA on 2023/7/31.
+//  Created by GLA on 2023/8/4.
 //
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ListPresentDelegate <NSObject>
+@interface FHFileChildListPresent : NSObject
 
-@optional
-
-- (void)selectItemCount:(NSString *)num indexPath:(NSIndexPath *)indexPath;
-
-@end
-
-@interface FHFileListPresent : NSObject<ListPresentDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
-
-@property (nonatomic, weak) id<ListPresentDelegate> delegate;
+@property (nonatomic, copy) NSString *fileObjId;//文件夹主键id
 
 /// 刷新数据
 - (void)refreshData;

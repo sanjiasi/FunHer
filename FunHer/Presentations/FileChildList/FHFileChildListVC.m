@@ -1,46 +1,39 @@
 //
-//  FHFileListVC.m
+//  FHFileChildListVC.m
 //  FunHer
 //
-//  Created by GLA on 2023/7/31.
+//  Created by GLA on 2023/8/4.
 //
 
-#import "FHFileListVC.h"
+#import "FHFileChildListVC.h"
 #import "FHCollectionAdapter.h"
 #import "FHFileCollectionCell.h"
 #import "FHFileCellModel.h"
-#import "FHFileListPresent.h"
+#import "FHFileChildListPresent.h"
 #import "FHPhotoLibrary.h"
-#import "LZDBService.h"
-#import "UIViewController+Alert.h"
-#import "FHFileChildListVC.h"
 #import "FHFileModel.h"
 #import "FHImageListVC.h"
 
-@interface FHFileListVC ()
+@interface FHFileChildListVC ()
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) FHFileListPresent *present;
+@property (nonatomic, strong) FHFileChildListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 @property (nonatomic, weak) UIViewController *photoSender;
 
-
 @end
 
-@implementation FHFileListVC
+@implementation FHFileChildListVC
 
-#pragma mark -- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Files";
+    self.present.fileObjId = self.fileObjId;
+    self.title = self.fileName;
     self.view.backgroundColor = UIColor.whiteColor;
     [self configNavBar];
     [self configContentView];
 }
-
-//    [LZDBService clearRealmDB];
-//    [LZFileManager removeItemAtPath:[NSString imageBox]];
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHFileCellModel *)model {
@@ -135,7 +128,7 @@
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.leading.trailing.equalTo(self.view).offset(0);
-        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
+        make.bottom.equalTo(self.view).offset(0);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);
@@ -151,7 +144,7 @@
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.superContentView);
         make.size.mas_equalTo(CGSizeMake(160, 60));
-        make.bottom.equalTo(self.superContentView);
+        make.top.equalTo(self.collectionView.mas_bottom);
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -220,6 +213,7 @@
         
         CGFloat width = MIN(kScreenWidth, kScreenHeight);
         NSInteger columnCount = 3;
+        
         CGFloat margin = 15;
         CGFloat padding = 10;
         CGFloat itemW = (width - padding*(columnCount-1) - margin*2)/columnCount;
@@ -227,6 +221,7 @@
         layout.minimumInteritemSpacing = padding;
         layout.minimumLineSpacing = padding;
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
+        
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         colView.backgroundColor = RGB(244, 244, 244);
@@ -236,9 +231,9 @@
     return _collectionView;
 }
 
-- (FHFileListPresent *)present {
+- (FHFileChildListPresent *)present {
     if (!_present) {
-        _present = [[FHFileListPresent alloc] init];
+        _present = [[FHFileChildListPresent alloc] init];
     }
     return _present;
 }
@@ -251,5 +246,5 @@
     }
     return _superContentView;
 }
-    
+
 @end

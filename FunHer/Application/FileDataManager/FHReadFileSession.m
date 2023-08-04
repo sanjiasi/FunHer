@@ -132,6 +132,11 @@
     return documents;
 }
 
++ (NSInteger)docCountAtFolder:(NSString *)folderId {
+    RLMResults<DocRLM *> *documents = [self documentsAtFoler:folderId];
+    return documents.count;
+}
+
 #pragma mark ** 图片
 #pragma mark -- 根据图片名称和父id(图片上级目录id)查询images
 + (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name {

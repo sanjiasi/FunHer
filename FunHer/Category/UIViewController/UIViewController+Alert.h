@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)takeAlert:(NSString * _Nullable)title withMessage:(NSString * _Nullable)message actionHandler:(void(^ __nullable)(void))actionHandler;
 
 /// 有取消和确定按钮
-- (void)takeAlertWithTitle:(NSString * _Nullable)title message:(NSString * _Nullable)msg  actionBlock:(void (^)(void))actionBlock cancleBlock:(void (^)(void))cancleBlock;
+- (void)takeAlertWithTitle:(NSString * _Nullable)title message:(NSString * _Nullable)msg  actionBlock:(void (^)(void))actionBlock cancelBlock:(void (^)(void))cancelBlock;
+
+/// 带输入框且有取消和确定按钮
+- (void)takeAlertWithTitle:(NSString * _Nullable)title placeHolder:(NSString * _Nullable)text  actionBlock:(void (^)(NSString *fieldText))actionBlock cancelBlock:(void (^)(void))cancelBlock;
 
 @end
 

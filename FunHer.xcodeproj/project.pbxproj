@@ -70,6 +70,19 @@
 		67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C3F2A78CDDE00E87AF5 /* FHPhotoLibrary.m */; };
 		67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */; };
 		67406C462A79EC3C00E87AF5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 67406C452A79EC3C00E87AF5 /* placeholder.png */; };
+		67406C4D2A7C89DD00E87AF5 /* UILabel+Space.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C4C2A7C89DD00E87AF5 /* UILabel+Space.m */; };
+		67406C522A7C9CDA00E87AF5 /* FHFileChildListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C512A7C9CDA00E87AF5 /* FHFileChildListVC.m */; };
+		67406C552A7CA1C400E87AF5 /* FHCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C542A7CA1C400E87AF5 /* FHCollectionMenu.m */; };
+		67406C592A7CC30300E87AF5 /* LZDispatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C582A7CC30300E87AF5 /* LZDispatchManager.m */; };
+		67406C5C2A7CDE1700E87AF5 /* FHFileChildListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C5B2A7CDE1700E87AF5 /* FHFileChildListPresent.m */; };
+		67406C5F2A7CE46100E87AF5 /* FHImageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C5E2A7CE46100E87AF5 /* FHImageListVC.m */; };
+		67406C622A7CE50100E87AF5 /* FHImageListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C612A7CE50100E87AF5 /* FHImageListPresent.m */; };
+		67406C652A7CE72F00E87AF5 /* FHImageCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C642A7CE72F00E87AF5 /* FHImageCollectionCell.m */; };
+		67406C682A7CE95300E87AF5 /* FHImageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C672A7CE95300E87AF5 /* FHImageCellModel.m */; };
+		67406C6C2A7CFBEB00E87AF5 /* SSImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C6B2A7CFBEB00E87AF5 /* SSImageBrowser.m */; };
+		67406C6F2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C6D2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m */; };
+		67406C722A7CFC2B00E87AF5 /* ShowPicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C702A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.m */; };
+		67406C752A7CFC4300E87AF5 /* PhotoEditScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C742A7CFC4300E87AF5 /* PhotoEditScrollView.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -236,6 +249,32 @@
 		67406C422A78DD1100E87AF5 /* YYDispatchQueuePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDispatchQueuePool.h; sourceTree = "<group>"; };
 		67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDispatchQueuePool.m; sourceTree = "<group>"; };
 		67406C452A79EC3C00E87AF5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		67406C4B2A7C89DD00E87AF5 /* UILabel+Space.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Space.h"; sourceTree = "<group>"; };
+		67406C4C2A7C89DD00E87AF5 /* UILabel+Space.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Space.m"; sourceTree = "<group>"; };
+		67406C502A7C9CDA00E87AF5 /* FHFileChildListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileChildListVC.h; sourceTree = "<group>"; };
+		67406C512A7C9CDA00E87AF5 /* FHFileChildListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileChildListVC.m; sourceTree = "<group>"; };
+		67406C532A7CA1C400E87AF5 /* FHCollectionMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCollectionMenu.h; sourceTree = "<group>"; };
+		67406C542A7CA1C400E87AF5 /* FHCollectionMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCollectionMenu.m; sourceTree = "<group>"; };
+		67406C572A7CC30300E87AF5 /* LZDispatchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZDispatchManager.h; sourceTree = "<group>"; };
+		67406C582A7CC30300E87AF5 /* LZDispatchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LZDispatchManager.m; sourceTree = "<group>"; };
+		67406C5A2A7CDE1700E87AF5 /* FHFileChildListPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileChildListPresent.h; sourceTree = "<group>"; };
+		67406C5B2A7CDE1700E87AF5 /* FHFileChildListPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileChildListPresent.m; sourceTree = "<group>"; };
+		67406C5D2A7CE46100E87AF5 /* FHImageListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHImageListVC.h; sourceTree = "<group>"; };
+		67406C5E2A7CE46100E87AF5 /* FHImageListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHImageListVC.m; sourceTree = "<group>"; };
+		67406C602A7CE50100E87AF5 /* FHImageListPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHImageListPresent.h; sourceTree = "<group>"; };
+		67406C612A7CE50100E87AF5 /* FHImageListPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHImageListPresent.m; sourceTree = "<group>"; };
+		67406C632A7CE72F00E87AF5 /* FHImageCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHImageCollectionCell.h; sourceTree = "<group>"; };
+		67406C642A7CE72F00E87AF5 /* FHImageCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHImageCollectionCell.m; sourceTree = "<group>"; };
+		67406C662A7CE95300E87AF5 /* FHImageCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHImageCellModel.h; sourceTree = "<group>"; };
+		67406C672A7CE95300E87AF5 /* FHImageCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHImageCellModel.m; sourceTree = "<group>"; };
+		67406C6A2A7CFBEB00E87AF5 /* SSImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSImageBrowser.h; sourceTree = "<group>"; };
+		67406C6B2A7CFBEB00E87AF5 /* SSImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSImageBrowser.m; sourceTree = "<group>"; };
+		67406C6D2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFaxImageBrowserVC.m; sourceTree = "<group>"; };
+		67406C6E2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFaxImageBrowserVC.h; sourceTree = "<group>"; };
+		67406C702A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPicCollectionViewCell.m; sourceTree = "<group>"; };
+		67406C712A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPicCollectionViewCell.h; sourceTree = "<group>"; };
+		67406C732A7CFC4300E87AF5 /* PhotoEditScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditScrollView.h; sourceTree = "<group>"; };
+		67406C742A7CFC4300E87AF5 /* PhotoEditScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditScrollView.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -404,6 +443,7 @@
 		671CAB052A676C4E006140A8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				67406C472A7C890D00E87AF5 /* UILabel */,
 				671CAB232A67C52E006140A8 /* NSDate */,
 				671CAB192A6775B8006140A8 /* NSString */,
 				671CAB122A677327006140A8 /* UIViewController */,
@@ -481,6 +521,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				67406C562A7CC29B00E87AF5 /* DispatchManager */,
 				67406C412A78DD1100E87AF5 /* DispatchQueuePool */,
 				67406C3D2A78CD9600E87AF5 /* Photo */,
 				67406BB22A77858C00E87AF5 /* Adapter */,
@@ -521,6 +562,9 @@
 		67406BB62A77878900E87AF5 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				67406C692A7CFBB000E87AF5 /* ShowImage */,
+				67406C4F2A7C9C2400E87AF5 /* ImageList */,
+				67406C4E2A7C9BE800E87AF5 /* FileChildList */,
 				67406BC42A77A11100E87AF5 /* FileModel */,
 				67406BB72A7787CE00E87AF5 /* FileList */,
 			);
@@ -538,6 +582,8 @@
 				67406BBF2A77967500E87AF5 /* FHFileCellModel.m */,
 				67406BC12A7796B700E87AF5 /* FHFileCollectionCell.h */,
 				67406BC22A7796B700E87AF5 /* FHFileCollectionCell.m */,
+				67406C532A7CA1C400E87AF5 /* FHCollectionMenu.h */,
+				67406C542A7CA1C400E87AF5 /* FHCollectionMenu.m */,
 			);
 			path = FileList;
 			sourceTree = "<group>";
@@ -708,6 +754,65 @@
 				67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */,
 			);
 			path = DispatchQueuePool;
+			sourceTree = "<group>";
+		};
+		67406C472A7C890D00E87AF5 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				67406C4B2A7C89DD00E87AF5 /* UILabel+Space.h */,
+				67406C4C2A7C89DD00E87AF5 /* UILabel+Space.m */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		67406C4E2A7C9BE800E87AF5 /* FileChildList */ = {
+			isa = PBXGroup;
+			children = (
+				67406C502A7C9CDA00E87AF5 /* FHFileChildListVC.h */,
+				67406C512A7C9CDA00E87AF5 /* FHFileChildListVC.m */,
+				67406C5A2A7CDE1700E87AF5 /* FHFileChildListPresent.h */,
+				67406C5B2A7CDE1700E87AF5 /* FHFileChildListPresent.m */,
+			);
+			path = FileChildList;
+			sourceTree = "<group>";
+		};
+		67406C4F2A7C9C2400E87AF5 /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				67406C5D2A7CE46100E87AF5 /* FHImageListVC.h */,
+				67406C5E2A7CE46100E87AF5 /* FHImageListVC.m */,
+				67406C602A7CE50100E87AF5 /* FHImageListPresent.h */,
+				67406C612A7CE50100E87AF5 /* FHImageListPresent.m */,
+				67406C632A7CE72F00E87AF5 /* FHImageCollectionCell.h */,
+				67406C642A7CE72F00E87AF5 /* FHImageCollectionCell.m */,
+				67406C662A7CE95300E87AF5 /* FHImageCellModel.h */,
+				67406C672A7CE95300E87AF5 /* FHImageCellModel.m */,
+			);
+			path = ImageList;
+			sourceTree = "<group>";
+		};
+		67406C562A7CC29B00E87AF5 /* DispatchManager */ = {
+			isa = PBXGroup;
+			children = (
+				67406C572A7CC30300E87AF5 /* LZDispatchManager.h */,
+				67406C582A7CC30300E87AF5 /* LZDispatchManager.m */,
+			);
+			path = DispatchManager;
+			sourceTree = "<group>";
+		};
+		67406C692A7CFBB000E87AF5 /* ShowImage */ = {
+			isa = PBXGroup;
+			children = (
+				67406C6E2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.h */,
+				67406C6D2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m */,
+				67406C6A2A7CFBEB00E87AF5 /* SSImageBrowser.h */,
+				67406C6B2A7CFBEB00E87AF5 /* SSImageBrowser.m */,
+				67406C712A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.h */,
+				67406C702A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.m */,
+				67406C732A7CFC4300E87AF5 /* PhotoEditScrollView.h */,
+				67406C742A7CFC4300E87AF5 /* PhotoEditScrollView.m */,
+			);
+			path = ShowImage;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -1084,6 +1189,7 @@
 			files = (
 				67406C312A78CA8100E87AF5 /* ZLBrushBoardImageView.m in Sources */,
 				6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */,
+				67406C5F2A7CE46100E87AF5 /* FHImageListVC.m in Sources */,
 				67406C322A78CA8100E87AF5 /* ZLDrawItem.m in Sources */,
 				6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */,
 				67406C1E2A78CA8100E87AF5 /* ZLAlbumListController.m in Sources */,
@@ -1091,6 +1197,7 @@
 				67406C232A78CA8100E87AF5 /* ZLInteractiveTrasition.m in Sources */,
 				67406C3C2A78CA8100E87AF5 /* ZLPhotoConfiguration.m in Sources */,
 				6774FEDC2A6E6745005F0DB9 /* LZDocManager.m in Sources */,
+				67406C722A7CFC2B00E87AF5 /* ShowPicCollectionViewCell.m in Sources */,
 				67406C272A78CA8100E87AF5 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				67406BCE2A789F2D00E87AF5 /* LZFileManager.m in Sources */,
 				67406C202A78CA8100E87AF5 /* ZLForceTouchPreviewController.m in Sources */,
@@ -1105,6 +1212,9 @@
 				67406BC02A77967500E87AF5 /* FHFileCellModel.m in Sources */,
 				67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */,
 				671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */,
+				67406C6C2A7CFBEB00E87AF5 /* SSImageBrowser.m in Sources */,
+				67406C5C2A7CDE1700E87AF5 /* FHFileChildListPresent.m in Sources */,
+				67406C622A7CE50100E87AF5 /* FHImageListPresent.m in Sources */,
 				67406C3A2A78CA8100E87AF5 /* ZLPhotoModel.m in Sources */,
 				67406C1C2A78CA8100E87AF5 /* UIControl+EnlargeTouchArea.m in Sources */,
 				671CAB182A6773B2006140A8 /* UIViewController+Alert.m in Sources */,
@@ -1113,6 +1223,7 @@
 				6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */,
 				6774FECC2A6E1BF5005F0DB9 /* ImageRLM.m in Sources */,
 				67406C382A78CA8100E87AF5 /* ZLThumbnailViewController.m in Sources */,
+				67406C752A7CFC4300E87AF5 /* PhotoEditScrollView.m in Sources */,
 				676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */,
 				671CAB0B2A67708A006140A8 /* NSObject+Properties.m in Sources */,
 				67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */,
@@ -1123,6 +1234,7 @@
 				6774FEE32A6E6DF0005F0DB9 /* FHFileDataSession.m in Sources */,
 				6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */,
 				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
+				67406C552A7CA1C400E87AF5 /* FHCollectionMenu.m in Sources */,
 				67406C332A78CA8100E87AF5 /* ZLClipItem.m in Sources */,
 				67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */,
 				67406C2C2A78CA8100E87AF5 /* ZLEditViewController.m in Sources */,
@@ -1133,15 +1245,20 @@
 				67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */,
 				67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
+				67406C522A7C9CDA00E87AF5 /* FHFileChildListVC.m in Sources */,
 				67406C252A78CA8100E87AF5 /* ZLProgressView.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
 				6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */,
+				67406C4D2A7C89DD00E87AF5 /* UILabel+Space.m in Sources */,
 				67406C282A78CA8100E87AF5 /* ZLCustomCamera.m in Sources */,
 				67406C302A78CA8100E87AF5 /* ZLImageEditTool.m in Sources */,
 				671CAB152A677354006140A8 /* NSArray+Json.m in Sources */,
 				6774FEC02A6A707F005F0DB9 /* LZNetWorkManager.m in Sources */,
 				67406C222A78CA8100E87AF5 /* ZLAnimateTransition.m in Sources */,
+				67406C592A7CC30300E87AF5 /* LZDispatchManager.m in Sources */,
+				67406C682A7CE95300E87AF5 /* FHImageCellModel.m in Sources */,
+				67406C6F2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m in Sources */,
 				671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */,
 				67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */,
 				67406C1D2A78CA8100E87AF5 /* ZLBigImageCell.m in Sources */,
@@ -1154,6 +1271,7 @@
 				671CAB1C2A6775F2006140A8 /* NSString+Json.m in Sources */,
 				67406C262A78CA8100E87AF5 /* ZLProgressHUD.m in Sources */,
 				676D7CF42A70F1030077762A /* FHToast.m in Sources */,
+				67406C652A7CE72F00E87AF5 /* FHImageCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
