@@ -36,7 +36,7 @@
 }
 
 #pragma mark -- Delegate
-- (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHFileCellModel *)model {
+- (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFileCellModel *)model {
     if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
         [self goToPushFolderVC:model];
     } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
@@ -199,7 +199,7 @@
             cell.numLab.text = model.countNum;
             cell.uTimeLab.text = model.uDate;
         } didSelectedBlock:^(FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            [weakSelf collectionViewDidSelected:indexPath WithModel:model];
+            [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];
         _collectionAdapter = adapter;
     }

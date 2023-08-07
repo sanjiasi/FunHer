@@ -34,7 +34,7 @@
 }
 
 #pragma mark -- Delegate
-- (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHImageCellModel *)model {
+- (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHImageCellModel *)model {
     SSFaxImageBrowserVC *vc = [[SSFaxImageBrowserVC alloc] init];
     vc.dataArray = self.present.dataArray;
     vc.currentIndex = idxPath.item;
@@ -141,7 +141,7 @@
             cell.showImg.image = NULLString(model.thumbNail) ? [UIImage imageNamed:@"placeHolder"] : [UIImage imageWithContentsOfFile:model.thumbNail];
             cell.titleLab.text = model.fileName;
         } didSelectedBlock:^(FHImageCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            [weakSelf collectionViewDidSelected:indexPath WithModel:model];
+            [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];
         _collectionAdapter = adapter;
     }

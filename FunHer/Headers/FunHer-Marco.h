@@ -28,9 +28,7 @@
             } else { \
                 window = [UIApplication sharedApplication].windows.lastObject; \
             } \
-        } else { \
-            window = [UIApplication sharedApplication].keyWindow; \
-        } \
+        }\
     } \
     return window; \
 }()
@@ -77,12 +75,8 @@ if (@available(iOS 13.0, *)) {\
 // 底部安全区域高度
 #define kBottomSafeHeight \
 ^(){\
-if (@available(iOS 11.0, *)) {\
-   UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication] delegate].window.safeAreaInsets;\
-   return safeAreaInsets.bottom;\
-} else {\
-   return UIEdgeInsetsMake(0, 0, 0, 0).bottom;\
-}\
+UIEdgeInsets safeAreaInsets = [[UIApplication sharedApplication] delegate].window.safeAreaInsets;\
+return safeAreaInsets.bottom;\
 }()//34 , 0
 
 // 导航栏高度

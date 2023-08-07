@@ -83,6 +83,9 @@
 		67406C6F2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C6D2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m */; };
 		67406C722A7CFC2B00E87AF5 /* ShowPicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C702A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.m */; };
 		67406C752A7CFC4300E87AF5 /* PhotoEditScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C742A7CFC4300E87AF5 /* PhotoEditScrollView.m */; };
+		67406C802A80C88800E87AF5 /* FHBarItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C7F2A80C88800E87AF5 /* FHBarItemCell.m */; };
+		67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C822A80E8A900E87AF5 /* NSObject+Selector.m */; };
+		67406C862A80ECE000E87AF5 /* FHTabMenuAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -275,6 +278,12 @@
 		67406C712A7CFC2A00E87AF5 /* ShowPicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPicCollectionViewCell.h; sourceTree = "<group>"; };
 		67406C732A7CFC4300E87AF5 /* PhotoEditScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditScrollView.h; sourceTree = "<group>"; };
 		67406C742A7CFC4300E87AF5 /* PhotoEditScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditScrollView.m; sourceTree = "<group>"; };
+		67406C7E2A80C88800E87AF5 /* FHBarItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBarItemCell.h; sourceTree = "<group>"; };
+		67406C7F2A80C88800E87AF5 /* FHBarItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBarItemCell.m; sourceTree = "<group>"; };
+		67406C812A80E8A900E87AF5 /* NSObject+Selector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Selector.h"; sourceTree = "<group>"; };
+		67406C822A80E8A900E87AF5 /* NSObject+Selector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Selector.m"; sourceTree = "<group>"; };
+		67406C842A80ECE000E87AF5 /* FHTabMenuAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHTabMenuAdapter.h; sourceTree = "<group>"; };
+		67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTabMenuAdapter.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -463,6 +472,8 @@
 				671CAB0A2A67708A006140A8 /* NSObject+Properties.m */,
 				676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */,
 				676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */,
+				67406C812A80E8A900E87AF5 /* NSObject+Selector.h */,
+				67406C822A80E8A900E87AF5 /* NSObject+Selector.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -584,6 +595,10 @@
 				67406BC22A7796B700E87AF5 /* FHFileCollectionCell.m */,
 				67406C532A7CA1C400E87AF5 /* FHCollectionMenu.h */,
 				67406C542A7CA1C400E87AF5 /* FHCollectionMenu.m */,
+				67406C7E2A80C88800E87AF5 /* FHBarItemCell.h */,
+				67406C7F2A80C88800E87AF5 /* FHBarItemCell.m */,
+				67406C842A80ECE000E87AF5 /* FHTabMenuAdapter.h */,
+				67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */,
 			);
 			path = FileList;
 			sourceTree = "<group>";
@@ -1203,6 +1218,7 @@
 				67406C202A78CA8100E87AF5 /* ZLForceTouchPreviewController.m in Sources */,
 				67406C242A78CA8100E87AF5 /* ZLPullDownInteractiveTransition.m in Sources */,
 				671CAB102A6771F8006140A8 /* NSDictionary+Json.m in Sources */,
+				67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */,
 				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
 				67406C1B2A78CA8100E87AF5 /* SSPopListView.m in Sources */,
 				671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */,
@@ -1226,6 +1242,7 @@
 				67406C752A7CFC4300E87AF5 /* PhotoEditScrollView.m in Sources */,
 				676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */,
 				671CAB0B2A67708A006140A8 /* NSObject+Properties.m in Sources */,
+				67406C862A80ECE000E87AF5 /* FHTabMenuAdapter.m in Sources */,
 				67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */,
 				67406C2F2A78CA8100E87AF5 /* ZLNoAuthorityViewController.m in Sources */,
 				67406C292A78CA8100E87AF5 /* ZLPlayer.m in Sources */,
@@ -1247,6 +1264,7 @@
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
 				67406C522A7C9CDA00E87AF5 /* FHFileChildListVC.m in Sources */,
 				67406C252A78CA8100E87AF5 /* ZLProgressView.m in Sources */,
+				67406C802A80C88800E87AF5 /* FHBarItemCell.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
 				6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */,

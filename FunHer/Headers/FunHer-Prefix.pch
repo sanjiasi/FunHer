@@ -43,6 +43,7 @@
 #import "NSObject+Swizzle.h"
 #import "NSObject+Properties.h"
 #import "NSObject+Analytics.h"
+#import "NSObject+Selector.h"
 
 #pragma mark -- Components
 /// GCD

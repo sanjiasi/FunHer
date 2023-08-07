@@ -12,7 +12,7 @@ typedef void (^ClickForAction)(NSInteger idx, NSString *selector);
 
 @interface FHCollectionMenu : UIView
 /// item: {image, title, selector}
-- (instancetype)initWithItems:(NSArray *)itemArr actionBlock:(ClickForAction)action;
+- (instancetype)initWithItems:(NSArray *)itemArr menuHeight:(CGFloat)height actionBlock:(ClickForAction)action;
 
 @end
 

@@ -16,13 +16,18 @@
 #import "FHFileChildListVC.h"
 #import "FHFileModel.h"
 #import "FHImageListVC.h"
+#import "FHCollectionMenu.h"
 
-@interface FHFileListVC ()
+
+@interface FHFileListVC () {
+    CGFloat FHMenuHeight;
+}
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) FHFileListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 @property (nonatomic, weak) UIViewController *photoSender;
+@property (nonatomic, strong) FHCollectionMenu *funcMenu;
 
 
 @end
@@ -43,7 +48,7 @@
 //    [LZFileManager removeItemAtPath:[NSString imageBox]];
 
 #pragma mark -- Delegate
-- (void)collectionViewDidSelected:(NSIndexPath *)idxPath WithModel:(FHFileCellModel *)model {
+- (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFileCellModel *)model {
     if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
         [self goToPushFolderVC:model];
     } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
@@ -129,6 +134,7 @@
 }
 
 - (void)configContentView {
+    FHMenuHeight = 80;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
     
@@ -139,19 +145,13 @@
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(-60);
+        make.bottom.equalTo(self.superContentView).offset(-FHMenuHeight);
     }];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"Create Folder" forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addNewFolder) forControlEvents:UIControlEventTouchUpInside];
-    [self.superContentView addSubview:btn];
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.superContentView);
-        make.size.mas_equalTo(CGSizeMake(160, 60));
-        make.bottom.equalTo(self.superContentView);
+    [self.superContentView addSubview:self.funcMenu];
+    [self.funcMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self.superContentView);
+        make.height.mas_equalTo(FHMenuHeight);
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -206,7 +206,7 @@
             cell.numLab.text = model.countNum;
             cell.uTimeLab.text = model.uDate;
         } didSelectedBlock:^(FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            [weakSelf collectionViewDidSelected:indexPath WithModel:model];
+            [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];
         _collectionAdapter = adapter;
     }
@@ -252,4 +252,22 @@
     return _superContentView;
 }
     
+- (FHCollectionMenu *)funcMenu {
+    __weak typeof(self) weakSelf = self;
+    if (!_funcMenu) {
+        _funcMenu = [[FHCollectionMenu alloc] initWithItems:[self funcItems] menuHeight:FHMenuHeight actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
+            NSLog(@"i = %@, func = %@", @(idx), selector);
+            [weakSelf invokeWithSelector:selector];
+        }];
+    }
+    return _funcMenu;
+}
+
+- (NSArray *)funcItems {
+    return @[@{@"image": @"new_folder", @"title": @"Import Files", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"new_folder", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"new_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
+    ];
+}
+
 @end
