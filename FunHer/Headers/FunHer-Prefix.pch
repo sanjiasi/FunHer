@@ -44,6 +44,8 @@
 #import "NSObject+Properties.h"
 #import "NSObject+Analytics.h"
 #import "NSObject+Selector.h"
+/// -- UIImage
+#import "UIImage+Resize.h"
 
 #pragma mark -- Components
 /// GCD

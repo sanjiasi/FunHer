@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)fileIndex;
 
 #pragma mark -- 目录
+/// 占位图
++ (NSString *)getLocalPlaceHolderFile;
 ///  临时文档的图片路径
 /// - Parameter idx: 索引
 + (NSString *)imagePathAtTempDocWithIndex:(NSInteger)idx;

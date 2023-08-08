@@ -41,7 +41,7 @@
     [assets enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
         [LZDispatchManager asyncConcurrentByGroup:groupE withHandler:^{
             NSData *data = [FHPhotoLibrary syncFetchOriginalImageDataWithAsset:asset];
-            [self saveOriginalPhoto:data atIndex:idx];
+            [self saveOriginalPhoto:data imageSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) atIndex:idx];
         }];
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
@@ -70,11 +70,12 @@
     return sortArray;
 }
 
-- (void)saveOriginalPhoto:(NSData *)data atIndex:(NSUInteger)idx {
+- (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
     NSString *imgPath = [NSString imagePathAtTempDocWithIndex:idx];
-    BOOL result = [data writeToFile:imgPath atomically:YES];
+    BOOL result =[UIImage resizeThumbImage:data imageSize:size saveAtPath:imgPath];
     if (!result) {
         [self getEventWithName:@"write error"];
+        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     } else {
         NSString *thumbName = [NSString nameByRemoveIndex:imgPath.fileName];
         NSString *thumbDirPath = [[NSString thumbDir] stringByAppendingPathComponent:thumbName];
@@ -97,6 +98,9 @@
             NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
             if (firstImg) {
                 model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
+                if (![LZFileManager isExistsAtPath:model.thumbNail]) {
+                    [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
+                }
             }
         }
         [temp addObject:model];

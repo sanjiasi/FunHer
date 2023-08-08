@@ -159,7 +159,7 @@
         CGFloat margin = 15;
         CGFloat padding = 10;
         CGFloat itemW = (width - padding*(columnCount-1) - margin*2)/columnCount;
-        layout.itemSize = CGSizeMake(itemW, itemW * 1.4);
+        layout.itemSize = CGSizeMake(itemW, itemW * 1.4);//500,700
         layout.minimumInteritemSpacing = padding;
         layout.minimumLineSpacing = padding;
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
@@ -187,6 +187,10 @@
         _superContentView = content;
     }
     return _superContentView;
+}
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
 }
 
 @end

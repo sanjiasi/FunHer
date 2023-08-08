@@ -87,7 +87,6 @@
         CGFloat margin = 15;
         CGFloat padding = 10;
         CGFloat itemW = (width - padding*(columnCount-1) - margin*2)/columnCount;
-        NSLog(@"--%f", self.bounds.size.height);
         layout.itemSize = CGSizeMake(itemW, self.menuHeight);
         layout.minimumInteritemSpacing = padding;
         layout.minimumLineSpacing = padding;

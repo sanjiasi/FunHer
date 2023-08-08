@@ -64,6 +64,11 @@
 }
 
 #pragma mark ** 目录
++ (NSString *)getLocalPlaceHolderFile {
+    NSString *jpgPath = [[NSBundle mainBundle] pathForResource:@"placeholder" ofType:@"png"];
+    return jpgPath;
+}
+
 + (NSString *)imagePathAtTempDocWithIndex:(NSInteger)idx {
     NSInteger num = idx + 1;
     NSString *imageName = [NSString stringWithFormat:@"%@_%@%@",[self imageName], @(num), FHFilePathExtension];
