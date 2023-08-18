@@ -32,22 +32,33 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -- 目录
 /// 占位图
 + (NSString *)getLocalPlaceHolderFile;
+
 ///  临时文档的图片路径
 /// - Parameter idx: 索引
 + (NSString *)imagePathAtTempDocWithIndex:(NSInteger)idx;
+
 /// 图片名
 + (NSString *)imageName;
+
 /// 存储缩率图
 + (NSString *)thumbDir;
++ (NSString *)thumbImagePath:(NSString *)name;
 
 /// 存储展示图片
 + (NSString *)sampleDir;
++ (NSString *)sampleImagePath:(NSString *)name;
 
 /// 存储源图片
 + (NSString *)originalDir;
++ (NSString *)originalImagePath:(NSString *)name;
 
 /// -- 临时文档
 + (NSString *)tempDocPath;
++ (NSString *)tempImagePath:(NSString *)name;
+
+/// -- 临时存放裁剪后的图片
++ (NSString *)tempCropDir;
++ (NSString *)tempCropImagePath:(NSString *)name;
 
 /// 存储图片的根目录
 + (NSString *)imageBox;

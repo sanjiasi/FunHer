@@ -92,9 +92,11 @@
             NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
             if (firstImg) {
                 model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
-                if (![LZFileManager isExistsAtPath:model.thumbNail]) {
-                    [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
-                }
+            } else {
+                model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:@"placeHolder.jpg"];
+            }
+            if (![LZFileManager isExistsAtPath:model.thumbNail]) {
+                [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
             }
         }
         [temp addObject:model];

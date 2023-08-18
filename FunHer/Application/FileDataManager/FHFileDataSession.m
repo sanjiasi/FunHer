@@ -34,15 +34,17 @@
     //目录下的文件夹
     //该目录下的文件夹
     RLMResults<FolderRLM *> *folders = [FHReadFileSession foldersAtFile:objId];
-    [self removeFolderList:folders];
+    
     //该目录下的文档
     RLMResults<DocRLM *> *docs = [FHReadFileSession documentsAtFoler:objId];
-    [self removeDocList:docs];
     
     RLMResults<ImageRLM *> *imgs = [FHReadFileSession allImagesAtFolder:objId];
-    [self removeImageList:imgs];
     
     FolderRLM *appFolder = [LZFolderManager entityWithId:objId];
+    
+    [self removeImageList:imgs];
+    [self removeDocList:docs];
+    [self removeFolderList:folders];
     [self removeFolder:appFolder];
 }
 
@@ -75,27 +77,28 @@
     NSString *oldPathId = appFolder.pathId;
     NSString *newPathId =  [pathId stringByAppendingPathComponent:objId];
     [LZFolderManager updateTransactionWithBlock:^{
-        appFolder.parentId = parentId;
-        appFolder.pathId = newPathId;
-        appFolder.uTime = [NSDate utcStamp];
-        
         RLMResults<FolderRLM *> *folders = [FHReadFileSession foldersAtFile:objId];//子文件夹
+        RLMResults<DocRLM *> *docs = [FHReadFileSession documentsAtFoler:objId];//子文档
+        RLMResults<ImageRLM *> *images = [FHReadFileSession allImagesAtFolder:objId];//子图片
         for (FolderRLM *folderObj in folders) {
             folderObj.pathId = [folderObj.pathId stringByReplacingOccurrencesOfString:oldPathId withString:newPathId];
             folderObj.uTime = [NSDate utcStamp];
         }
-        RLMResults<DocRLM *> *docs = [FHReadFileSession documentsAtFoler:objId];//子文档
+        
         for (DocRLM *docObj in docs) {
             docObj.pathId = [docObj.pathId stringByReplacingOccurrencesOfString:oldPathId withString:newPathId];
             docObj.uTime = [NSDate utcStamp];
             docObj.syncDone = NO;
         }
-        RLMResults<ImageRLM *> *images = [FHReadFileSession allImagesAtFolder:objId];//子图片
+        
         for (ImageRLM *imgObj in images) {
             imgObj.pathId = [imgObj.pathId stringByReplacingOccurrencesOfString:oldPathId withString:newPathId];
             imgObj.uTime = [NSDate utcStamp];
             imgObj.syncDone = NO;
         }
+        appFolder.parentId = parentId;
+        appFolder.pathId = newPathId;
+        appFolder.uTime = [NSDate utcStamp];
     }];
     // 记录移动
 }
@@ -343,7 +346,7 @@
     if (!image) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateImage:objId byTransaction:^{
         image.uTime = [NSDate utcStamp];
-        image.fileLength = [self sizeOfFileAtPath:image.filePath];
+        image.fileLength = [[LZFileManager sizeOfFileAtPath:image.filePath] longValue];
         image.cloudUrl = @"";
         image.syncDone = NO;
     }];
@@ -430,15 +433,10 @@
     imageModel.pathId = [pathId stringByAppendingPathComponent:imageModel.Id];
     imageModel.name = name;
     imageModel.picIndex = index;
-    imageModel.fileLength = [self sizeOfFileAtPath:imageModel.filePath];
+    imageModel.fileLength = [[LZFileManager sizeOfFileAtPath:imageModel.filePath] longValue];
     imageModel.cTime = [NSDate utcStamp];
     imageModel.uTime = [NSDate utcStamp];
     return imageModel;
-}
-
-+ (long)sizeOfFileAtPath:(NSString *)path {
-    NSDictionary *fileAtt = [[NSFileManager defaultManager] attributesOfItemAtPath:@"path" error:nil];
-    return [[fileAtt objectForKey:NSFileSize] longValue];
 }
 
 /// 增 -- img

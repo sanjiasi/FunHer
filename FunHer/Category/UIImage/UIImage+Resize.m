@@ -36,6 +36,14 @@ CGFloat const FHThumbImageMaxPiexl = 160000.00;//缩率图的最大像素
     return imageRef;
 }
 
++ (UIImage *)shrinkImageWithData:(NSData *)data withSize:(CGSize)size  {
+    CGFloat settingSize = MAX(size.width, size.height) * [UIScreen mainScreen].scale;
+    CGImageRef imageRef = [self scaleImageWithData:data withSize:settingSize];
+    UIImage *img = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    return img;
+}
+
 + (BOOL)resizeOriginalImage:(NSData *)data imageSize:(CGSize)size saveAtPath:(NSString *)path {
     if ((size.width * size.height) > FHImageMaxPiexl) {
         CGFloat settingSize = [self getImageSettingSize:size byMaxSize:FHImageMaxPiexl];

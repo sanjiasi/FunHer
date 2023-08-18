@@ -87,6 +87,14 @@
 		67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C822A80E8A900E87AF5 /* NSObject+Selector.m */; };
 		67406C862A80ECE000E87AF5 /* FHTabMenuAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */; };
 		67406C8A2A81D31C00E87AF5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C892A81D31C00E87AF5 /* UIImage+Resize.m */; };
+		6749B33F2A8CCF5C00EEE913 /* CropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6749B33E2A8CCF5C00EEE913 /* CropView.swift */; };
+		6749B3432A8DB29600EEE913 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3422A8DB29600EEE913 /* OpenCVWrapper.mm */; };
+		6749B3472A8DB91C00EEE913 /* FHMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3462A8DB91C00EEE913 /* FHMagnifierView.m */; };
+		6749B34B2A8DED1C00EEE913 /* FHCropImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B34A2A8DED1C00EEE913 /* FHCropImageVC.m */; };
+		6749B34E2A8F1A8F00EEE913 /* FHCropImagePresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B34D2A8F1A8F00EEE913 /* FHCropImagePresent.m */; };
+		6749B3512A8F42D000EEE913 /* UIImage+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3502A8F42D000EEE913 /* UIImage+Manager.m */; };
+		6749B3542A8F52C000EEE913 /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3532A8F52C000EEE913 /* NSString+Format.m */; };
+		6749B3582A8F6C1000EEE913 /* FHFilterImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3572A8F6C1000EEE913 /* FHFilterImageVC.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -287,6 +295,22 @@
 		67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTabMenuAdapter.m; sourceTree = "<group>"; };
 		67406C882A81D31C00E87AF5 /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		67406C892A81D31C00E87AF5 /* UIImage+Resize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		6749B33D2A8CCF5B00EEE913 /* FunHer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FunHer-Bridging-Header.h"; sourceTree = "<group>"; };
+		6749B33E2A8CCF5C00EEE913 /* CropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropView.swift; sourceTree = "<group>"; };
+		6749B3412A8DB29600EEE913 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		6749B3422A8DB29600EEE913 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		6749B3452A8DB91C00EEE913 /* FHMagnifierView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHMagnifierView.h; sourceTree = "<group>"; };
+		6749B3462A8DB91C00EEE913 /* FHMagnifierView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHMagnifierView.m; sourceTree = "<group>"; };
+		6749B3492A8DED1C00EEE913 /* FHCropImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCropImageVC.h; sourceTree = "<group>"; };
+		6749B34A2A8DED1C00EEE913 /* FHCropImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCropImageVC.m; sourceTree = "<group>"; };
+		6749B34C2A8F1A8F00EEE913 /* FHCropImagePresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCropImagePresent.h; sourceTree = "<group>"; };
+		6749B34D2A8F1A8F00EEE913 /* FHCropImagePresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCropImagePresent.m; sourceTree = "<group>"; };
+		6749B34F2A8F42D000EEE913 /* UIImage+Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Manager.h"; sourceTree = "<group>"; };
+		6749B3502A8F42D000EEE913 /* UIImage+Manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Manager.m"; sourceTree = "<group>"; };
+		6749B3522A8F52C000EEE913 /* NSString+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
+		6749B3532A8F52C000EEE913 /* NSString+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
+		6749B3562A8F6C1000EEE913 /* FHFilterImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFilterImageVC.h; sourceTree = "<group>"; };
+		6749B3572A8F6C1000EEE913 /* FHFilterImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFilterImageVC.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -520,6 +544,8 @@
 				671CAB212A67C0EB006140A8 /* NSString+TextSize.m */,
 				6774FEE42A6E7913005F0DB9 /* NSString+Path.h */,
 				6774FEE52A6E7913005F0DB9 /* NSString+Path.m */,
+				6749B3522A8F52C000EEE913 /* NSString+Format.h */,
+				6749B3532A8F52C000EEE913 /* NSString+Format.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -536,6 +562,9 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6749B3442A8DB8B400EEE913 /* Magnifier */,
+				6749B3402A8DB1E800EEE913 /* OpenCV */,
+				6749B33C2A8CCF4800EEE913 /* Crop */,
 				67406C562A7CC29B00E87AF5 /* DispatchManager */,
 				67406C412A78DD1100E87AF5 /* DispatchQueuePool */,
 				67406C3D2A78CD9600E87AF5 /* Photo */,
@@ -577,6 +606,8 @@
 		67406BB62A77878900E87AF5 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				6749B3552A8F6BC300EEE913 /* FilterImage */,
+				6749B3482A8DECCF00EEE913 /* CropImage */,
 				67406C692A7CFBB000E87AF5 /* ShowImage */,
 				67406C4F2A7C9C2400E87AF5 /* ImageList */,
 				67406C4E2A7C9BE800E87AF5 /* FileChildList */,
@@ -839,8 +870,57 @@
 			children = (
 				67406C882A81D31C00E87AF5 /* UIImage+Resize.h */,
 				67406C892A81D31C00E87AF5 /* UIImage+Resize.m */,
+				6749B34F2A8F42D000EEE913 /* UIImage+Manager.h */,
+				6749B3502A8F42D000EEE913 /* UIImage+Manager.m */,
 			);
 			path = UIImage;
+			sourceTree = "<group>";
+		};
+		6749B33C2A8CCF4800EEE913 /* Crop */ = {
+			isa = PBXGroup;
+			children = (
+				6749B33E2A8CCF5C00EEE913 /* CropView.swift */,
+				6749B33D2A8CCF5B00EEE913 /* FunHer-Bridging-Header.h */,
+			);
+			path = Crop;
+			sourceTree = "<group>";
+		};
+		6749B3402A8DB1E800EEE913 /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				6749B3412A8DB29600EEE913 /* OpenCVWrapper.h */,
+				6749B3422A8DB29600EEE913 /* OpenCVWrapper.mm */,
+			);
+			path = OpenCV;
+			sourceTree = "<group>";
+		};
+		6749B3442A8DB8B400EEE913 /* Magnifier */ = {
+			isa = PBXGroup;
+			children = (
+				6749B3452A8DB91C00EEE913 /* FHMagnifierView.h */,
+				6749B3462A8DB91C00EEE913 /* FHMagnifierView.m */,
+			);
+			path = Magnifier;
+			sourceTree = "<group>";
+		};
+		6749B3482A8DECCF00EEE913 /* CropImage */ = {
+			isa = PBXGroup;
+			children = (
+				6749B3492A8DED1C00EEE913 /* FHCropImageVC.h */,
+				6749B34A2A8DED1C00EEE913 /* FHCropImageVC.m */,
+				6749B34C2A8F1A8F00EEE913 /* FHCropImagePresent.h */,
+				6749B34D2A8F1A8F00EEE913 /* FHCropImagePresent.m */,
+			);
+			path = CropImage;
+			sourceTree = "<group>";
+		};
+		6749B3552A8F6BC300EEE913 /* FilterImage */ = {
+			isa = PBXGroup;
+			children = (
+				6749B3562A8F6C1000EEE913 /* FHFilterImageVC.h */,
+				6749B3572A8F6C1000EEE913 /* FHFilterImageVC.m */,
+			);
+			path = FilterImage;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -1045,6 +1125,7 @@
 				TargetAttributes = {
 					671CAACC2A66622A006140A8 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 					671CAAE72A66622B006140A8 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -1229,14 +1310,17 @@
 				67406C272A78CA8100E87AF5 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				67406BCE2A789F2D00E87AF5 /* LZFileManager.m in Sources */,
 				67406C202A78CA8100E87AF5 /* ZLForceTouchPreviewController.m in Sources */,
+				6749B33F2A8CCF5C00EEE913 /* CropView.swift in Sources */,
 				67406C242A78CA8100E87AF5 /* ZLPullDownInteractiveTransition.m in Sources */,
 				671CAB102A6771F8006140A8 /* NSDictionary+Json.m in Sources */,
 				67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */,
+				6749B34B2A8DED1C00EEE913 /* FHCropImageVC.m in Sources */,
 				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
 				67406C1B2A78CA8100E87AF5 /* SSPopListView.m in Sources */,
 				671CAAD22A66622A006140A8 /* AppDelegate.m in Sources */,
 				6774FED52A6E2AE3005F0DB9 /* LZFolderManager.m in Sources */,
 				67406C2D2A78CA8100E87AF5 /* ZLCollectionCell.m in Sources */,
+				6749B3542A8F52C000EEE913 /* NSString+Format.m in Sources */,
 				67406C392A78CA8100E87AF5 /* ZLPhotoActionSheet.m in Sources */,
 				67406BC02A77967500E87AF5 /* FHFileCellModel.m in Sources */,
 				67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */,
@@ -1269,6 +1353,7 @@
 				67406C332A78CA8100E87AF5 /* ZLClipItem.m in Sources */,
 				67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */,
 				67406C2C2A78CA8100E87AF5 /* ZLEditViewController.m in Sources */,
+				6749B3472A8DB91C00EEE913 /* FHMagnifierView.m in Sources */,
 				67406C212A78CA8100E87AF5 /* ZLPhotoManager.m in Sources */,
 				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
 				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
@@ -1280,6 +1365,7 @@
 				67406C252A78CA8100E87AF5 /* ZLProgressView.m in Sources */,
 				67406C802A80C88800E87AF5 /* FHBarItemCell.m in Sources */,
 				6774FEC52A6A710C005F0DB9 /* LZDBService.m in Sources */,
+				6749B3582A8F6C1000EEE913 /* FHFilterImageVC.m in Sources */,
 				6774FEAE2A6A12CF005F0DB9 /* FHAppearanceCommand.m in Sources */,
 				6774FECF2A6E1C0C005F0DB9 /* DocRLM.m in Sources */,
 				67406C4D2A7C89DD00E87AF5 /* UILabel+Space.m in Sources */,
@@ -1295,6 +1381,7 @@
 				67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */,
 				67406C1D2A78CA8100E87AF5 /* ZLBigImageCell.m in Sources */,
 				67406C3B2A78CA8100E87AF5 /* ZLEditVideoController.m in Sources */,
+				6749B3432A8DB29600EEE913 /* OpenCVWrapper.mm in Sources */,
 				6774FED22A6E1C28005F0DB9 /* FolderRLM.m in Sources */,
 				67406C2A2A78CA8100E87AF5 /* UIImage+ZLPhotoBrowser.m in Sources */,
 				67406C372A78CA8100E87AF5 /* ZLShowBigImgViewController.m in Sources */,
@@ -1302,8 +1389,10 @@
 				671CAB082A676EC3006140A8 /* NSObject+Swizzle.m in Sources */,
 				671CAB1C2A6775F2006140A8 /* NSString+Json.m in Sources */,
 				67406C262A78CA8100E87AF5 /* ZLProgressHUD.m in Sources */,
+				6749B3512A8F42D000EEE913 /* UIImage+Manager.m in Sources */,
 				676D7CF42A70F1030077762A /* FHToast.m in Sources */,
 				67406C652A7CE72F00E87AF5 /* FHImageCollectionCell.m in Sources */,
+				6749B34E2A8F1A8F00EEE913 /* FHCropImagePresent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,14 +1556,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mini Scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1492,6 +1583,9 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FunHer/Components/Crop/FunHer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1502,14 +1596,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tiny Docs";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mini Scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1527,6 +1623,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FunHer/Components/Crop/FunHer-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1535,6 +1633,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE0751C380392153ECB3C515 /* Pods-FunHerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1554,6 +1653,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A9D2876EAEDE7A21A84452BF /* Pods-FunHerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1573,6 +1673,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 766B2729B846C048293D9ACF /* Pods-FunHer-FunHerUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;
@@ -1590,6 +1691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98A625AD7A3E41E1ACACF6B9 /* Pods-FunHer-FunHerUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4CBEAS4L8;

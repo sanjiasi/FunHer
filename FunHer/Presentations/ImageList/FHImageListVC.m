@@ -33,6 +33,12 @@
     [self configContentView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self refreshWithNewData];
+}
+
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHImageCellModel *)model {
     SSFaxImageBrowserVC *vc = [[SSFaxImageBrowserVC alloc] init];
@@ -104,7 +110,6 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf refreshWithNewData];
     }];
-    [self beginPullRefreshing];
 }
 
 - (void)configData {
@@ -183,7 +188,7 @@
 - (UIView *)superContentView {
     if (!_superContentView) {
         UIView *content = [[UIView alloc] init];
-        content.backgroundColor = RGB(245, 240, 239);
+        content.backgroundColor = kViewBGColor;
         _superContentView = content;
     }
     return _superContentView;

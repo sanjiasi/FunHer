@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SSFaxImageBrowserVC : UIViewController
 
+@property (nonatomic, copy) NSString *fileName;
 //数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
 //当前点击的图片下标

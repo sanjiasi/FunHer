@@ -9,6 +9,8 @@
 #import "SSFaxImageBrowserVC.h"
 #import "SSImageBrowser.h"
 #import "FHImageCellModel.h"
+#import "FHCropImageVC.h"
+#import "FHFileModel.h"
 
 @interface SSFaxImageBrowserVC ()
 @property (nonatomic, strong) SSImageBrowser *imageBrowser;
@@ -25,10 +27,6 @@
     [self configContentView];
 }
 
-- (void)backHomeAction {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barTintColor = RGB(240, 240, 240);
@@ -36,15 +34,38 @@
 }
 
 - (void)loadBinData {
+    self.currentModel = self.dataArray[self.currentIndex];
+    self.fileName = self.currentModel.fileName;
+    self.title = self.fileName;
     self.imageBrowser.dataArray = self.dataArray;
     self.imageBrowser.currentIndex = self.currentIndex;
     [self.imageBrowser updateCurrentItem];
 }
 
+- (void)backHomeAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickCropImage {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.objId = self.currentModel.fileObj.objId;
+    [self.navigationController pushViewController:cropVC animated:YES];
+}
+
 #pragma mark -- 设置导航栏
 - (void)configNavBar {
-    self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    [self setRigthButton:@"Crop" withSelector:@selector(clickCropImage)];
+}
+
+- (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    btn.tag = 115;
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = barItem;
 }
 
 - (void)configContentView {

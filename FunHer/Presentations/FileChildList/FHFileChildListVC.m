@@ -35,6 +35,12 @@
     [self configContentView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self refreshWithNewData];
+}
+
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFileCellModel *)model {
     if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
@@ -160,7 +166,6 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf refreshWithNewData];
     }];
-    [self beginPullRefreshing];
 }
 
 - (void)configData {
@@ -241,7 +246,7 @@
 - (UIView *)superContentView {
     if (!_superContentView) {
         UIView *content = [[UIView alloc] init];
-        content.backgroundColor = RGB(245, 240, 239);
+        content.backgroundColor = kViewBGColor;
         _superContentView = content;
     }
     return _superContentView;

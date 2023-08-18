@@ -53,7 +53,7 @@
 - (void)setModel:(FHImageCellModel *)model{
     _model = model;
     _zoomView.zoomScale = 1.0;
-    _zoomView.mainImage = [UIImage imageWithContentsOfFile:model.thumbNail];
+    _zoomView.mainImage = [UIImage imageWithContentsOfFile:model.filePath];
 }
 
 

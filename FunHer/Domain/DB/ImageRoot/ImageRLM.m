@@ -25,7 +25,7 @@
 }
 
 - (NSString *)filePath {
-    NSString *path = [[NSString sampleDir] stringByAppendingPathComponent:self.name];
+    NSString *path = [NSString sampleImagePath:self.name];
     return path;
 }
 

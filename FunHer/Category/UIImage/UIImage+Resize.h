@@ -11,6 +11,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Resize)
 
+/// 压缩图片
+/// - Parameters:
+///   - data: 图片资源
+///   - size: 图片像素
++ (UIImage *)shrinkImageWithData:(NSData *)data withSize:(CGSize)size;
+
 /// 压缩原图
 ///   - data: 图片资源
 ///   - size: 图片像素

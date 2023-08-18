@@ -15,6 +15,8 @@
     FHFileModel *fileObj = [FHFileModel createModelWithParam:param];
     FHImageCellModel *model = [[FHImageCellModel alloc] init];
     model.fileObj = fileObj;
+    model.fileSize = [NSString memorySizeFormat:[param[@"fileLength"] floatValue]];
+    model.filePath = [NSString sampleImagePath:fileObj.name];
     return model;
 }
 

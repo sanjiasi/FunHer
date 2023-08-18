@@ -13,6 +13,8 @@ target 'FunHer' do
   pod 'MJRefresh', '~> 3.7.5'#拉下刷新组件  https://www.yii666.com/blog/143543.html
   pod 'SVProgressHUD', '~> 2.2.5'
   pod 'SDWebImage', '~>5.0'
+  pod 'GPUImage', '~> 0.1.7'
+  pod 'OpenCV', '~>3.4.6'
   
   target 'FunHerTests' do
     inherit! :search_paths

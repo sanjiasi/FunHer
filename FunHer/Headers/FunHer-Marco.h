@@ -68,7 +68,7 @@ if (@available(iOS 13.0, *)) {\
     UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;\
     return statusBarManager.statusBarFrame.size.height;\
 } else {\
-    return [UIApplication sharedApplication].statusBarFrame.size.height;\
+    return 20.0;\
 }\
 }()
 
@@ -110,5 +110,6 @@ return safeAreaInsets.bottom;\
                                              blue:(b)/255.f \
                                             alpha:(a)]
 #define kThemeColor            RGBA(61, 131, 215, 1.0)
+#define kViewBGColor            RGBA(245, 240, 239, 1.0)
 
 #endif /* FunHer_Marco_h */

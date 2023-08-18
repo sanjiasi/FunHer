@@ -70,8 +70,8 @@
     [imgList enumerateObjectsUsingBlock:^(NSDictionary *object, NSUInteger idx, BOOL * _Nonnull stop) {
         FHImageCellModel *model = [FHImageCellModel createModelWithParam:object];
         if ([model.fileObj.type isEqualToString:@"3"]) {//图片
-            model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:model.fileObj.name];
-            model.fileName = [NSString stringWithFormat:@"%@",@(idx+1)];
+            model.thumbNail = [NSString thumbImagePath:model.fileObj.name];
+            model.fileName = [NSString stringWithFormat:@"%@  %@",@(idx+1), model.fileSize];
             if (![LZFileManager isExistsAtPath:model.thumbNail]) {
                 [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
             }

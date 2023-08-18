@@ -17,6 +17,19 @@
 @implementation FHReadFileSession
 
 #pragma mark ** 文件夹
++ (FolderRLM *)folderRLMWithId:(NSString *)objId {
+    FolderRLM *entity = [FolderRLM objectForPrimaryKey:objId];
+    return entity;
+}
+
++ (NSDictionary *)folderDicWithId:(NSString *)objId {
+    FolderRLM *entity = [FolderRLM objectForPrimaryKey:objId];
+    if (entity) {
+        return [self entityToDic:entity];
+    }
+    return nil;
+}
+
 #pragma mark -- 根据父id(文件夹上级目录id)查询folders 排序
 + (RLMResults<FolderRLM *> *)foldersByParentId:(NSString *)parentId {
     RLMResults<FolderRLM *> *folders = [self sortResults:[FolderRLM objectsWhere:@"parentId = %@",parentId]];
@@ -101,6 +114,19 @@
 }
 
 #pragma mark ** 文档
++ (DocRLM *)docRLMWithId:(NSString *)objId {
+    DocRLM *entity = [DocRLM objectForPrimaryKey:objId];
+    return entity;
+}
+
++ (NSDictionary *)docDicWithId:(NSString *)objId {
+    DocRLM *entity = [DocRLM objectForPrimaryKey:objId];
+    if (entity) {
+        return [self entityToDic:entity];
+    }
+    return nil;
+}
+
 #pragma mark 文件夹内的文档(非首页的文档)
 + (RLMResults<DocRLM *> *)allDocumentsAtFoler {
     RLMResults<DocRLM *> *documents = [self sortResults:[DocRLM objectsWhere:@"parentId != '000000'"]];
@@ -138,6 +164,19 @@
 }
 
 #pragma mark ** 图片
++ (ImageRLM *)imageRLMWithId:(NSString *)objId {
+    ImageRLM *entity = [ImageRLM objectForPrimaryKey:objId];
+    return entity;
+}
+
++ (NSDictionary *)imageDicWithId:(NSString *)objId {
+    ImageRLM *entity = [ImageRLM objectForPrimaryKey:objId];
+    if (entity) {
+        return [self entityToDic:entity];
+    }
+    return nil;
+}
+
 #pragma mark -- 根据图片名称和父id(图片上级目录id)查询images
 + (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name {
     RLMResults<ImageRLM *> *images = [ImageRLM objectsWhere:@"parentId = %@ AND name = %@",parentId, name];

@@ -17,7 +17,7 @@
 #import "FHFileModel.h"
 #import "FHImageListVC.h"
 #import "FHCollectionMenu.h"
-
+#import "FHCropImageVC.h"
 
 @interface FHFileListVC () {
     CGFloat FHMenuHeight;
@@ -42,6 +42,12 @@
     self.view.backgroundColor = UIColor.whiteColor;
     [self configNavBar];
     [self configContentView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self refreshWithNewData];
 }
 
 //    [LZDBService clearRealmDB];
@@ -114,8 +120,19 @@
     [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
         [SVProgressHUD dismiss];
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (imagePaths.count == 1) {
+            NSString *path = imagePaths[0];
+            [strongSelf handleCropImage:path.fileName];
+            return;
+        }
         [strongSelf refreshWithNewData];
     }];
+}
+
+- (void)handleCropImage:(NSString *)fileName {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.fileName = fileName;
+    [self.navigationController pushViewController:cropVC animated:YES];
 }
 
 #pragma mark -- public methods
@@ -167,7 +184,6 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf refreshWithNewData];
     }];
-    [self beginPullRefreshing];
 }
 
 - (void)configData {
@@ -194,7 +210,6 @@
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
 }
-
 
 #pragma mark -- getter and setters
 - (FHCollectionAdapter *)collectionAdapter {
@@ -246,7 +261,7 @@
 - (UIView *)superContentView {
     if (!_superContentView) {
         UIView *content = [[UIView alloc] init];
-        content.backgroundColor = RGB(245, 240, 239);
+        content.backgroundColor = kViewBGColor;
         _superContentView = content;
     }
     return _superContentView;

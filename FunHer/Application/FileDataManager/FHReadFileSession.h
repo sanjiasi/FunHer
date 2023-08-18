@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FHReadFileSession : NSObject
 #pragma mark -- 文件夹
++ (NSDictionary *)folderDicWithId:(NSString *)objId;
++ (FolderRLM *)folderRLMWithId:(NSString *)objId;
 /// -- 根据父id(文件夹上级目录id)查询folders 默认排序
 + (RLMResults<FolderRLM *> *)foldersByParentId:(NSString *)parentId;
 
@@ -40,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (RLMResults *)defaultSortByResults:(RLMResults *)results;
 
 #pragma mark -- 文档
++ (NSDictionary *)docDicWithId:(NSString *)objId;
++ (DocRLM *)docRLMWithId:(NSString *)objId;
 /// 文件夹内的文档(非首页的文档)
 + (RLMResults<DocRLM *> *)allDocumentsAtFoler;
 
@@ -60,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSInteger)docCountAtFolder:(NSString *)folderId;
 
 #pragma mark -- 图片
++ (NSDictionary *)imageDicWithId:(NSString *)objId;
++ (ImageRLM *)imageRLMWithId:(NSString *)objId;
 /// -- 根据图片名称和父id(图片上级目录id)查询images
 + (RLMResults<ImageRLM *> *)imageRLMsByParentId:(NSString *)parentId withName:(NSString *)name;
 

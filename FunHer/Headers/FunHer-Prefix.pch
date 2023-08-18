@@ -33,6 +33,7 @@
 #import "NSString+Encrypt.h"
 #import "NSString+TextSize.h"
 #import "NSString+Path.h"
+#import "NSString+Format.h"
 /// -- VC
 #import "UIViewController+Alert.h"
 /// -- NSArray
@@ -46,6 +47,7 @@
 #import "NSObject+Selector.h"
 /// -- UIImage
 #import "UIImage+Resize.h"
+#import "UIImage+Manager.h"
 
 #pragma mark -- Components
 /// GCD
