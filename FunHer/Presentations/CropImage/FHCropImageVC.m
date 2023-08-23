@@ -102,6 +102,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 - (void)configData {
     self.present.fileName = self.fileName;
     self.present.fileObjId = self.objId;
+    self.present.parentId = self.parentId;
     UIImage *thumbImg = [self.present thumImageForCropWithSize:self.cropView.frame.size];
     if (thumbImg) {
         NSString *imgPath = [self.present originalCropImagePath];

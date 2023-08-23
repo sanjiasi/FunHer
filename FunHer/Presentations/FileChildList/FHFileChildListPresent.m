@@ -21,11 +21,33 @@
 
 #pragma mark -- 新建文档
 - (void)createDocWithImages:(NSArray *)imgs {
+//    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.fileObjId];
+//    [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *thumbName = [NSString nameByRemoveIndex:name];
+//        [FHFileDataSession addImage:thumbName byIndex:idx withParentId:doc[@"Id"]];
+//    }];
     NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.fileObjId];
     [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *thumbName = [NSString nameByRemoveIndex:name];
-        [FHFileDataSession addImage:thumbName byIndex:idx withParentId:doc[@"Id"]];
+        NSString *imgPath = [NSString tempImagePath:name];
+        NSString *imgName = [NSString nameByRemoveIndex:name];
+        NSString *originalPath = [NSString originalImagePath:imgName];
+        [LZFileManager copyItemAtPath:imgPath toPath:originalPath overwrite:YES];
+        [self saveSampleImage:[UIImage imageWithContentsOfFile:originalPath] withName:imgName];
+        [FHFileDataSession addImage:imgName byIndex:idx withParentId:doc[@"Id"]];
     }];
+}
+
+- (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
+    NSString *sampeImagePath = [NSString sampleImagePath:name];
+    BOOL result = [UIImage saveImage:img atPath:sampeImagePath];
+    if (result) {
+        //保存图片并生成一张缩率图
+        NSData *sampleData = [UIImage saveImageForData:img];
+        [UIImage resizeThumbImage:sampleData imageSize:img.size saveAtPath:[NSString thumbImagePath:name]];
+    } else {
+        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:sampeImagePath overwrite:YES];
+        [self getEventWithName:@"write error"];
+    }
 }
 
 #pragma mark -- 批量解析图片
@@ -41,8 +63,10 @@
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
         NSArray *array = [self coverPicArrayAtPath:[NSString tempDocPath]];
-        [self createDocWithImages:array];
-        [self refreshData];
+        if (array.count > 1) {
+            [self createDocWithImages:array];
+            [self refreshData];
+        }
         if (completion) {
             completion(array);
         }
@@ -67,13 +91,10 @@
 
 - (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
     NSString *imgPath = [NSString imagePathAtTempDocWithIndex:idx];
-    BOOL result =[UIImage resizeThumbImage:data imageSize:size saveAtPath:imgPath];
+    BOOL result =[UIImage resizeOriginalImage:data imageSize:size saveAtPath:imgPath];
     if (!result) {
         [self getEventWithName:@"write error"];
-    } else {
-        NSString *thumbName = [NSString nameByRemoveIndex:imgPath.fileName];
-        NSString *thumbDirPath = [[NSString thumbDir] stringByAppendingPathComponent:thumbName];
-        [LZFileManager copyItemAtPath:imgPath toPath:thumbDirPath overwrite:YES];
+        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     }
 }
 

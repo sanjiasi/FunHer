@@ -36,7 +36,7 @@
                 [LZFileManager copyItemAtPath:[NSString tempImagePath:self.fileName] toPath:originalPath overwrite:YES];
             }
             [self saveSampleImage:img withName:originalName];
-            NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
+            NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.parentId];
             [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
         }
     }

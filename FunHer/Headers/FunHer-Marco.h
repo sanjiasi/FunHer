@@ -111,5 +111,7 @@ return safeAreaInsets.bottom;\
                                             alpha:(a)]
 #define kThemeColor            RGBA(61, 131, 215, 1.0)
 #define kViewBGColor            RGBA(245, 240, 239, 1.0)
+#define kTextBlackColor            RGBA(33, 33, 33, 1.0)
+#define kTextGrayColor            RGBA(177, 177, 177, 1.0)
 
 #endif /* FunHer_Marco_h */

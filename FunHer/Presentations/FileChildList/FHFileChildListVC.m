@@ -13,6 +13,7 @@
 #import "FHPhotoLibrary.h"
 #import "FHFileModel.h"
 #import "FHImageListVC.h"
+#import "FHCropImageVC.h"
 
 @interface FHFileChildListVC ()
 @property (nonatomic, strong) UIView *superContentView;
@@ -108,8 +109,20 @@
     [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
         [SVProgressHUD dismiss];
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (imagePaths.count == 1) {
+            NSString *path = imagePaths[0];
+            [strongSelf handleCropImage:path.fileName];
+            return;
+        }
         [strongSelf refreshWithNewData];
     }];
+}
+
+- (void)handleCropImage:(NSString *)fileName {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.fileName = fileName;
+    cropVC.parentId = self.fileObjId;
+    [self.navigationController pushViewController:cropVC animated:YES];
 }
 
 #pragma mark -- public methods
@@ -199,7 +212,13 @@
     __weak typeof(self) weakSelf = self;
     if (!_collectionAdapter) {
         FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHFileCollectionCell class]) configureBlock:^(FHFileCollectionCell *cell, FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            cell.showImg.image = NULLString(model.thumbNail) ? [UIImage imageNamed:@"new_folder"] : [UIImage imageWithContentsOfFile:model.thumbNail];
+            if ([model.fileObj.type isEqualToString:@"1"]) {
+                cell.showImg.contentMode = UIViewContentModeCenter;
+                cell.showImg.image = [UIImage imageNamed:@"new_folder"];
+            } else {
+                cell.showImg.contentMode = UIViewContentModeScaleAspectFill;
+                cell.showImg.image = [UIImage imageWithContentsOfFile:model.thumbNail];
+            }
             cell.titleLab.text = model.fileName;
             cell.numLab.text = model.countNum;
             cell.uTimeLab.text = model.uDate;
@@ -229,7 +248,7 @@
         
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = RGB(244, 244, 244);
+        colView.backgroundColor = UIColor.whiteColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
         _collectionView = colView;
     }

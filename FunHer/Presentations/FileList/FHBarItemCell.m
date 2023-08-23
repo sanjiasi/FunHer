@@ -56,6 +56,7 @@
     if (!_bgView) {
         UIView *view = [[UIView alloc] init];
         view.backgroundColor = UIColor.whiteColor;
+        view.layer.cornerRadius = 8.0;
         view.clipsToBounds = YES;
         _bgView = view;
     }
@@ -74,7 +75,7 @@
 - (UIImageView *)showImg {
     if (!_showImg) {
         UIImageView *imgV = [[UIImageView alloc] init];
-        imgV.contentMode = UIViewContentModeScaleAspectFit;
+        imgV.contentMode = UIViewContentModeCenter;
         _showImg = imgV;
     }
     return _showImg;
@@ -83,7 +84,7 @@
 - (UILabel *)titleLab {
     if (!_titleLab) {
         UILabel *lab = [[UILabel alloc] init];
-        lab.textColor = UIColor.blackColor;
+        lab.textColor = kTextBlackColor;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = PingFang_M_FONT_(12);
         lab.adjustsFontSizeToFitWidth = YES;

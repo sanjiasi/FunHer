@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FHCropImagePresent : NSObject
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, copy) NSString *fileObjId;//文件主键id
+@property (nonatomic, copy) NSString *parentId;//上层目录文件id
 
 /// 刷新数据
 - (void)refreshImage:(UIImage *)img;

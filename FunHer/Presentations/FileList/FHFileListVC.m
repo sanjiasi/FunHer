@@ -132,6 +132,7 @@
 - (void)handleCropImage:(NSString *)fileName {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.fileName = fileName;
+    cropVC.parentId = FHParentIdByHome;
     [self.navigationController pushViewController:cropVC animated:YES];
 }
 
@@ -154,6 +155,7 @@
     FHMenuHeight = 80;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
+    [self.superContentView addSubview:self.funcMenu];
     
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
@@ -161,13 +163,13 @@
         make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(-FHMenuHeight);
+        make.bottom.leading.trailing.equalTo(self.superContentView);
+        make.top.equalTo(self.funcMenu.mas_bottom).offset(10);
     }];
     
-    [self.superContentView addSubview:self.funcMenu];
     [self.funcMenu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.bottom.equalTo(self.superContentView);
+        make.top.equalTo(self.superContentView).offset(10);
+        make.leading.trailing.equalTo(self.superContentView);
         make.height.mas_equalTo(FHMenuHeight);
     }];
     
@@ -216,7 +218,13 @@
     __weak typeof(self) weakSelf = self;
     if (!_collectionAdapter) {
         FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHFileCollectionCell class]) configureBlock:^(FHFileCollectionCell *cell, FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
-            cell.showImg.image = NULLString(model.thumbNail) ? [UIImage imageNamed:@"new_folder"] : [UIImage imageWithContentsOfFile:model.thumbNail];
+            if ([model.fileObj.type isEqualToString:@"1"]) {
+                cell.showImg.contentMode = UIViewContentModeCenter;
+                cell.showImg.image = [UIImage imageNamed:@"new_folder"];
+            } else {
+                cell.showImg.contentMode = UIViewContentModeScaleAspectFill;
+                cell.showImg.image = [UIImage imageWithContentsOfFile:model.thumbNail];
+            }
             cell.titleLab.text = model.fileName;
             cell.numLab.text = model.countNum;
             cell.uTimeLab.text = model.uDate;
@@ -244,7 +252,7 @@
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = RGB(244, 244, 244);
+        colView.backgroundColor = UIColor.whiteColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
         _collectionView = colView;
     }
@@ -279,9 +287,9 @@
 }
 
 - (NSArray *)funcItems {
-    return @[@{@"image": @"new_folder", @"title": @"Import Files", @"selector": @"addPhotoFromLibrary"},
-             @{@"image": @"new_folder", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
-             @{@"image": @"new_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
+    return @[@{@"image": @"input_doc", @"title": @"Import Files", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"input_phtoto", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"add_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
     ];
 }
 

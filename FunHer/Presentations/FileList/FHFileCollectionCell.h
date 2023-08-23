@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *titleLab;//名称
 @property (nonatomic, strong) UILabel *uTimeLab;//日期
 @property (nonatomic, strong) UILabel *numLab;//文件个数
-
+@property (nonatomic, strong) UIImageView *folderIcon;//文件夹图标
 
 @end
 
