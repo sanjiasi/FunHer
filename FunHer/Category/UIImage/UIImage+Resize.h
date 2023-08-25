@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - size: 图片像素
 + (UIImage *)shrinkImageWithData:(NSData *)data withSize:(CGSize)size;
 
+/// 压缩图片并保存
++ (BOOL)shrinkImage:(NSData *)data imageSize:(CGSize)size saveAtPath:(NSString *)path;
+
 /// 压缩原图
 ///   - data: 图片资源
 ///   - size: 图片像素

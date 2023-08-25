@@ -6,26 +6,208 @@
 //
 
 #import "FHFilterImageVC.h"
+#import "FHFilterImagePresent.h"
+#import "PhotoEditScrollView.h"
+#import "FHCollectionAdapter.h"
+#import "FHFilterCollectionCell.h"
+#import "FHFilterCellModel.h"
 
 @interface FHFilterImageVC ()
+@property (nonatomic, strong) FHFilterImagePresent *present;
+@property (nonatomic, strong) UIView *superContentView;
+@property (nonatomic ,strong) PhotoEditScrollView *showImgView;
+@property (nonatomic, strong) UIView *bottomFunctionView;
+@property (nonatomic, strong) UIButton *rotateBtn;
+@property (nonatomic, strong) UIButton *completedBtn;
+@property (nonatomic, strong) UICollectionView *filterShowcase;
+@property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 
 @end
 
 @implementation FHFilterImageVC
 
+#pragma mark -- life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self configNavBar];
+    [self configContentView];
+    [self configData];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -- Delegate
+- (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFilterCellModel *)model {
+    [self.present didSelected:idxPath.item];
+    [self.filterShowcase reloadData];
 }
-*/
+
+#pragma mark -- event response
+#pragma mark -- 旋转图片
+- (void)clickRotateBtn {
+    
+}
+
+#pragma mark -- 渲染图片完成 --》生成新图片
+- (void)clickCompletedBtn {
+    
+}
+
+#pragma mark -- public methods
+
+
+#pragma mark -- private methods
+- (void)configData {
+    [self.present refreshData];
+    [self.collectionAdapter addDataArray:self.present.dataArray];
+    [self.filterShowcase reloadData];
+}
+
+- (void)configNavBar {
+    
+}
+
+- (void)configContentView {
+    [self.view addSubview:self.superContentView];
+    [self.superContentView addSubview:self.showImgView];
+    [self.superContentView addSubview:self.bottomFunctionView];
+    [self.bottomFunctionView addSubview:self.rotateBtn];
+    [self.bottomFunctionView addSubview:self.completedBtn];
+    [self.superContentView addSubview:self.filterShowcase];
+    
+    [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.trailing.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(0);
+    }];
+    [self.showImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.trailing.equalTo(self.superContentView);
+        make.bottom.equalTo(self.superContentView).offset(-134);
+    }];
+    [self.bottomFunctionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.leading.trailing.equalTo(self.superContentView);
+        make.height.mas_equalTo(44);
+    }];
+    [self.rotateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.bottomFunctionView);
+        make.leading.equalTo(self.bottomFunctionView).offset(15);
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+    }];
+    [self.completedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.bottomFunctionView);
+        make.trailing.equalTo(self.bottomFunctionView).offset(-15);
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+    }];
+    [self.filterShowcase mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.superContentView);
+        make.top.equalTo(self.showImgView.mas_bottom).offset(0);
+        make.bottom.equalTo(self.bottomFunctionView.mas_top).offset(0);
+    }];
+    [self.showImgView layoutIfNeeded];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
+        self.showImgView.mainImage = cropImg;
+    });
+}
+
+#pragma mark -- getter and setters
+- (FHFilterImagePresent *)present {
+    if (!_present) {
+        _present = [[FHFilterImagePresent alloc] init];
+        _present.fileObjId = _objId;
+        _present.fileName = _fileName;
+        _present.parentId = _parentId;
+        _present.cropImgPath = _cropImgPath;
+        _present.selectdIndex = 0;
+    }
+    return _present;
+}
+
+- (UIView *)superContentView {
+    if (!_superContentView) {
+        UIView *content = [[UIView alloc] init];
+        content.backgroundColor = kViewBGColor;
+        _superContentView = content;
+    }
+    return _superContentView;
+}
+
+- (PhotoEditScrollView *)showImgView{
+    if (!_showImgView) {
+        _showImgView = [[PhotoEditScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kNavAndTabHeight-100)];
+        _showImgView.userInteractionEnabled = YES;
+        _showImgView.backgroundColor = kViewBGColor;
+    }
+    return _showImgView;
+}
+
+- (UIView *)bottomFunctionView {
+    if (!_bottomFunctionView) {
+        UIView *content = [[UIView alloc] init];
+        content.backgroundColor = UIColor.whiteColor;
+        _bottomFunctionView = content;
+    }
+    return _bottomFunctionView;
+}
+
+- (UIButton *)rotateBtn {
+    if (!_rotateBtn) {
+        UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ovalBtn setTitle:@"Rotate" forState:UIControlStateNormal];
+        ovalBtn.titleLabel.font = PingFang_R_FONT_(15);
+        [ovalBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [ovalBtn addTarget:self action:@selector(clickRotateBtn) forControlEvents:UIControlEventTouchUpInside];
+        _rotateBtn = ovalBtn;
+    }
+    return _rotateBtn;
+}
+
+- (UIButton *)completedBtn {
+    if (!_completedBtn) {
+        UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ovalBtn setTitle:@"Done" forState:UIControlStateNormal];
+        ovalBtn.titleLabel.font = PingFang_R_FONT_(15);
+        [ovalBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [ovalBtn addTarget:self action:@selector(clickRotateBtn) forControlEvents:UIControlEventTouchUpInside];
+        _completedBtn = ovalBtn;
+    }
+    return _completedBtn;
+}
+
+- (FHCollectionAdapter *)collectionAdapter {
+    __weak typeof(self) weakSelf = self;
+    if (!_collectionAdapter) {
+        FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHFilterCollectionCell class]) configureBlock:^(FHFilterCollectionCell *cell, FHFilterCellModel *model, NSIndexPath * _Nonnull indexPath) {
+            cell.showImg.image = [UIImage imageWithContentsOfFile:model.image];
+            cell.titleLab.text = model.title;
+            cell.titleLab.backgroundColor = model.isSelect ? RGBA(48, 108, 205, 1) : RGBA(51, 51, 51, 0.3);
+        } didSelectedBlock:^(FHFilterCellModel *model, NSIndexPath * _Nonnull indexPath) {
+            [weakSelf collectionViewDidSelected:indexPath withModel:model];
+        }];
+        _collectionAdapter = adapter;
+    }
+    return _collectionAdapter;
+}
+
+
+- (UICollectionView *)filterShowcase {
+    if (!_filterShowcase) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake(80, 90);
+        layout.minimumInteritemSpacing = 0;
+        layout.minimumLineSpacing = 10;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        colView.backgroundColor = UIColor.clearColor;
+        [colView registerClass:[FHFilterCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFilterCollectionCell class])];
+        colView.dataSource = self.collectionAdapter;
+        colView.delegate = self.collectionAdapter;
+        _filterShowcase = colView;
+    }
+    return _filterShowcase;
+}
 
 @end
+

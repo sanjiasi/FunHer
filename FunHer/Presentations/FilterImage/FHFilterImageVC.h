@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *objId;//图片Id
 @property (nonatomic, copy) NSString *fileName;//原图
 @property (nonatomic, copy) NSString *cropImgPath;//裁剪后的图片
-
+@property (nonatomic, copy) NSString *parentId;//上层目录文件id
 
 @end
 

@@ -17,12 +17,20 @@
     [FHFileDataSession updateImageWithId:self.fileObjId];
 }
 
-- (void)createDocWithImage:(UIImage *)img {
+- (NSString *)saveCropImage:(UIImage *)img {
     if (img) {
         NSString *imageName = [self originalImageName];
         NSString *cropImgPath = [NSString tempCropImagePath:imageName];
         BOOL result = [UIImage saveImage:img atPath:cropImgPath];
-        if (!result) {
+        return result ? cropImgPath : @"";
+    }
+    return @"";
+}
+
+- (void)createDocWithImage:(UIImage *)img {
+    if (img) {
+        NSString *cropImgPath = [self saveCropImage:img];
+        if (NULLString(cropImgPath)) {
             [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:cropImgPath overwrite:YES];
             [self getEventWithName:@"write error"];
         }

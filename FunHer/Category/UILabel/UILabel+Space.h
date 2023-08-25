@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (Space)
 
+// 不知区域，通过其设置区域
+- (CGSize)textSizeIn:(CGSize)size;
+
 /// 改变行间距
 /// - Parameters:
 ///   - space: 设置间距

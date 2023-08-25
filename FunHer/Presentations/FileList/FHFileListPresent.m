@@ -73,9 +73,6 @@
     }];
 }
 
-- (void)refreshData {
-    [self loadData];
-}
 
 #pragma mark -- 图片排序,根据图片的后几位数字去排序
 - (NSArray *)coverPicArrayAtPath:(NSString *)path  {
@@ -99,6 +96,11 @@
 //    NSString *imgName = [NSString nameByRemoveIndex:imgPath.fileName];
 //    NSString *originalPath = [[NSString originalDir] stringByAppendingPathComponent:imgName];
 //    [LZFileManager copyItemAtPath:imgPath toPath:originalPath overwrite:YES];
+}
+
+
+- (void)refreshData {
+    [self loadData];
 }
 
 #pragma mark -- private methods

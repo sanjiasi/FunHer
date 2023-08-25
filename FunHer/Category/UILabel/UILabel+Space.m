@@ -9,6 +9,23 @@
 
 @implementation UILabel (Space)
 
+- (CGSize)textSizeIn:(CGSize)size {
+    NSLineBreakMode breakMode = self.lineBreakMode;
+    UIFont *font = self.font;
+    
+    CGSize contentSize = CGSizeZero;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = breakMode;
+    paragraphStyle.alignment = self.textAlignment;
+    
+    NSDictionary* attributes = @{NSFontAttributeName:font,
+                                 NSParagraphStyleAttributeName:paragraphStyle};
+    contentSize = [self.text boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:attributes context:nil].size;
+    
+    contentSize = CGSizeMake((int)contentSize.width + 1, (int)contentSize.height + 1);
+    return contentSize;
+}
+
 - (void)reSetLineSpace:(CGFloat)space {
     UILabel *label = (UILabel *)self;
     NSString *labelText = label.text;

@@ -29,7 +29,6 @@
 @property (nonatomic, weak) UIViewController *photoSender;
 @property (nonatomic, strong) FHCollectionMenu *funcMenu;
 
-
 @end
 
 @implementation FHFileListVC
@@ -176,7 +175,7 @@
     self.collectionView.dataSource = self.collectionAdapter;
     self.collectionView.delegate = self.collectionAdapter;
     
-    [self configPullRefreshing];
+//    [self configPullRefreshing];
 }
 
 /// -- 下拉刷新组件

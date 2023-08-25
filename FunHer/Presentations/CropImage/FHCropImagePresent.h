@@ -25,6 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter img: 图片
 - (void)createDocWithImage:(UIImage *)img;
 
+/// 保存裁剪后的图片
+/// - Parameter img: 裁剪图
+- (NSString *)saveCropImage:(UIImage *)img;
+
 @end
 
 NS_ASSUME_NONNULL_END

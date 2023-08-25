@@ -10,6 +10,7 @@
 #import "FHMagnifierView.h"
 #import "FHReadFileSession.h"
 #import "FHCropImagePresent.h"
+#import "FHFilterImageVC.h"
 
 CGFloat const CropView_Y = 45;
 CGFloat const  CropView_X = 15;
@@ -59,10 +60,20 @@ CGFloat const kCameraToolsViewHeight = 60;
 - (void)cropImageDone {
     UIImage *imageOne =  [self.cropView cropAndTransform];
     NSLog(@"done -- %@",NSStringFromCGSize(imageOne.size));
-    [self.present createDocWithImage:imageOne];
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *cropImagePath = [self.present saveCropImage:imageOne];
+    if ([LZFileManager isExistsAtPath:cropImagePath]) {
+        FHFilterImageVC *filerVC = [[FHFilterImageVC alloc] init];
+        filerVC.objId = self.objId;
+        filerVC.fileName = self.fileName;
+        filerVC.cropImgPath = cropImagePath;
+        filerVC.parentId = self.parentId;
+        [self.navigationController pushViewController:filerVC animated:YES];
+    } else {
+        NSLog(@"done -- No crop image");
+    }
+//    [self.present createDocWithImage:imageOne];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
-
 #pragma mark -- public methods
 
 

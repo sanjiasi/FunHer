@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FHFileListPresent : NSObject<ListPresentDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
-
 @property (nonatomic, weak) id<ListPresentDelegate> delegate;
 
 /// 刷新数据
