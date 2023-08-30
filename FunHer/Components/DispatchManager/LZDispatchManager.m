@@ -60,4 +60,50 @@
     return queue;
 }
 
++ (UIImage *)image:(UIImage *)image rotation:(UIImageOrientation)orientation {
+    UIImage * newImg = [UIImage new];
+    UIImageOrientation imgOrientation = image.imageOrientation;
+    UIImageOrientation changeOr = UIImageOrientationRight;
+    if (orientation == UIImageOrientationRight) {
+        switch (imgOrientation) {
+            case UIImageOrientationUp:
+                changeOr = UIImageOrientationRight;
+                break;
+            case UIImageOrientationDown:
+                changeOr = UIImageOrientationLeft;
+                break;
+            case UIImageOrientationLeft:
+                changeOr = UIImageOrientationUp;
+                break;
+            case UIImageOrientationRight:
+                changeOr = UIImageOrientationDown;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (orientation == UIImageOrientationLeft) {
+        switch (imgOrientation) {
+            case UIImageOrientationUp:
+                changeOr = UIImageOrientationLeft;
+                break;
+            case UIImageOrientationDown:
+                changeOr = UIImageOrientationRight;
+                break;
+            case UIImageOrientationLeft:
+                changeOr = UIImageOrientationDown;
+                break;
+            case UIImageOrientationRight:
+                changeOr = UIImageOrientationUp;
+                break;
+            default:
+                break;
+        }
+    }
+    newImg = [UIImage imageWithCGImage:[image CGImage] scale:[image scale] orientation: changeOr];//这里只是改变了图片的imageOrientation属性 imageview加载图片时会根据图片的imageOrientation对图片进行旋转
+    NSLog(@"imageOrientation==%ld",newImg.imageOrientation);
+    return newImg;
+}
+
 @end

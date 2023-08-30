@@ -60,6 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)tempCropDir;
 + (NSString *)tempCropImagePath:(NSString *)name;
 
+/// -- 临时存放渲染后的图片
++ (NSString *)tempFilterDir;
++ (NSString *)tempFilterImagePath:(NSString *)name;
+
 /// 存储图片的根目录
 + (NSString *)imageBox;
 

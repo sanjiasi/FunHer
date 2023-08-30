@@ -11,9 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Orientation)
 
++ (UIImage *)changeRotate:(UIImageOrientation)orientation withImage:(UIImage *)image;
+
 /// -- 旋转图片
 /// - Parameter orientation: 旋转方向(向左转，向右转)
-- (UIImage *)rotate:(UIImageOrientation)orientation;
+- (UIImage *)changeRotate:(UIImageOrientation)orientation;
 
 /// 修正图片朝向
 - (UIImage *)fixUpOrientation;

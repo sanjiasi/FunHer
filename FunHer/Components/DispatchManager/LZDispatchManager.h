@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 用于并发的队列
 + (dispatch_queue_t)getQueueForConcurrent;
 
++ (UIImage *)image:(UIImage *)image rotation:(UIImageOrientation)orientation;
 @end
 
 NS_ASSUME_NONNULL_END

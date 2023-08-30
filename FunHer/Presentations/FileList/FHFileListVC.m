@@ -45,7 +45,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+//    [self.navigationController.navigationBar setTranslucent:NO];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self refreshWithNewData];
 }
 

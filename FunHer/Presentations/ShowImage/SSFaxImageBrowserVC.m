@@ -49,6 +49,7 @@
 - (void)clickCropImage {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.objId = self.currentModel.fileObj.objId;
+    cropVC.fileName = self.fileName;
     [self.navigationController pushViewController:cropVC animated:YES];
 }
 

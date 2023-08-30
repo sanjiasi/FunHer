@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIButton *completedBtn;
 @property (nonatomic, strong) UICollectionView *filterShowcase;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
+@property (nonatomic, strong) UIImageView *showAnimationView;
 
 @end
 
@@ -39,14 +40,23 @@
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFilterCellModel *)model {
-    [self.present didSelected:idxPath.item];
-    [self.filterShowcase reloadData];
+    [LZDispatchManager globalQueueHandler:^{
+        [self.present didSelected:idxPath.item];
+    } withMainCompleted:^{
+        self.showImgView.mainImage = [UIImage imageWithContentsOfFile:self.present.filterImage];
+        [self.collectionAdapter addDataArray:self.present.dataArray];
+        [self.filterShowcase reloadData];
+    }];
 }
 
 #pragma mark -- event response
 #pragma mark -- 旋转图片
 - (void)clickRotateBtn {
-    
+    [LZDispatchManager globalQueueHandler:^{
+        [self.present rotateImageByRight];
+    } withMainCompleted:^{
+        self.showImgView.mainImage = [UIImage imageWithContentsOfFile:self.present.filterImage];
+    }];
 }
 
 #pragma mark -- 渲染图片完成 --》生成新图片
@@ -58,14 +68,49 @@
 
 
 #pragma mark -- private methods
+#pragma mark -- 渲染图片过程动画
+- (void)filterImageAnimationCompletion:(void (^)(void))completion {
+    UIImage *mainImg = self.showAnimationView.image;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize mainViewSize = self.showImgView.mainImageView.frame.size;
+    if (mainViewSize.width > self.showAnimationView.image.size.width || mainViewSize.height > self.showAnimationView.image.size.height) {
+        if (completion) {
+            completion();
+        }
+        return;
+    }
+    UIImage *showImg = [UIImage shrinkImageWithData:[UIImage saveImageForData:mainImg] withSize:CGSizeMake(mainViewSize.width/scale, mainViewSize.height/scale)];
+    self.showAnimationView.image = showImg;
+    [self.showImgView.mainImageView addSubview:self.showAnimationView];
+    self.showAnimationView.frame = CGRectMake(0, 0, mainViewSize.width, 0);
+    [UIView animateWithDuration:1.2 animations:^{
+        CGRect rect2 = self.showAnimationView.frame;
+        rect2.size.height += mainViewSize.height;
+        self.showAnimationView.frame = rect2;
+    } completion:^(BOOL finished) {
+        self.showImgView.mainImage = mainImg;
+        self.showAnimationView.alpha = 0.0;
+        [self.showAnimationView removeFromSuperview];
+        self.showAnimationView = nil;
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
 - (void)configData {
-    [self.present refreshData];
-    [self.collectionAdapter addDataArray:self.present.dataArray];
-    [self.filterShowcase reloadData];
+    [LZDispatchManager globalQueueHandler:^{
+        [self.present refreshData];
+    } withMainCompleted:^{
+        self.showAnimationView.image = [UIImage imageWithContentsOfFile:self.present.filterImage];
+        [self filterImageAnimationCompletion:^{}];
+        [self.collectionAdapter addDataArray:self.present.dataArray];
+        [self.filterShowcase reloadData];
+    }];
 }
 
 - (void)configNavBar {
-    
+    self.title = @"Filter";
 }
 
 - (void)configContentView {
@@ -105,10 +150,13 @@
     }];
     [self.showImgView layoutIfNeeded];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
-        self.showImgView.mainImage = cropImg;
-    });
+    UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
+    self.showImgView.mainImage = cropImg;
+    
+//    [LZDispatchManager mainQueueHandler:^{
+//        UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
+//        self.showImgView.mainImage = cropImg;
+//    }];
 }
 
 #pragma mark -- getter and setters
@@ -117,9 +165,8 @@
         _present = [[FHFilterImagePresent alloc] init];
         _present.fileObjId = _objId;
         _present.fileName = _fileName;
-        _present.parentId = _parentId;
         _present.cropImgPath = _cropImgPath;
-        _present.selectdIndex = 0;
+        _present.selectdIndex = 2;
     }
     return _present;
 }
@@ -169,7 +216,7 @@
         [ovalBtn setTitle:@"Done" forState:UIControlStateNormal];
         ovalBtn.titleLabel.font = PingFang_R_FONT_(15);
         [ovalBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
-        [ovalBtn addTarget:self action:@selector(clickRotateBtn) forControlEvents:UIControlEventTouchUpInside];
+        [ovalBtn addTarget:self action:@selector(clickCompletedBtn) forControlEvents:UIControlEventTouchUpInside];
         _completedBtn = ovalBtn;
     }
     return _completedBtn;
@@ -207,6 +254,16 @@
         _filterShowcase = colView;
     }
     return _filterShowcase;
+}
+
+- (UIImageView *)showAnimationView{
+    if (!_showAnimationView) {
+        UIImageView *imgV = [[UIImageView alloc] init];
+        imgV.contentMode = UIViewContentModeTop;
+        imgV.clipsToBounds = YES;
+        _showAnimationView = imgV;
+    }
+    return _showAnimationView;
 }
 
 @end

@@ -1663,7 +1663,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Lightning Scanner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1703,7 +1703,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Lightning Scanner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;

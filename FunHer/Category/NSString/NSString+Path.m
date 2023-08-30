@@ -142,6 +142,18 @@
     return [dir stringByAppendingPathComponent:name];
 }
 
+#pragma mark -- 临时存放渲染后的图片
++ (NSString *)tempFilterDir {
+    NSString *dir = [[self imageBox] stringByAppendingPathComponent:@"tempFilter"];
+    [self verifyExistsAtPath:dir];
+    return dir;
+}
+
++ (NSString *)tempFilterImagePath:(NSString *)name {
+    NSString *dir = [self tempFilterDir];
+    return [dir stringByAppendingPathComponent:name];
+}
+
 #pragma mark -- 存储图片的根目录
 + (NSString *)imageBox {
     NSString *box = [[self appBox] stringByAppendingPathComponent:@"Image_File"];

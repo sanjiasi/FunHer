@@ -16,11 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger selectdIndex;
 @property (nonatomic, copy) NSString *cropImgPath;//裁剪后的图片
+@property (nonatomic, copy) NSString *filterImage;//滤镜处理后的图片
 
 /// 刷新数据
 - (void)refreshData;
 
 - (void)didSelected:(NSInteger)indx;
+
+- (void)rotateImageByRight;
 
 @end
 
