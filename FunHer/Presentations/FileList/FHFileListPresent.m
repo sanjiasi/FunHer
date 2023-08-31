@@ -25,6 +25,21 @@
 }
 
 #pragma mark -- 新建文档
+- (void)createDocWithImage:(NSDictionary *)info {
+    NSString *fileName = info[@"fileName"];//临时存放原图片名
+    NSString *sampleImgPath = info[@"sampleImage"];//处理后的展示图
+    NSString *originalName = [NSString nameByRemoveIndex:fileName];
+    NSString *originalPath = [NSString originalImagePath:originalName];
+    //保存原图
+    [LZFileManager copyItemAtPath:[NSString tempImagePath:fileName] toPath:originalPath overwrite:YES];
+    [self saveSampleImage:[UIImage imageWithContentsOfFile:sampleImgPath] withName:originalName];
+    //新增文档数据
+    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
+    //新增图片数据
+    [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];//清空临时目录
+}
+
 - (void)createDocWithImages:(NSArray *)imgs {
     NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
     [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -11,11 +11,25 @@
 
 @implementation FHCropImagePresent
 
-- (void)refreshImage:(UIImage *)img {
-    NSString *originalName = [self originalImageName];
-    [self saveSampleImage:img withName:originalName];
-    [FHFileDataSession updateImageWithId:self.fileObjId];
-}
+//- (void)refreshImage:(UIImage *)img {
+//    NSString *originalName = [self originalImageName];
+//    [self saveSampleImage:img withName:originalName];
+//    [FHFileDataSession updateImageWithId:self.fileObjId];
+//}
+
+
+//- (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
+//    NSString *sampeImagePath = [NSString sampleImagePath:name];
+//    BOOL result = [UIImage saveImage:img atPath:sampeImagePath];
+//    if (result) {
+//        //保存图片并生成一张缩率图
+//        NSData *sampleData = [UIImage saveImageForData:img];
+//        [UIImage resizeThumbImage:sampleData imageSize:img.size saveAtPath:[NSString thumbImagePath:name]];
+//    } else {
+//        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:sampeImagePath overwrite:YES];
+//        [self getEventWithName:@"write error"];
+//    }
+//}
 
 - (NSString *)saveCropImage:(UIImage *)img {
     if (img) {
@@ -25,42 +39,6 @@
         return result ? cropImgPath : @"";
     }
     return @"";
-}
-
-- (void)createDocWithImage:(UIImage *)img {
-    if (img) {
-        NSString *cropImgPath = [self saveCropImage:img];
-        if (NULLString(cropImgPath)) {
-            [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:cropImgPath overwrite:YES];
-            [self getEventWithName:@"write error"];
-        }
-        
-        if (self.fileObjId) {
-            [self refreshImage:img];
-        } else if (self.fileName) {
-            NSString *originalName = [self originalImageName];
-            NSString *originalPath = [NSString originalImagePath:originalName];
-            if (![LZFileManager isExistsAtPath:originalPath]) {
-                [LZFileManager copyItemAtPath:[NSString tempImagePath:self.fileName] toPath:originalPath overwrite:YES];
-            }
-            [self saveSampleImage:img withName:originalName];
-            NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.parentId];
-            [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
-        }
-    }
-}
-
-- (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
-    NSString *sampeImagePath = [NSString sampleImagePath:name];
-    BOOL result = [UIImage saveImage:img atPath:sampeImagePath];
-    if (result) {
-        //保存图片并生成一张缩率图
-        NSData *sampleData = [UIImage saveImageForData:img];
-        [UIImage resizeThumbImage:sampleData imageSize:img.size saveAtPath:[NSString thumbImagePath:name]];
-    } else {
-        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:sampeImagePath overwrite:YES];
-        [self getEventWithName:@"write error"];
-    }
 }
 
 - (NSString *)originalImageName {

@@ -10,6 +10,7 @@
 @implementation FHLibraryCommand
 
 - (void)execute {
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];
     NSLog(@"library");
 }
 

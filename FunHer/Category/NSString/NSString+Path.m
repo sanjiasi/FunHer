@@ -118,9 +118,10 @@
     return [dir stringByAppendingPathComponent:name];
 }
 
+#pragma mark ********* 临时目录
 #pragma mark -- 临时文档
 + (NSString *)tempDocPath {
-    NSString *dir = [[self imageBox] stringByAppendingPathComponent:@"tempDoc"];
+    NSString *dir = [[self imageTempBox] stringByAppendingPathComponent:@"tempDoc"];
     [self verifyExistsAtPath:dir];
     return dir;
 }
@@ -132,7 +133,7 @@
 
 #pragma mark -- 临时存放裁剪后的图片
 + (NSString *)tempCropDir {
-    NSString *dir = [[self imageBox] stringByAppendingPathComponent:@"tempCrop"];
+    NSString *dir = [[self imageTempBox] stringByAppendingPathComponent:@"tempCrop"];
     [self verifyExistsAtPath:dir];
     return dir;
 }
@@ -144,7 +145,7 @@
 
 #pragma mark -- 临时存放渲染后的图片
 + (NSString *)tempFilterDir {
-    NSString *dir = [[self imageBox] stringByAppendingPathComponent:@"tempFilter"];
+    NSString *dir = [[self imageTempBox] stringByAppendingPathComponent:@"tempFilter"];
     [self verifyExistsAtPath:dir];
     return dir;
 }
@@ -152,6 +153,13 @@
 + (NSString *)tempFilterImagePath:(NSString *)name {
     NSString *dir = [self tempFilterDir];
     return [dir stringByAppendingPathComponent:name];
+}
+
+#pragma mark -- 临时存储图片的根目录
++ (NSString *)imageTempBox {
+    NSString *box = [[self appBox] stringByAppendingPathComponent:@"Image_Temp"];
+    [self verifyExistsAtPath:box];
+    return box;
 }
 
 #pragma mark -- 存储图片的根目录

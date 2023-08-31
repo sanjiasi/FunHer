@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FHFilterImagePresent : NSObject
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, copy) NSString *fileObjId;//文件主键id
-@property (nonatomic, copy) NSString *parentId;//上层目录文件id
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger selectdIndex;
 @property (nonatomic, copy) NSString *cropImgPath;//裁剪后的图片
@@ -21,9 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 刷新数据
 - (void)refreshData;
 
+/// 选择滤镜
 - (void)didSelected:(NSInteger)indx;
 
+/// 右转
 - (void)rotateImageByRight;
+
+/// 创建文档
+- (void)createDocWithImage;
 
 @end
 

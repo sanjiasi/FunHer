@@ -107,6 +107,7 @@
 		6753E2C82A984E2C007EDE64 /* FHFilterCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2C72A984E2C007EDE64 /* FHFilterCellModel.m */; };
 		6753E2CB2A9874F0007EDE64 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2CA2A9874F0007EDE64 /* UIImage+Orientation.m */; };
 		6753E2CE2A987F6C007EDE64 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2CD2A987F6C007EDE64 /* UIImage+Filter.m */; };
+		675775B32AA026D00007838E /* FHNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B22AA026D00007838E /* FHNotificationManager.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -348,6 +349,8 @@
 		6753E2CA2A9874F0007EDE64 /* UIImage+Orientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		6753E2CC2A987F6C007EDE64 /* UIImage+Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filter.h"; sourceTree = "<group>"; };
 		6753E2CD2A987F6C007EDE64 /* UIImage+Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filter.m"; sourceTree = "<group>"; };
+		675775B12AA026D00007838E /* FHNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHNotificationManager.h; sourceTree = "<group>"; };
+		675775B22AA026D00007838E /* FHNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHNotificationManager.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -600,6 +603,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				675775B02AA0265C0007838E /* Notification */,
 				6753E2B12A975612007EDE64 /* UIButton */,
 				6749B3442A8DB8B400EEE913 /* Magnifier */,
 				6749B3402A8DB1E800EEE913 /* OpenCV */,
@@ -1007,6 +1011,15 @@
 				6753E2BF2A97565A007EDE64 /* ZXRoundedButton.m */,
 			);
 			path = TORoundedButton;
+			sourceTree = "<group>";
+		};
+		675775B02AA0265C0007838E /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				675775B12AA026D00007838E /* FHNotificationManager.h */,
+				675775B22AA026D00007838E /* FHNotificationManager.m */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -1470,6 +1483,7 @@
 				6774FEC02A6A707F005F0DB9 /* LZNetWorkManager.m in Sources */,
 				67406C222A78CA8100E87AF5 /* ZLAnimateTransition.m in Sources */,
 				67406C592A7CC30300E87AF5 /* LZDispatchManager.m in Sources */,
+				675775B32AA026D00007838E /* FHNotificationManager.m in Sources */,
 				67406C682A7CE95300E87AF5 /* FHImageCellModel.m in Sources */,
 				67406C6F2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m in Sources */,
 				671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */,

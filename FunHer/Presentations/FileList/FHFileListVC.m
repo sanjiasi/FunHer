@@ -18,6 +18,7 @@
 #import "FHImageListVC.h"
 #import "FHCollectionMenu.h"
 #import "FHCropImageVC.h"
+#import "FHNotificationManager.h"
 
 @interface FHFileListVC () {
     CGFloat FHMenuHeight;
@@ -132,8 +133,8 @@
 - (void)handleCropImage:(NSString *)fileName {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.fileName = fileName;
-    cropVC.parentId = FHParentIdByHome;
     [self.navigationController pushViewController:cropVC animated:YES];
+    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
 }
 
 #pragma mark -- public methods
@@ -141,7 +142,18 @@
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
     } withMainCompleted:^{
-        [self endPullRefreshing];
+//        [self endPullRefreshing];
+        [self.collectionView reloadData];
+    }];
+}
+
+#pragma mark -- 增加文档并刷新
+- (void)addDocAndRefresh:(NSNotification *)noti {
+    NSDictionary *userInfo = noti.userInfo;
+    [LZDispatchManager globalQueueHandler:^{
+        [self.present createDocWithImage:userInfo];
+        [self configData];
+    } withMainCompleted:^{
         [self.collectionView reloadData];
     }];
 }
@@ -200,7 +212,9 @@
 
 #pragma mark -- 结束下拉刷新
 - (void)endPullRefreshing {
-    [self.collectionView.mj_header endRefreshing];
+    if ([self.collectionView.mj_header isRefreshing]) {
+        [self.collectionView.mj_header endRefreshing];
+    }
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {

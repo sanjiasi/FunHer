@@ -121,7 +121,6 @@
 - (void)handleCropImage:(NSString *)fileName {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.fileName = fileName;
-    cropVC.parentId = self.fileObjId;
     [self.navigationController pushViewController:cropVC animated:YES];
 }
 

@@ -14,16 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *fileObjId;//文件主键id
 @property (nonatomic, copy) NSString *parentId;//上层目录文件id
 
-/// 刷新数据
-- (void)refreshImage:(UIImage *)img;
-
 - (NSString *)originalCropImagePath;
 
 - (UIImage *)thumImageForCropWithSize:(CGSize)cropSize;
-
-/// 创建文档
-/// - Parameter img: 图片
-- (void)createDocWithImage:(UIImage *)img;
 
 /// 保存裁剪后的图片
 /// - Parameter img: 裁剪图

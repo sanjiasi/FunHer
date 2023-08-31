@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter name: 名称
 - (void)createFolderWithName:(NSString *)name;
 
+/// 创建文档
+/// - Parameter info: 图片信息
+- (void)createDocWithImage:(NSDictionary *)info;
+
 @end
 
 NS_ASSUME_NONNULL_END

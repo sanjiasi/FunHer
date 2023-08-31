@@ -64,6 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)tempFilterDir;
 + (NSString *)tempFilterImagePath:(NSString *)name;
 
+/// 临时存储图片的根目录
++ (NSString *)imageTempBox;
+
 /// 存储图片的根目录
 + (NSString *)imageBox;
 

@@ -61,7 +61,8 @@
 
 #pragma mark -- 渲染图片完成 --》生成新图片
 - (void)clickCompletedBtn {
-    
+    [self.present createDocWithImage];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark -- public methods

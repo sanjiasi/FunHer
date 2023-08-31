@@ -18,13 +18,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.layer.cornerRadius = 8;
+        self.layer.cornerRadius = 9;
         self.layer.masksToBounds = YES;
         self.backgroundColor = RGBA(0, 0, 0, 0.6);
         self.numberOfLines = 0;
         self.textAlignment = NSTextAlignmentCenter;
         self.textColor = UIColor.whiteColor;
-        self.font = PingFang_R_FONT_(14);
+        self.font = PingFang_R_FONT_(15);
     }
     return self;
 }
@@ -34,8 +34,8 @@
     CGFloat SCREEN_WIDTH = [UIScreen mainScreen].bounds.size.width;
     CGFloat SCREEN_HEIGHT = [UIScreen mainScreen].bounds.size.height;
     CGRect rect = [self.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:self.font} context:nil];
-    CGFloat width = rect.size.width + 20;
-    CGFloat height = rect.size.height + 40;
+    CGFloat width = rect.size.width + 36;
+    CGFloat height = rect.size.height + 20;
     CGFloat x = (SCREEN_WIDTH-width)/2;
     CGFloat y = SCREEN_HEIGHT/2 - height;
     self.frame = CGRectMake(x, y, width, height);
