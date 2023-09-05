@@ -62,7 +62,7 @@
         }];
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
-        NSArray *array = [self coverPicArrayAtPath:[NSString tempDocPath]];
+        NSArray *array = [NSString sortPicArrayAtPath:[NSString tempDocPath]];
         if (array.count > 1) {
             [self createDocWithImages:array];
             [self refreshData];
@@ -75,18 +75,6 @@
 
 - (void)refreshData {
     [self loadData];
-}
-
-#pragma mark -- 图片排序,根据图片的后几位数字去排序
-- (NSArray *)coverPicArrayAtPath:(NSString *)path  {
-    NSArray *temp =  [LZFileManager listFilesInDirectoryAtPath:path deep:NO];;
-    //排序,根据图片的后几位数字去排序
-    NSArray *sortArray = [temp sortedArrayUsingComparator:^NSComparisonResult(NSString *tempContentPath1, NSString *tempContentPath2) {
-        NSString *sortNO1 = [tempContentPath1 fileIndex];
-        NSString *sortNO2 = [tempContentPath2 fileIndex];
-        return [sortNO1 compare:sortNO2 options:NSNumericSearch];
-    }];
-    return sortArray;
 }
 
 - (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {

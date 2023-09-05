@@ -10,6 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Path)
+
+/// -- 图片排序,根据图片的后几位数字去排序
+/// - Parameter path: 图片父目录
++ (NSArray *)sortPicArrayAtPath:(NSString *)path;
+
 /// -- 文件目录
 - (NSString *)fileDirectory;
 
@@ -40,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片名
 + (NSString *)imageName;
 
+/// 默认文档名称
++ (NSString *)defaultDocName;
+
 /// 存储缩率图
 + (NSString *)thumbDir;
 + (NSString *)thumbImagePath:(NSString *)name;
@@ -63,6 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 临时存放渲染后的图片
 + (NSString *)tempFilterDir;
 + (NSString *)tempFilterImagePath:(NSString *)name;
+
+/// -- 临时存放拆分PDF的图片
++ (NSString *)tempPDFForImageDir;
++ (NSString *)tempPDFForImagePath:(NSString *)name;
 
 /// 临时存储图片的根目录
 + (NSString *)imageTempBox;

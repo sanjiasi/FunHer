@@ -108,6 +108,7 @@
 		6753E2CB2A9874F0007EDE64 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2CA2A9874F0007EDE64 /* UIImage+Orientation.m */; };
 		6753E2CE2A987F6C007EDE64 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2CD2A987F6C007EDE64 /* UIImage+Filter.m */; };
 		675775B32AA026D00007838E /* FHNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B22AA026D00007838E /* FHNotificationManager.m */; };
+		675775B72AA6DE270007838E /* FHPDFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B62AA6DE270007838E /* FHPDFTool.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -351,6 +352,8 @@
 		6753E2CD2A987F6C007EDE64 /* UIImage+Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filter.m"; sourceTree = "<group>"; };
 		675775B12AA026D00007838E /* FHNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHNotificationManager.h; sourceTree = "<group>"; };
 		675775B22AA026D00007838E /* FHNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHNotificationManager.m; sourceTree = "<group>"; };
+		675775B52AA6DE270007838E /* FHPDFTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHPDFTool.h; sourceTree = "<group>"; };
+		675775B62AA6DE270007838E /* FHPDFTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHPDFTool.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -603,6 +606,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				675775B42AA6DDEF0007838E /* PDF */,
 				675775B02AA0265C0007838E /* Notification */,
 				6753E2B12A975612007EDE64 /* UIButton */,
 				6749B3442A8DB8B400EEE913 /* Magnifier */,
@@ -1020,6 +1024,15 @@
 				675775B22AA026D00007838E /* FHNotificationManager.m */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		675775B42AA6DDEF0007838E /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				675775B52AA6DE270007838E /* FHPDFTool.h */,
+				675775B62AA6DE270007838E /* FHPDFTool.m */,
+			);
+			path = PDF;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -1465,6 +1478,7 @@
 				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
 				6753E2BB2A97562B007EDE64 /* MenuItem.m in Sources */,
 				67406C2E2A78CA8100E87AF5 /* ZLVideoPlayerControl.m in Sources */,
+				675775B72AA6DE270007838E /* FHPDFTool.m in Sources */,
 				67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */,
 				67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,

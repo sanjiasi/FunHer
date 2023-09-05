@@ -33,7 +33,8 @@ typedef NS_ENUM(NSUInteger, FilterType) {
 
 @implementation FHFilterImagePresent
 
-- (void)refreshImage:(UIImage *)img {
+- (void)refreshImage {
+    UIImage *img = [UIImage imageWithContentsOfFile:self.filterImage];
     NSString *originalName = [self originalImageName];
     [self saveSampleImage:img withName:originalName];
     [FHFileDataSession updateImageWithId:self.fileObjId];

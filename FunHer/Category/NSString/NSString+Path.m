@@ -10,6 +10,18 @@
 
 @implementation NSString (Path)
 
+#pragma mark -- 图片排序,根据图片的后几位数字去排序
++ (NSArray *)sortPicArrayAtPath:(NSString *)path  {
+    NSArray *temp =  [LZFileManager listFilesInDirectoryAtPath:path deep:NO];;
+    //排序,根据图片的后几位数字去排序
+    NSArray *sortArray = [temp sortedArrayUsingComparator:^NSComparisonResult(NSString *tempContentPath1, NSString *tempContentPath2) {
+        NSString *sortNO1 = [tempContentPath1 fileIndex];
+        NSString *sortNO2 = [tempContentPath2 fileIndex];
+        return [sortNO1 compare:sortNO2 options:NSNumericSearch];
+    }];
+    return sortArray;
+}
+
 #pragma mark -- 文件目录
 - (NSString *)fileDirectory {
     NSString *path = (NSString *)self;
@@ -82,6 +94,10 @@
     return name;
 }
 
++ (NSString *)defaultDocName {
+    return [NSString stringWithFormat:@"Doc %@",[NSDate timeFormatYMMDD:[NSDate date]]];
+}
+
 #pragma mark -- 存储缩率图
 + (NSString *)thumbDir {
     NSString *dir = [[self imageBox] stringByAppendingPathComponent:@"thumbs"];
@@ -152,6 +168,18 @@
 
 + (NSString *)tempFilterImagePath:(NSString *)name {
     NSString *dir = [self tempFilterDir];
+    return [dir stringByAppendingPathComponent:name];
+}
+
+#pragma mark -- 临时存放拆分PDF的图片
++ (NSString *)tempPDFForImageDir {
+    NSString *dir = [[self imageTempBox] stringByAppendingPathComponent:@"tempPDF"];
+    [self verifyExistsAtPath:dir];
+    return dir;
+}
+
++ (NSString *)tempPDFForImagePath:(NSString *)name {
+    NSString *dir = [self tempPDFForImageDir];
     return [dir stringByAppendingPathComponent:name];
 }
 

@@ -10,6 +10,7 @@
 #import "FHReadFileSession.h"
 #import "FHFileModel.h"
 #import "FHFileDataSession.h"
+#import "FHPDFTool.h"
 
 @implementation FHFileListPresent
 
@@ -34,14 +35,19 @@
     [LZFileManager copyItemAtPath:[NSString tempImagePath:fileName] toPath:originalPath overwrite:YES];
     [self saveSampleImage:[UIImage imageWithContentsOfFile:sampleImgPath] withName:originalName];
     //新增文档数据
-    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
+    NSDictionary *doc = [FHFileDataSession addDocument:[NSString defaultDocName] withParentId:FHParentIdByHome];
     //新增图片数据
     [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];//清空临时目录
 }
 
 - (void)createDocWithImages:(NSArray *)imgs {
-    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:FHParentIdByHome];
+    NSString *docName = [NSString defaultDocName];
+    [self createDoc:docName withImages:imgs];
+}
+
+- (NSDictionary *)createDoc:(NSString *)name withImages:(NSArray *)imgs {
+    NSDictionary *doc = [FHFileDataSession addDocument:name withParentId:FHParentIdByHome];
     [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *imgPath = [NSString tempImagePath:name];
         NSString *imgName = [NSString nameByRemoveIndex:name];
@@ -50,6 +56,7 @@
         [self saveSampleImage:[UIImage imageWithContentsOfFile:originalPath] withName:imgName];
         [FHFileDataSession addImage:imgName byIndex:idx withParentId:doc[@"Id"]];
     }];
+    return doc;
 }
 
 - (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
@@ -77,7 +84,7 @@
         }];
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
-        NSArray *array = [self coverPicArrayAtPath:[NSString tempDocPath]];
+        NSArray *array = [NSString sortPicArrayAtPath:[NSString tempDocPath]];
         if (array.count > 1) {
             [self createDocWithImages:array];
             [self refreshData];
@@ -86,19 +93,6 @@
             completion(array);
         }
     }];
-}
-
-
-#pragma mark -- 图片排序,根据图片的后几位数字去排序
-- (NSArray *)coverPicArrayAtPath:(NSString *)path  {
-    NSArray *temp =  [LZFileManager listFilesInDirectoryAtPath:path deep:NO];;
-    //排序,根据图片的后几位数字去排序
-    NSArray *sortArray = [temp sortedArrayUsingComparator:^NSComparisonResult(NSString *tempContentPath1, NSString *tempContentPath2) {
-        NSString *sortNO1 = [tempContentPath1 fileIndex];
-        NSString *sortNO2 = [tempContentPath2 fileIndex];
-        return [sortNO1 compare:sortNO2 options:NSNumericSearch];
-    }];
-    return sortArray;
 }
 
 - (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
@@ -126,23 +120,78 @@
     NSMutableArray *dataArr = [NSMutableArray arrayWithArray:homeFolderList];
     [dataArr addObjectsFromArray:homeDocList];
     [dataArr enumerateObjectsUsingBlock:^(NSDictionary *object, NSUInteger idx, BOOL * _Nonnull stop) {
-        FHFileCellModel *model = [FHFileCellModel createModelWithParam:object];
-        if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
-            model.thumbNail = @"";//没有图片
-        } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
-            NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
-            if (firstImg) {
-                model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
-            } else {
-                model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:@"placeHolder.jpg"];
-            }
-            if (![LZFileManager isExistsAtPath:model.thumbNail]) {
-                [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
-            }
+        FHFileCellModel *model = [self buildCellModelWihtObject:object];
+        if (model) {
+            [temp addObject:model];
         }
-        [temp addObject:model];
     }];
     self.dataArray = temp;
+}
+
+
+- (FHFileCellModel *)buildCellModelWihtObject:(NSDictionary *)object {
+    FHFileCellModel *model = [FHFileCellModel createModelWithParam:object];
+    if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
+        model.thumbNail = @"";//没有图片
+    } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
+        NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
+        if (firstImg) {
+            model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
+        } else {
+            model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:@"placeHolder.jpg"];
+        }
+        if (![LZFileManager isExistsAtPath:model.thumbNail]) {
+            [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
+        }
+    }
+    return model;
+}
+
+#pragma mark -- PDF拆分成images 创建文档
+- (NSDictionary *)getImagesFromPDF:(NSURL *)aUrl {
+    NSString *fileName = [aUrl lastPathComponent];
+    [LZFileManager removeItemAtPath:[NSString tempDocPath]];
+    NSArray *imgArr = [FHPDFTool splitPDF:aUrl atDoc:[NSString tempDocPath]];
+    return [self createDoc:[fileName fileNameNOSuffix] withImages:imgArr];
+}
+
+- (NSDictionary *)getImageCreateDoc:(NSURL *)aUrl {
+    NSData *imgData = [NSData dataWithContentsOfURL:aUrl];
+    if (imgData.length > 0) {
+        NSString *fileName = [NSString stringWithFormat:@"%@%@",[NSString imageName], FHFilePathExtension];
+        //保存原图
+        [imgData writeToFile:[NSString originalImagePath:fileName] atomically:YES];
+        [self saveSampleImage:[UIImage imageWithData:imgData] withName:fileName];
+        //新增文档数据
+        NSDictionary *doc = [FHFileDataSession addDocument:[NSString defaultDocName] withParentId:FHParentIdByHome];
+        //新增图片数据
+        [FHFileDataSession addImage:fileName byIndex:0 withParentId:doc[@"Id"]];
+        return doc;
+    }
+    return nil;
+}
+
+- (NSDictionary *)handlePickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    BOOL fileAuthorized = [urls.firstObject startAccessingSecurityScopedResource];
+    if (fileAuthorized) {
+        __block NSDictionary *doc;
+        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init]; NSError *error;
+        [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL * _Nonnull newURL) { //读取文件
+            if (error) {
+                NSLog(@"读取错误error == %@",error);
+            } else {
+                NSString *fileName = [newURL lastPathComponent];
+                NSString *lowString = fileName.lowercaseString;
+                if ([lowString hasSuffix:@".pdf"]) {
+                    doc = [self getImagesFromPDF:newURL];
+                } else if ([lowString hasSuffix:@".jpg"] || [lowString hasSuffix:@".png"]|| [lowString hasSuffix:@".jpeg"]) {
+                    doc = [self getImageCreateDoc:newURL];
+                }
+            }
+        }];
+        return doc;
+    }
+    return nil;
 }
 
 #pragma mark -- getter and setters
@@ -151,6 +200,13 @@
         _dataArray = @[].mutableCopy;
     }
     return _dataArray;
+}
+
+- (NSArray *)funcItems {
+    return @[@{@"image": @"input_doc", @"title": @"Import Files", @"selector": @"addPhotoFromFiles"},
+             @{@"image": @"input_phtoto", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"add_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
+    ];
 }
 
 @end

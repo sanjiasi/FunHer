@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 创建文档
 - (void)createDocWithImage;
 
+/// 更新图片
+- (void)refreshImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

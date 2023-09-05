@@ -9,6 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class FHFileCellModel;
+
 @protocol ListPresentDelegate <NSObject>
 
 @optional
@@ -33,7 +35,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 创建文档
 /// - Parameter info: 图片信息
-- (void)createDocWithImage:(NSDictionary *)info;
+- (NSDictionary *)createDocWithImage:(NSDictionary *)info;
+
+/// -- PDF拆分成images 创建文档
+///   - aUrl:  pdf路径
+- (NSDictionary *)getImagesFromPDF:(NSURL *)aUrl;
+
+///  -- 处理文件中获取的资源
+/// - Parameter urls: 资源路径
+- (NSDictionary *)handlePickDocumentsAtURLs:(NSArray<NSURL *> *)urls;
+
+/// 字典转界面数据模型
+/// - Parameter object: 字典
+- (FHFileCellModel *)buildCellModelWihtObject:(NSDictionary *)object;
+
+- (NSArray *)funcItems;
 
 @end
 

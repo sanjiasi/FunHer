@@ -61,8 +61,17 @@
 
 #pragma mark -- 渲染图片完成 --》生成新图片
 - (void)clickCompletedBtn {
-    [self.present createDocWithImage];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.objId) {
+        [self.present refreshImage];
+        NSArray *vcArr = self.navigationController.viewControllers;
+        if (vcArr.count > 4) {
+            UIViewController *vc = vcArr[vcArr.count -4];
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    } else {
+        [self.present createDocWithImage];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark -- public methods

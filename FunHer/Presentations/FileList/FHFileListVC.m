@@ -20,7 +20,7 @@
 #import "FHCropImageVC.h"
 #import "FHNotificationManager.h"
 
-@interface FHFileListVC () {
+@interface FHFileListVC ()<UIDocumentPickerDelegate> {
     CGFloat FHMenuHeight;
 }
 @property (nonatomic, strong) UIView *superContentView;
@@ -63,6 +63,15 @@
     }
 }
 
+#pragma mark -- UIDocumentPickerDelegate
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    NSDictionary *newDoc = [self.present handlePickDocumentsAtURLs:urls];
+    if (newDoc) {
+        FHFileCellModel *model = [self.present buildCellModelWihtObject:newDoc];
+        [self goToPushDocVC:model];
+    }
+}
+
 #pragma mark -- event response
 #pragma mark -- 跳转文件夹界面
 - (void)goToPushFolderVC:(FHFileCellModel *)model {
@@ -86,6 +95,14 @@
     childVC.fileObjId = model.fileObj.objId;
     childVC.fileName = model.fileName;
     [self.navigationController pushViewController:childVC animated:YES];
+}
+
+#pragma mark -- 打开文件(app)找图片
+- (void)addPhotoFromFiles {
+    NSArray *documentTypes = @[@"public.image",@"com.adobe.pdf"];
+    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes inMode:UIDocumentPickerModeOpen];
+    documentPicker.delegate = self;
+    [self presentViewController:documentPicker animated:YES completion:nil];
 }
 
 #pragma mark -- 打开相册找照片
@@ -292,19 +309,12 @@
 - (FHCollectionMenu *)funcMenu {
     __weak typeof(self) weakSelf = self;
     if (!_funcMenu) {
-        _funcMenu = [[FHCollectionMenu alloc] initWithItems:[self funcItems] menuHeight:FHMenuHeight actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
+        _funcMenu = [[FHCollectionMenu alloc] initWithItems:[self.present funcItems] menuHeight:FHMenuHeight actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
             NSLog(@"i = %@, func = %@", @(idx), selector);
             [weakSelf invokeWithSelector:selector];
         }];
     }
     return _funcMenu;
-}
-
-- (NSArray *)funcItems {
-    return @[@{@"image": @"input_doc", @"title": @"Import Files", @"selector": @"addPhotoFromLibrary"},
-             @{@"image": @"input_phtoto", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
-             @{@"image": @"add_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
-    ];
 }
 
 @end
