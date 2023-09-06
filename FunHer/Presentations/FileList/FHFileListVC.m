@@ -19,6 +19,7 @@
 #import "FHCollectionMenu.h"
 #import "FHCropImageVC.h"
 #import "FHNotificationManager.h"
+#import "FHCameraVC.h"
 
 @interface FHFileListVC ()<UIDocumentPickerDelegate> {
     CGFloat FHMenuHeight;
@@ -112,6 +113,26 @@
     }];
 }
 
+#pragma mark -- 打开相机拍照
+- (void)takePhotoByCamera {
+    FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
+    cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    __weak typeof(self) weakSelf = self;
+    cameraVC.getPhotoBlock = ^(NSData * _Nonnull photoImage) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf savePhotoToFilter:photoImage];
+    };
+    [self.navigationController presentViewController:cameraVC animated:YES completion:nil];
+}
+
+#pragma mark -- 拍照获取的照片去做滤镜处理
+
+- (void)savePhotoToFilter:(NSData *)photoImage {
+    UIImage *img = [UIImage imageWithData:photoImage];
+    NSString *imgPath = [self.present saveOriginalPhoto:photoImage imageSize:img.size atIndex:0];
+    [self handleCropImage:[imgPath fileName]];
+}
+
 #pragma mark -- 新建文件夹
 - (void)addNewFolder {
     __weak typeof(self) weakSelf = self;
@@ -155,6 +176,7 @@
 }
 
 #pragma mark -- public methods
+#pragma mark -- 刷新数据
 - (void)refreshWithNewData {
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
@@ -176,8 +198,9 @@
 }
 
 #pragma mark -- private methods
+#pragma mark -- 配置导航栏和子视图
 - (void)configNavBar {
-    [self setRigthButton:@"Add" withSelector:@selector(addPhotoFromLibrary)];
+    [self setRigthButton:@"Camera" withSelector:@selector(takePhotoByCamera)];
 }
 
 - (void)configContentView {

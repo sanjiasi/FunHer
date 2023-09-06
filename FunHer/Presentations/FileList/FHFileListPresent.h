@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 解析图片
 - (void)anialysisAssets:(NSArray *)assets completion:(void (^)(NSArray *imagePaths))completion;
 
+/// 保存原图
+///   - data: 图片数据
+///   - size: 尺寸
+///   - idx:  索引
+- (NSString *)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx;
+
 /// 新建文件夹
 /// - Parameter name: 名称
 - (void)createFolderWithName:(NSString *)name;

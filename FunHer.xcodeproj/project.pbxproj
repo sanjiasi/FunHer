@@ -109,6 +109,8 @@
 		6753E2CE2A987F6C007EDE64 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753E2CD2A987F6C007EDE64 /* UIImage+Filter.m */; };
 		675775B32AA026D00007838E /* FHNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B22AA026D00007838E /* FHNotificationManager.m */; };
 		675775B72AA6DE270007838E /* FHPDFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B62AA6DE270007838E /* FHPDFTool.m */; };
+		675775C12AA873520007838E /* FHCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775C02AA873520007838E /* FHCameraVC.m */; };
+		675775C42AA8738B0007838E /* FHCameraCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775C32AA8738B0007838E /* FHCameraCaptureView.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -354,6 +356,10 @@
 		675775B22AA026D00007838E /* FHNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHNotificationManager.m; sourceTree = "<group>"; };
 		675775B52AA6DE270007838E /* FHPDFTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHPDFTool.h; sourceTree = "<group>"; };
 		675775B62AA6DE270007838E /* FHPDFTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHPDFTool.m; sourceTree = "<group>"; };
+		675775BF2AA873520007838E /* FHCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCameraVC.h; sourceTree = "<group>"; };
+		675775C02AA873520007838E /* FHCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCameraVC.m; sourceTree = "<group>"; };
+		675775C22AA8738B0007838E /* FHCameraCaptureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCameraCaptureView.h; sourceTree = "<group>"; };
+		675775C32AA8738B0007838E /* FHCameraCaptureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCameraCaptureView.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -653,6 +659,7 @@
 		67406BB62A77878900E87AF5 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				675775BE2AA873150007838E /* Camera */,
 				6749B3552A8F6BC300EEE913 /* FilterImage */,
 				6749B3482A8DECCF00EEE913 /* CropImage */,
 				67406C692A7CFBB000E87AF5 /* ShowImage */,
@@ -1033,6 +1040,17 @@
 				675775B62AA6DE270007838E /* FHPDFTool.m */,
 			);
 			path = PDF;
+			sourceTree = "<group>";
+		};
+		675775BE2AA873150007838E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				675775BF2AA873520007838E /* FHCameraVC.h */,
+				675775C02AA873520007838E /* FHCameraVC.m */,
+				675775C22AA8738B0007838E /* FHCameraCaptureView.h */,
+				675775C32AA8738B0007838E /* FHCameraCaptureView.m */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
@@ -1428,6 +1446,7 @@
 				67406C242A78CA8100E87AF5 /* ZLPullDownInteractiveTransition.m in Sources */,
 				671CAB102A6771F8006140A8 /* NSDictionary+Json.m in Sources */,
 				67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */,
+				675775C42AA8738B0007838E /* FHCameraCaptureView.m in Sources */,
 				6753E2AF2A9755E7007EDE64 /* UIButton+Inset.m in Sources */,
 				6749B34B2A8DED1C00EEE913 /* FHCropImageVC.m in Sources */,
 				671CAAD82A66622A006140A8 /* ViewController.m in Sources */,
@@ -1479,6 +1498,7 @@
 				6753E2BB2A97562B007EDE64 /* MenuItem.m in Sources */,
 				67406C2E2A78CA8100E87AF5 /* ZLVideoPlayerControl.m in Sources */,
 				675775B72AA6DE270007838E /* FHPDFTool.m in Sources */,
+				675775C12AA873520007838E /* FHCameraVC.m in Sources */,
 				67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */,
 				67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,

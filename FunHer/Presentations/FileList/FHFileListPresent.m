@@ -95,13 +95,14 @@
     }];
 }
 
-- (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
+- (NSString *)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
     NSString *imgPath = [NSString imagePathAtTempDocWithIndex:idx];
     BOOL result = [UIImage resizeOriginalImage:data imageSize:size saveAtPath:imgPath];
     if (!result) {
         [self getEventWithName:@"write error"];
         [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     }
+    return imgPath;
 //    NSString *imgName = [NSString nameByRemoveIndex:imgPath.fileName];
 //    NSString *originalPath = [[NSString originalDir] stringByAppendingPathComponent:imgName];
 //    [LZFileManager copyItemAtPath:imgPath toPath:originalPath overwrite:YES];
