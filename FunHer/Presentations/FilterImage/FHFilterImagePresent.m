@@ -50,22 +50,7 @@ typedef NS_ENUM(NSUInteger, FilterType) {
     return @"";
 }
 
-- (void)createDocWithImage {
-//    UIImage *img = [UIImage imageWithContentsOfFile:self.filterImage];
-//    if (img) {
-//        if (self.fileObjId) {
-//            [self refreshImage:img];
-//        } else if (self.fileName) {
-//            NSString *originalName = [self originalImageName];
-//            NSString *originalPath = [NSString originalImagePath:originalName];
-//            if (![LZFileManager isExistsAtPath:originalPath]) {
-//                [LZFileManager copyItemAtPath:[NSString tempImagePath:self.fileName] toPath:originalPath overwrite:YES];
-//            }
-//            [self saveSampleImage:img withName:originalName];
-//            NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.parentId];
-//            [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
-//        }
-//    }
+- (void)createDocWithImage { 
     UIImage *img = [UIImage imageWithContentsOfFile:self.filterImage];
     if (img) {
         [FHNotificationManager pushNotificationName:FHCreateDocNotification withObject:self info:@{@"fileName": self.fileName, @"sampleImage": self.filterImage}];

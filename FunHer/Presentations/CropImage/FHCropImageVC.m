@@ -110,6 +110,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 }
 
 - (void)configData {
+    [LZFileManager removeItemAtPath:[NSString tempCropDir]];
     self.present.fileName = self.fileName;
     self.present.fileObjId = self.objId;
     UIImage *thumbImg = [self.present thumImageForCropWithSize:self.cropView.frame.size];

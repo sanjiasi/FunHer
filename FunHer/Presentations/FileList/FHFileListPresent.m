@@ -26,7 +26,7 @@
 }
 
 #pragma mark -- 新建文档
-- (void)createDocWithImage:(NSDictionary *)info {
+- (NSDictionary *)createDocWithImage:(NSDictionary *)info {
     NSString *fileName = info[@"fileName"];//临时存放原图片名
     NSString *sampleImgPath = info[@"sampleImage"];//处理后的展示图
     NSString *originalName = [NSString nameByRemoveIndex:fileName];
@@ -39,6 +39,7 @@
     //新增图片数据
     [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];//清空临时目录
+    return doc;
 }
 
 - (void)createDocWithImages:(NSArray *)imgs {
@@ -151,7 +152,6 @@
 #pragma mark -- PDF拆分成images 创建文档
 - (NSDictionary *)getImagesFromPDF:(NSURL *)aUrl {
     NSString *fileName = [aUrl lastPathComponent];
-    [LZFileManager removeItemAtPath:[NSString tempDocPath]];
     NSArray *imgArr = [FHPDFTool splitPDF:aUrl atDoc:[NSString tempDocPath]];
     return [self createDoc:[fileName fileNameNOSuffix] withImages:imgArr];
 }
@@ -173,6 +173,7 @@
 }
 
 - (NSDictionary *)handlePickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    [LZFileManager removeItemAtPath:[NSString tempDocPath]];
     BOOL fileAuthorized = [urls.firstObject startAccessingSecurityScopedResource];
     if (fileAuthorized) {
         __block NSDictionary *doc;

@@ -195,6 +195,7 @@
     } withMainCompleted:^{
         [self.collectionView reloadData];
     }];
+    [FHNotificationManager removeNotiOberver:self forName:FHCreateDocNotification];
 }
 
 #pragma mark -- private methods

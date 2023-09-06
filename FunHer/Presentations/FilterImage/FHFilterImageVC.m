@@ -109,6 +109,7 @@
 }
 
 - (void)configData {
+    [LZFileManager removeItemAtPath:[NSString tempFilterDir]];
     [LZDispatchManager globalQueueHandler:^{
         [self.present refreshData];
     } withMainCompleted:^{

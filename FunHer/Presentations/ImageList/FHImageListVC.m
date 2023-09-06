@@ -31,6 +31,7 @@
     self.view.backgroundColor = UIColor.whiteColor;
     [self configNavBar];
     [self configContentView];
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
