@@ -209,6 +209,8 @@
 + (void)deleteDocumentWithId:(NSString *)objId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
     if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    RLMResults<ImageRLM *> *results = [FHReadFileSession imageRLMsByParentId:appDoc.Id];
+    [LZDocManager removeEntityList:results];
     [self removeDoc:appDoc];
 }
 
@@ -267,9 +269,9 @@
 }
 
 #pragma mark -- 拷贝文档
-+ (void)copyDocument:(NSString *)objId withParentId:(NSString *)parentId {
++ (NSString *)copyDocument:(NSString *)objId withParentId:(NSString *)parentId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return nil;}
     NSString *pathId = [self pathIdByParentId:parentId];
     DocRLM *copyDoc = [self buildDocWithName:appDoc.name atPath:pathId];
     
@@ -281,6 +283,7 @@
     }
     [LZImageManager batchAddEntityList:copyImgs];
     [LZDocManager addEntity:copyDoc];
+    return copyDoc.Id;
 }
 
 #pragma mark -- 构造DocRLM
@@ -353,7 +356,7 @@
 }
 
 #pragma mark -- 批量修改图片路径：移动 文档的所有图片
-+ (NSArray *)batchEditImagesWithParentId:(NSString *)parentId toNewDoc:(NSString *)newDocId {
++ (NSArray *)batchMoveImagesWithParentId:(NSString *)parentId toNewDoc:(NSString *)newDocId {
     DocRLM *doc = [LZDocManager entityWithId:parentId];
     if (!doc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return @[];}
     NSArray *imgIds = [self imageIdsByParentId:parentId];

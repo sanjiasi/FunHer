@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FHFileListPresent : NSObject<ListPresentDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, weak) id<ListPresentDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath * _Nullable selectedIndex;
+@property (nonatomic, copy) NSString *selectedObjectId;
 
 /// 刷新数据
 - (void)refreshData;
@@ -56,6 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (FHFileCellModel *)buildCellModelWihtObject:(NSDictionary *)object;
 
 - (NSArray *)funcItems;
+
+/// 选中的文件是否可编辑
+- (BOOL)canSelectedToEdit;
 
 @end
 

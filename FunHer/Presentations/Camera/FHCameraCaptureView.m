@@ -58,12 +58,16 @@
     twinkleAnim.duration = 0.2;
     [self.layer addAnimation:twinkleAnim forKey:nil];
     
-    //震动反馈
-    UIImpactFeedbackGenerator * feedbackGenerator = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
-    [feedbackGenerator impactOccurred];
+    //轻震动反馈
+    [self impactFeedbackLight];
     
     AVCapturePhotoSettings *settings = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey: AVVideoCodecTypeJPEG}];
     [self.stillImageOutput capturePhotoWithSettings:settings delegate:self];
+}
+
+- (void)impactFeedbackLight {
+    UIImpactFeedbackGenerator * feedbackGenerator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+    [feedbackGenerator impactOccurred];
 }
 
 - (void)sessionStop {

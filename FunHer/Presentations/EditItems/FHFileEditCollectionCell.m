@@ -1,13 +1,15 @@
 //
-//  FHFileCollectionCell.m
+//  UIFileEditCollectionCell.m
 //  FunHer
 //
-//  Created by GLA on 2023/7/31.
+//  Created by GLA on 2023/9/8.
 //
 
-#import "FHFileCollectionCell.h"
+#import "FHFileEditCollectionCell.h"
+#import "FHFileEditCellModel.h"
+#import "FHFileModel.h"
 
-@implementation FHFileCollectionCell
+@implementation FHFileEditCollectionCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -17,6 +19,22 @@
     return self;
 }
 
+- (void)setCellModel:(FHFileEditCellModel *)cellModel {
+    _cellModel = cellModel;
+    if ([cellModel.fileObj.type isEqualToString:@"1"]) {
+        self.maskView.hidden = NO;
+        self.showImg.contentMode = UIViewContentModeCenter;
+        self.showImg.image = [UIImage imageNamed:@"new_folder"];
+    } else {
+        self.maskView.hidden = YES;
+        self.showImg.contentMode = UIViewContentModeScaleAspectFill;
+        self.showImg.image = [UIImage imageWithContentsOfFile:cellModel.thumbNail];
+    }
+    self.titleLab.text = cellModel.fileName;
+    self.numLab.text = cellModel.countNum;
+    self.uTimeLab.text = cellModel.uDate;
+    self.checkBox.hidden = !cellModel.isSelected;
+}
 
 #pragma mark -- private methods
 - (void)configContentView {
@@ -26,6 +44,8 @@
     [self.bgView addSubview:self.titleLab];
     [self.bgView addSubview:self.numLab];
     [self.bgView addSubview:self.uTimeLab];
+    [self.bgView addSubview:self.checkBox];
+    [self.bgView addSubview:self.maskView];
     
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
@@ -55,6 +75,15 @@
         make.height.mas_equalTo(27);
         make.bottom.equalTo(self.bgView);
     }];
+    
+    [self.checkBox mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bgView).offset(10);
+        make.trailing.equalTo(self.bgView).offset(-10);
+    }];
+    
+    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.bgView);
+    }];
 }
 
 #pragma mark -- getter and setters
@@ -69,6 +98,15 @@
         _bgView = view;
     }
     return _bgView;
+}
+
+- (UIView *)maskView {
+    if (!_maskView) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = RGBA(210, 210, 210, 0.3);//RGBA(255, 255, 255, 0.3);
+        _maskView = view;
+    }
+    return _maskView;
 }
 
 - (UIImageView *)showImg {
@@ -127,6 +165,15 @@
         _numLab = lab;
     }
     return _numLab;
+}
+
+- (UIImageView *)checkBox {
+    if (!_checkBox) {
+        UIImageView *imgV = [[UIImageView alloc] init];
+        imgV.image = [UIImage imageNamed:@"close_navItem"];
+        _checkBox = imgV;
+    }
+    return _checkBox;
 }
 
 @end

@@ -18,7 +18,6 @@
     return self;
 }
 
-
 - (void)addDataArray:(NSArray *)datas {
     if (self.dataArray.count>0) {
         [self.dataArray removeAllObjects];
@@ -44,6 +43,17 @@
     }
 
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:self.headerIdentifier forIndexPath:indexPath];
+        if (self.headerConfigure) {
+            self.headerConfigure(reusableview, self.headerIdentifier, indexPath);
+        }
+    }
+    return reusableview;
 }
 
 #pragma mark -- UICollectionViewDelegate

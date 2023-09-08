@@ -12,7 +12,7 @@
 #pragma mark -- 只有确定按钮
 - (void)takeAlert:(NSString *)title withMessage:(NSString *)message actionHandler:(void (^ _Nullable)(void))actionHandler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"localized_ok" ,@"") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         if (actionHandler) {
             actionHandler();
         }
@@ -28,13 +28,13 @@
                                                                    message:msg
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"localized_ok" ,@"") style:UIAlertActionStyleDefault
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action) {
         if (actionBlock) {
             actionBlock();
         }
     }];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"localized_cancel" ,@"") style:UIAlertActionStyleCancel
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                      handler:^(UIAlertAction * action) {
         if (cancelBlock) {
             cancelBlock();

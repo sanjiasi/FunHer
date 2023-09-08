@@ -78,10 +78,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - parentId: 上层目录主键iId
 + (void)editDocumentPath:(NSString *)objId withParentId:(NSString *)parentId;
 
-/// -- 拷贝文档
+/// -- 拷贝文档 返回新文档Id
 ///   - objId: 文档主键Id
 ///   - parentId:  上层目录主键iId
-+ (void)copyDocument:(NSString *)objId withParentId:(NSString *)parentId;
++ (NSString *)copyDocument:(NSString *)objId withParentId:(NSString *)parentId;
 
 
 #pragma mark ** 图片
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// -- 批量修改图片路径：移动 文档的所有图片
 ///   - parentId: 上层目录Id(文档主键Id)
 ///   - newDocId:  移动目标文档主键Id
-+ (NSArray *)batchEditImagesWithParentId:(NSString *)parentId toNewDoc:(NSString *)newDocId;
++ (NSArray *)batchMoveImagesWithParentId:(NSString *)parentId toNewDoc:(NSString *)newDocId;
 
 /// -- 批量移动图片 文档的部分图片 修改parentId、pathId、picIndex
 ///   - imageIds:  图片主键Ids

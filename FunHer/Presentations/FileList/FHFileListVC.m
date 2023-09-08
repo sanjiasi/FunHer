@@ -20,6 +20,10 @@
 #import "FHCropImageVC.h"
 #import "FHNotificationManager.h"
 #import "FHCameraVC.h"
+#import "UICollectionView+LongPressGesture.h"
+#import "FHEditItemsVC.h"
+
+NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdentifier";
 
 @interface FHFileListVC ()<UIDocumentPickerDelegate> {
     CGFloat FHMenuHeight;
@@ -30,6 +34,7 @@
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 @property (nonatomic, weak) UIViewController *photoSender;
 @property (nonatomic, strong) FHCollectionMenu *funcMenu;
+@property (nonatomic, strong) UIButton *cameraBtn;
 
 @end
 
@@ -126,7 +131,6 @@
 }
 
 #pragma mark -- 拍照获取的照片去做滤镜处理
-
 - (void)savePhotoToFilter:(NSData *)photoImage {
     UIImage *img = [UIImage imageWithData:photoImage];
     NSString *imgPath = [self.present saveOriginalPhoto:photoImage imageSize:img.size atIndex:0];
@@ -149,6 +153,27 @@
         [self.present createFolderWithName:name];
         [self refreshWithNewData];
     }];
+}
+
+#pragma mark -- 选择文件
+- (void)selectItemsAction {
+    NSLog(@"%s",__func__);
+    self.present.selectedIndex = nil;
+    [self goToSelectedItems];
+}
+
+- (void)goToSelectedItems {
+    FHEditItemsVC *vc = [[FHEditItemsVC alloc] init];
+    vc.parentId = FHParentIdByHome;
+    if (self.present.selectedIndex) {
+        if (![self.present canSelectedToEdit]) {
+            return;
+        }
+        vc.selectedItem = self.present.selectedObjectId;
+    }
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:NO completion:nil];
 }
 
 #pragma mark -- 批量处理Assets
@@ -181,7 +206,6 @@
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
     } withMainCompleted:^{
-//        [self endPullRefreshing];
         [self.collectionView reloadData];
     }];
 }
@@ -201,14 +225,14 @@
 #pragma mark -- private methods
 #pragma mark -- 配置导航栏和子视图
 - (void)configNavBar {
-    [self setRigthButton:@"Camera" withSelector:@selector(takePhotoByCamera)];
+    [self setRigthButton:@"Select" withSelector:@selector(selectItemsAction)];
 }
 
 - (void)configContentView {
     FHMenuHeight = 80;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
-    [self.superContentView addSubview:self.funcMenu];
+    [self.superContentView addSubview:self.cameraBtn];
     
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
@@ -217,19 +241,17 @@
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.leading.trailing.equalTo(self.superContentView);
-        make.top.equalTo(self.funcMenu.mas_bottom).offset(10);
-    }];
-    
-    [self.funcMenu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.superContentView).offset(10);
-        make.leading.trailing.equalTo(self.superContentView);
-        make.height.mas_equalTo(FHMenuHeight);
+    }];
+    [self.cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.superContentView).offset(-20);
+        make.bottom.equalTo(self.superContentView).offset(-80);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
     self.collectionView.delegate = self.collectionAdapter;
-    
-//    [self configPullRefreshing];
+
 }
 
 /// -- 下拉刷新组件
@@ -286,6 +308,16 @@
         } didSelectedBlock:^(FHFileCellModel *model, NSIndexPath * _Nonnull indexPath) {
             [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];
+        adapter.headerIdentifier = FHTabCollectionHeaderIdentifier;
+        adapter.headerConfigure = ^(UICollectionReusableView *reusableview, NSString * _Nonnull headerId, NSIndexPath * _Nonnull indexPath) {
+            reusableview.backgroundColor = kViewBGColor;
+            [reusableview addSubview:weakSelf.funcMenu];
+            [weakSelf.funcMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(reusableview).offset(0);
+                make.leading.trailing.equalTo(reusableview);
+                make.height.mas_equalTo(80);
+            }];
+        };
         _collectionAdapter = adapter;
     }
     return _collectionAdapter;
@@ -305,10 +337,18 @@
         layout.minimumInteritemSpacing = padding;
         layout.minimumLineSpacing = padding;
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
+        layout.headerReferenceSize = CGSizeMake(kScreenWidth, FHMenuHeight + 0);
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = UIColor.whiteColor;
+        colView.backgroundColor = kViewBGColor;//UIColor.whiteColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
+        [colView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:FHTabCollectionHeaderIdentifier];
+        __weak typeof(self) weakSelf = self;
+        [colView addLongPressGestureWithDidSelected:^(NSIndexPath * _Nonnull indexPath) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.present.selectedIndex = indexPath;
+            [strongSelf goToSelectedItems];
+        }];
         _collectionView = colView;
     }
     return _collectionView;
@@ -340,5 +380,19 @@
     }
     return _funcMenu;
 }
+
+- (UIButton *)cameraBtn {
+    if (!_cameraBtn) {
+        UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ovalBtn setTitle:@"Camera" forState:UIControlStateNormal];
+        ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
+        [ovalBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [ovalBtn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
+        _cameraBtn = ovalBtn;
+    }
+    return _cameraBtn;
+}
+
 
 @end

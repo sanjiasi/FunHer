@@ -47,7 +47,7 @@
         make.trailing.equalTo(self.bgView).offset(-2);
         make.bottom.equalTo(self.bgView).offset(-10);
         make.top.equalTo(self.showImg.mas_bottom).offset(0);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(20);
     }];
 }
 

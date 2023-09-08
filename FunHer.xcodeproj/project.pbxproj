@@ -111,6 +111,13 @@
 		675775B72AA6DE270007838E /* FHPDFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775B62AA6DE270007838E /* FHPDFTool.m */; };
 		675775C12AA873520007838E /* FHCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775C02AA873520007838E /* FHCameraVC.m */; };
 		675775C42AA8738B0007838E /* FHCameraCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775C32AA8738B0007838E /* FHCameraCaptureView.m */; };
+		675775D02AA9A32C0007838E /* UICollectionView+LongPressGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775CF2AA9A32C0007838E /* UICollectionView+LongPressGesture.m */; };
+		675775D42AA9A3BE0007838E /* FHSystemActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775D32AA9A3BE0007838E /* FHSystemActionManager.m */; };
+		675775D72AAAADCC0007838E /* FHEditedCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775D62AAAADCC0007838E /* FHEditedCollectionView.m */; };
+		675775DA2AAAB21E0007838E /* FHFileEditCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775D92AAAB21E0007838E /* FHFileEditCellModel.m */; };
+		675775DD2AAAB3BB0007838E /* FHFileEditCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775DC2AAAB3BB0007838E /* FHFileEditCollectionCell.m */; };
+		675775E02AAAB4230007838E /* FHEditItemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775DF2AAAB4230007838E /* FHEditItemsVC.m */; };
+		675775E32AAAB4880007838E /* FHEditItemPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775E22AAAB4880007838E /* FHEditItemPresent.m */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -360,6 +367,20 @@
 		675775C02AA873520007838E /* FHCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCameraVC.m; sourceTree = "<group>"; };
 		675775C22AA8738B0007838E /* FHCameraCaptureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCameraCaptureView.h; sourceTree = "<group>"; };
 		675775C32AA8738B0007838E /* FHCameraCaptureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCameraCaptureView.m; sourceTree = "<group>"; };
+		675775CE2AA9A32C0007838E /* UICollectionView+LongPressGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LongPressGesture.h"; sourceTree = "<group>"; };
+		675775CF2AA9A32C0007838E /* UICollectionView+LongPressGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LongPressGesture.m"; sourceTree = "<group>"; };
+		675775D22AA9A3BE0007838E /* FHSystemActionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHSystemActionManager.h; sourceTree = "<group>"; };
+		675775D32AA9A3BE0007838E /* FHSystemActionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHSystemActionManager.m; sourceTree = "<group>"; };
+		675775D52AAAADCC0007838E /* FHEditedCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHEditedCollectionView.h; sourceTree = "<group>"; };
+		675775D62AAAADCC0007838E /* FHEditedCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHEditedCollectionView.m; sourceTree = "<group>"; };
+		675775D82AAAB21E0007838E /* FHFileEditCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileEditCellModel.h; sourceTree = "<group>"; };
+		675775D92AAAB21E0007838E /* FHFileEditCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileEditCellModel.m; sourceTree = "<group>"; };
+		675775DB2AAAB3BB0007838E /* FHFileEditCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileEditCollectionCell.h; sourceTree = "<group>"; };
+		675775DC2AAAB3BB0007838E /* FHFileEditCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileEditCollectionCell.m; sourceTree = "<group>"; };
+		675775DE2AAAB4230007838E /* FHEditItemsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHEditItemsVC.h; sourceTree = "<group>"; };
+		675775DF2AAAB4230007838E /* FHEditItemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHEditItemsVC.m; sourceTree = "<group>"; };
+		675775E12AAAB4880007838E /* FHEditItemPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHEditItemPresent.h; sourceTree = "<group>"; };
+		675775E22AAAB4880007838E /* FHEditItemPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHEditItemPresent.m; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -528,6 +549,7 @@
 		671CAB052A676C4E006140A8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				675775CD2AA9A3000007838E /* UICollectionView */,
 				6753E2AA2A9755C9007EDE64 /* UIButton */,
 				67406C872A81D27000E87AF5 /* UIImage */,
 				67406C472A7C890D00E87AF5 /* UILabel */,
@@ -612,6 +634,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				675775D12AA9A37D0007838E /* SystemAction */,
 				675775B42AA6DDEF0007838E /* PDF */,
 				675775B02AA0265C0007838E /* Notification */,
 				6753E2B12A975612007EDE64 /* UIButton */,
@@ -659,6 +682,7 @@
 		67406BB62A77878900E87AF5 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				675775C52AA99E4C0007838E /* EditItems */,
 				675775BE2AA873150007838E /* Camera */,
 				6749B3552A8F6BC300EEE913 /* FilterImage */,
 				6749B3482A8DECCF00EEE913 /* CropImage */,
@@ -1053,6 +1077,41 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		675775C52AA99E4C0007838E /* EditItems */ = {
+			isa = PBXGroup;
+			children = (
+				675775DE2AAAB4230007838E /* FHEditItemsVC.h */,
+				675775DF2AAAB4230007838E /* FHEditItemsVC.m */,
+				675775E12AAAB4880007838E /* FHEditItemPresent.h */,
+				675775E22AAAB4880007838E /* FHEditItemPresent.m */,
+				675775D52AAAADCC0007838E /* FHEditedCollectionView.h */,
+				675775D62AAAADCC0007838E /* FHEditedCollectionView.m */,
+				675775D82AAAB21E0007838E /* FHFileEditCellModel.h */,
+				675775D92AAAB21E0007838E /* FHFileEditCellModel.m */,
+				675775DB2AAAB3BB0007838E /* FHFileEditCollectionCell.h */,
+				675775DC2AAAB3BB0007838E /* FHFileEditCollectionCell.m */,
+			);
+			path = EditItems;
+			sourceTree = "<group>";
+		};
+		675775CD2AA9A3000007838E /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				675775CE2AA9A32C0007838E /* UICollectionView+LongPressGesture.h */,
+				675775CF2AA9A32C0007838E /* UICollectionView+LongPressGesture.m */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		675775D12AA9A37D0007838E /* SystemAction */ = {
+			isa = PBXGroup;
+			children = (
+				675775D22AA9A3BE0007838E /* FHSystemActionManager.h */,
+				675775D32AA9A3BE0007838E /* FHSystemActionManager.m */,
+			);
+			path = SystemAction;
+			sourceTree = "<group>";
+		};
 		676D7CEC2A70EF190077762A /* Timer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1429,6 +1488,7 @@
 				67406C312A78CA8100E87AF5 /* ZLBrushBoardImageView.m in Sources */,
 				6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */,
 				67406C5F2A7CE46100E87AF5 /* FHImageListVC.m in Sources */,
+				675775DA2AAAB21E0007838E /* FHFileEditCellModel.m in Sources */,
 				67406C322A78CA8100E87AF5 /* ZLDrawItem.m in Sources */,
 				6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */,
 				67406C1E2A78CA8100E87AF5 /* ZLAlbumListController.m in Sources */,
@@ -1460,6 +1520,7 @@
 				67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */,
 				671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */,
 				67406C6C2A7CFBEB00E87AF5 /* SSImageBrowser.m in Sources */,
+				675775D42AA9A3BE0007838E /* FHSystemActionManager.m in Sources */,
 				67406C5C2A7CDE1700E87AF5 /* FHFileChildListPresent.m in Sources */,
 				67406C622A7CE50100E87AF5 /* FHImageListPresent.m in Sources */,
 				6753E2CE2A987F6C007EDE64 /* UIImage+Filter.m in Sources */,
@@ -1480,6 +1541,7 @@
 				67406C862A80ECE000E87AF5 /* FHTabMenuAdapter.m in Sources */,
 				67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */,
 				67406C2F2A78CA8100E87AF5 /* ZLNoAuthorityViewController.m in Sources */,
+				675775DD2AAAB3BB0007838E /* FHFileEditCollectionCell.m in Sources */,
 				67406C292A78CA8100E87AF5 /* ZLPlayer.m in Sources */,
 				67406C2B2A78CA8100E87AF5 /* ToastUtils.m in Sources */,
 				671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */,
@@ -1488,10 +1550,12 @@
 				6774FEDF2A6E69BA005F0DB9 /* LZImageManager.m in Sources */,
 				67406C552A7CA1C400E87AF5 /* FHCollectionMenu.m in Sources */,
 				67406C332A78CA8100E87AF5 /* ZLClipItem.m in Sources */,
+				675775D02AA9A32C0007838E /* UICollectionView+LongPressGesture.m in Sources */,
 				6753E2C12A97565A007EDE64 /* TORoundedButton.m in Sources */,
 				67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */,
 				67406C2C2A78CA8100E87AF5 /* ZLEditViewController.m in Sources */,
 				6749B3472A8DB91C00EEE913 /* FHMagnifierView.m in Sources */,
+				675775D72AAAADCC0007838E /* FHEditedCollectionView.m in Sources */,
 				67406C212A78CA8100E87AF5 /* ZLPhotoManager.m in Sources */,
 				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
 				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
@@ -1502,6 +1566,7 @@
 				67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */,
 				67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */,
 				671CAAE32A66622B006140A8 /* main.m in Sources */,
+				675775E02AAAB4230007838E /* FHEditItemsVC.m in Sources */,
 				6753E2CB2A9874F0007EDE64 /* UIImage+Orientation.m in Sources */,
 				67406C522A7C9CDA00E87AF5 /* FHFileChildListVC.m in Sources */,
 				67406C252A78CA8100E87AF5 /* ZLProgressView.m in Sources */,
@@ -1519,6 +1584,7 @@
 				67406C592A7CC30300E87AF5 /* LZDispatchManager.m in Sources */,
 				675775B32AA026D00007838E /* FHNotificationManager.m in Sources */,
 				67406C682A7CE95300E87AF5 /* FHImageCellModel.m in Sources */,
+				675775E32AAAB4880007838E /* FHEditItemPresent.m in Sources */,
 				67406C6F2A7CFC1000E87AF5 /* SSFaxImageBrowserVC.m in Sources */,
 				671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */,
 				67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */,

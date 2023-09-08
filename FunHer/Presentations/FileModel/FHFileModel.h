@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *type; //1：文件夹 2：文档 3：图片
 @property (nonatomic, copy) NSString *uTime;//修改时间
 @property (nonatomic, copy) NSString *cTime;//创建时间
-//@property (nonatomic, copy) NSString *path;//文件路径
-//@property (nonatomic, assign) BOOL  selectStatus; //按钮状态 选中状态
 //@property (nonatomic, copy) NSString *gaussianBlurPath;//高斯模糊图片
 //@property (nonatomic, copy) NSString *coverImg;//缩略图
 //@property (nonatomic, copy) NSString *movePath; // 移动的path 即文件夹的路径

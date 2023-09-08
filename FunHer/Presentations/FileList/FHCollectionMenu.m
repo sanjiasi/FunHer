@@ -36,7 +36,13 @@
     return self;
 }
 
+- (void)setBgColor:(UIColor *)bgColor {
+    _bgColor = bgColor;
+    self.backgroundColor = bgColor;
+}
+
 - (void)configContentView {
+    self.backgroundColor = RGB(241, 241, 241);
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.top.bottom.equalTo(self);
@@ -94,7 +100,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.backgroundColor = RGB(241, 241, 241);
+        _collectionView.backgroundColor = [UIColor clearColor];//RGB(241, 241, 241);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[FHBarItemCell class] forCellWithReuseIdentifier:NSStringFromClass([FHBarItemCell class])];

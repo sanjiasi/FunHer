@@ -211,6 +211,29 @@
     ];
 }
 
+- (NSString *)selectedObjectId {
+    NSString *objId;
+    if (self.selectedIndex) {
+        if (self.selectedIndex.item < self.dataArray.count) {
+            FHFileCellModel *model = self.dataArray[self.selectedIndex.item];
+            objId = model.fileObj.objId;
+        }
+    }
+    return objId;
+}
+
+- (BOOL)canSelectedToEdit {
+    if (self.selectedIndex) {
+        if (self.selectedIndex.item < self.dataArray.count) {
+            FHFileCellModel *model = self.dataArray[self.selectedIndex.item];
+            if ([model.fileObj.type isEqualToString:@"2"]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 @end
 
 //    [assets enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
