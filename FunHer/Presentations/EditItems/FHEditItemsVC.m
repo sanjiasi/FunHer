@@ -39,8 +39,10 @@
     } withMainCompleted:^{
         self.collectionView.dataArray = self.present.dataArray;
         [self.collectionView reloadData];
+        [self scrollToIndexPath];
     }];
 }
+
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath {
@@ -55,12 +57,64 @@
 #pragma mark -- event response
 #pragma mark -- share
 - (void)shareAction {
-    NSLog(@"%s",__func__);
+    [SVProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *shareItems = [self.present shareFiles];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self popShareActivityView:shareItems];
+        });
+    });
+}
+
+- (void)popShareActivityView:(NSArray *)shareItems {
+    UIActivityViewController * activiVC = [[UIActivityViewController alloc]initWithActivityItems:shareItems applicationActivities:nil];
+    NSArray * excludedActivityTypes = @[UIActivityTypeCopyToPasteboard,UIActivityTypeAddToReadingList];
+    activiVC.excludedActivityTypes = excludedActivityTypes;
+    if (IS_IPAD) {
+        activiVC.popoverPresentationController.sourceView = self.view;
+        activiVC.popoverPresentationController.sourceRect = CGRectMake(0, 0, 50, 10);
+        activiVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
+    [self presentViewController: activiVC animated:YES completion:^{
+        [SVProgressHUD dismiss];
+    }];
 }
 
 #pragma mark -- move/copy
 - (void)copyAcion {
-    NSLog(@"%s",__func__);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
+    UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:@"Move to" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self handleMoveFile];
+    }];
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Copy To" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self handleCopyFile];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIColor * titleColor = UIColor.blackColor;
+    [archiveAction setValue:titleColor forKey:@"_titleTextColor"];
+    [otherAction setValue:titleColor forKey:@"_titleTextColor"];
+    [alertController addAction:archiveAction];
+    [alertController addAction:otherAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark -- 移动
+- (void)handleMoveFile {
+    [self.present moveFileToFolder:@""];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (self.moveCopyToPathBlock) {
+        self.moveCopyToPathBlock(@"1922E29D-BD28-4E17-9570-E243C9D76ECA");
+    }
+}
+
+#pragma mark -- 拷贝
+- (void)handleCopyFile {
+    [self.present copyFileToFolder:@""];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (self.moveCopyToPathBlock) {
+        self.moveCopyToPathBlock(@"1922E29D-BD28-4E17-9570-E243C9D76ECA");
+    }
 }
 
 #pragma mark -- merge
@@ -84,12 +138,20 @@
 
 #pragma mark -- 合并且保留原文件 等同于拷贝文件
 - (void)handleMergeAndKeepOldFile {
-    
+    NSString *docId = [self.present mergeFiles];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (self.mergeToNewFileBlock) {
+        self.mergeToNewFileBlock(docId);
+    }
 }
 
 #pragma mark -- 合并且删除原文件 等同往主文件移动文件
 - (void)handleMergeAndDeleteOldFile {
-    
+    NSString *docId = [self.present mergeFilesDeleteOldFile];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (self.mergeToNewFileBlock) {
+        self.mergeToNewFileBlock(docId);
+    }
 }
 
 #pragma mark -- delete
@@ -103,7 +165,11 @@
 }
 
 - (void)handleDeleteFile {
-    
+    [self.present deleteFiles];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (self.deleteFileBlock) {
+        self.deleteFileBlock();
+    }
 }
 
 #pragma mark -- 取消
@@ -133,6 +199,15 @@
 
 
 #pragma mark -- private methods
+#pragma mark -- 滚动到指定位置
+- (void)scrollToIndexPath {
+    if (self.selectedIndex) {
+        if(self.present.dataArray.count > self.selectedIndex.item) {
+            [self.collectionView scrollToItemAtIndexPath:self.selectedIndex atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        }
+    }
+}
+
 #pragma mark -- 配置导航栏和子视图
 - (void)configNavBar {
     self.title = self.selectedItem ? @"Selected 1" : @"Selected 0";
@@ -157,9 +232,21 @@
     }];
     [self.funcMenu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.superContentView);
-        make.top.equalTo(self.collectionView.mas_bottom).offset(0);
+        make.top.equalTo(self.view.mas_bottom).offset(0);
         make.bottom.equalTo(self.superContentView).offset(0);
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.funcMenu mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.leading.trailing.equalTo(self.superContentView);
+                make.top.equalTo(self.collectionView.mas_bottom).offset(0);
+                make.bottom.equalTo(self.superContentView).offset(0);
+            }];
+            [self.funcMenu layoutIfNeeded];
+        }];
+    });
+    
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {

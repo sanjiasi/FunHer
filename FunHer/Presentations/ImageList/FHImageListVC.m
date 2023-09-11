@@ -74,7 +74,6 @@
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
     } withMainCompleted:^{
-        [self endPullRefreshing];
         [self.collectionView reloadData];
     }];
 }
@@ -100,7 +99,7 @@
     self.collectionView.dataSource = self.collectionAdapter;
     self.collectionView.delegate = self.collectionAdapter;
     
-    [self configPullRefreshing];
+//    [self configPullRefreshing];
 }
 
 /// -- 下拉刷新组件

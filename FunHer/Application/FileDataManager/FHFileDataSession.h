@@ -44,7 +44,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - parentId: 上层目录Id
 + (void)copyFolder:(NSString *)objId withParentId:(NSString *)parentId;
 
-
 /// -- 批量修改文件夹
 ///   - folderIds: 文件夹主键ids
 ///   - data:  更新内容

@@ -26,6 +26,7 @@
 		671CAB1F2A677712006140A8 /* NSString+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB1E2A677712006140A8 /* NSString+Encrypt.m */; };
 		671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB212A67C0EB006140A8 /* NSString+TextSize.m */; };
 		671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB252A67C546006140A8 /* NSDate+Format.m */; };
+		673E2A2E2AAEE3DC000D0077 /* NSString+Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A2D2AAEE3DC000D0077 /* NSString+Device.m */; };
 		67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */; };
 		67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB92A77882C00E87AF5 /* FHFileListVC.m */; };
 		67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BBC2A77963600E87AF5 /* FHFileListPresent.m */; };
@@ -196,6 +197,8 @@
 		671CAB242A67C546006140A8 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
 		671CAB252A67C546006140A8 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
 		671CAB292A67C850006140A8 /* FHServiceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceCommand.h; sourceTree = "<group>"; };
+		673E2A2C2AAEE3DC000D0077 /* NSString+Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Device.h"; sourceTree = "<group>"; };
+		673E2A2D2AAEE3DC000D0077 /* NSString+Device.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Device.m"; sourceTree = "<group>"; };
 		67406BB32A77861600E87AF5 /* FHCollectionAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCollectionAdapter.h; sourceTree = "<group>"; };
 		67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCollectionAdapter.m; sourceTree = "<group>"; };
 		67406BB82A77882C00E87AF5 /* FHFileListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileListVC.h; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 				6774FEE52A6E7913005F0DB9 /* NSString+Path.m */,
 				6749B3522A8F52C000EEE913 /* NSString+Format.h */,
 				6749B3532A8F52C000EEE913 /* NSString+Format.m */,
+				673E2A2C2AAEE3DC000D0077 /* NSString+Device.h */,
+				673E2A2D2AAEE3DC000D0077 /* NSString+Device.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -1533,6 +1538,7 @@
 				6753E2B92A97562B007EDE64 /* MenuButton.m in Sources */,
 				6774FEE62A6E7913005F0DB9 /* NSString+Path.m in Sources */,
 				6774FECC2A6E1BF5005F0DB9 /* ImageRLM.m in Sources */,
+				673E2A2E2AAEE3DC000D0077 /* NSString+Device.m in Sources */,
 				67406C382A78CA8100E87AF5 /* ZLThumbnailViewController.m in Sources */,
 				67406C752A7CFC4300E87AF5 /* PhotoEditScrollView.m in Sources */,
 				676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */,

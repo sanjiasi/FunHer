@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *selectedItem;//已经选中的对象Id
 @property (nonatomic, assign) BOOL selectedAll;
 
-/// 刷新数据
+///-- 刷新数据
 - (void)refreshData;
 
 - (NSArray *)funcItems;
@@ -24,11 +24,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)selectedItemArray;
 
-/// 合并保留原文件
+/// -- 合并保留原文件
 - (NSString *)mergeFiles;
 
-/// 合并后删除原文件
+/// -- 合并后删除原文件
 - (NSString *)mergeFilesDeleteOldFile;
+
+/// -- 分享
+- (NSArray *)shareFiles;
+
+/// -- 移动
+/// - Parameter folderId: 文件夹id
+- (void)moveFileToFolder:(NSString *)folderId;
+
+/// -- 复制
+/// - Parameter folderId: 文件夹id
+- (void)copyFileToFolder:(NSString *)folderId;
+
+/// -- 删除
+- (void)deleteFiles;
 
 @end
 

@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 选中的文件是否可编辑
 - (BOOL)canSelectedToEdit;
 
+- (FHFileCellModel *)fileModelWithId:(NSString *)objId;
+
 @end
 
 NS_ASSUME_NONNULL_END

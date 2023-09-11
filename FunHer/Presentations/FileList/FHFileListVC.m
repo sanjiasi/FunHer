@@ -22,12 +22,14 @@
 #import "FHCameraVC.h"
 #import "UICollectionView+LongPressGesture.h"
 #import "FHEditItemsVC.h"
+#import "NSString+Device.h"
 
 NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdentifier";
 
-@interface FHFileListVC ()<UIDocumentPickerDelegate> {
+@interface FHFileListVC ()<UIDocumentPickerDelegate, MFMailComposeViewControllerDelegate> {
     CGFloat FHMenuHeight;
 }
+
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) FHFileListPresent *present;
@@ -78,6 +80,11 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     }
 }
 
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark -- event response
 #pragma mark -- 跳转文件夹界面
 - (void)goToPushFolderVC:(FHFileCellModel *)model {
@@ -118,6 +125,23 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     }];
 }
 
+#pragma mark -- 批量处理Assets
+- (void)handleAssets:(NSArray *)assets {
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    __weak typeof(self) weakSelf = self;
+    [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
+        [SVProgressHUD dismiss];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (imagePaths.count == 1) {
+            NSString *path = imagePaths[0];
+            [strongSelf handleCropImage:path.fileName];
+            return;
+        }
+        [strongSelf refreshWithNewData];
+    }];
+}
+
 #pragma mark -- 打开相机拍照
 - (void)takePhotoByCamera {
     FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
@@ -135,6 +159,14 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     UIImage *img = [UIImage imageWithData:photoImage];
     NSString *imgPath = [self.present saveOriginalPhoto:photoImage imageSize:img.size atIndex:0];
     [self handleCropImage:[imgPath fileName]];
+}
+
+#pragma mark -- 跳转去裁剪图片
+- (void)handleCropImage:(NSString *)fileName {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.fileName = fileName;
+    [self.navigationController pushViewController:cropVC animated:YES];
+    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
 }
 
 #pragma mark -- 新建文件夹
@@ -169,35 +201,54 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
         if (![self.present canSelectedToEdit]) {
             return;
         }
+        vc.selectedIndex = self.present.selectedIndex;
         vc.selectedItem = self.present.selectedObjectId;
     }
+    __weak typeof(self) weakSelf = self;
+    vc.moveCopyToPathBlock = ^(NSString * _Nonnull objectId) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        FHFileCellModel *model = [strongSelf.present fileModelWithId:objectId];
+        [strongSelf goToPushFolderVC:model];
+    };
+    vc.mergeToNewFileBlock = ^(NSString * _Nonnull objectId) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        FHFileCellModel *model = [strongSelf.present fileModelWithId:objectId];
+        [strongSelf goToPushDocVC:model];
+    };
+    vc.deleteFileBlock = ^{
+        // 刷新
+    };
+    vc.shareFileBlock = ^{
+        // 暂无需要处理
+    };
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController presentViewController:nav animated:NO completion:nil];
 }
 
-#pragma mark -- 批量处理Assets
-- (void)handleAssets:(NSArray *)assets {
-    [SVProgressHUD show];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    __weak typeof(self) weakSelf = self;
-    [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
-        [SVProgressHUD dismiss];
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (imagePaths.count == 1) {
-            NSString *path = imagePaths[0];
-            [strongSelf handleCropImage:path.fileName];
-            return;
-        }
-        [strongSelf refreshWithNewData];
-    }];
-}
-
-- (void)handleCropImage:(NSString *)fileName {
-    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
-    cropVC.fileName = fileName;
-    [self.navigationController pushViewController:cropVC animated:YES];
-    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
+#pragma mark -- 反馈
+- (void)sendEmialFeedback {
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (!mailClass) {
+        return;
+    }
+    if (![mailClass canSendMail]) {
+        [self takeAlert:@"Email Account Setup" withMessage:@"You haven't set your email account, Please go to your phone “Setting-Email”,tap “Add Account” to create your email account" actionHandler:^{
+        }];
+        return;
+    }
+    
+    MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+    mailCompose.mailComposeDelegate = self;
+    //主题
+    [mailCompose setSubject:@"Light Scanner Feedback"];
+    //收件人
+    NSArray *toRecipients = [NSArray arrayWithObjects:@"guarenzhi@gmail.com",nil];
+    [mailCompose setToRecipients:toRecipients];
+    
+    NSString *emailBody = [NSString stringWithFormat:@"Model:%@\n %@\n App:%@",[NSString deviceVersion],[NSString systemVersion],[NSString appVersion]];
+    [mailCompose setMessageBody:emailBody isHTML:NO];
+    [self presentViewController:mailCompose animated:YES completion:^{}];
 }
 
 #pragma mark -- public methods
@@ -225,6 +276,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 #pragma mark -- private methods
 #pragma mark -- 配置导航栏和子视图
 - (void)configNavBar {
+    [self setLeftButton:@"@US" withSelector:@selector(sendEmialFeedback)];
     [self setRigthButton:@"Select" withSelector:@selector(selectItemsAction)];
 }
 
@@ -278,6 +330,16 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     if ([self.collectionView.mj_header isRefreshing]) {
         [self.collectionView.mj_header endRefreshing];
     }
+}
+
+- (void)setLeftButton:(nullable NSString *)title withSelector:(SEL)selector {
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [btn.titleLabel setFont:PingFang_R_FONT_(13)];
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = barItem;
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {

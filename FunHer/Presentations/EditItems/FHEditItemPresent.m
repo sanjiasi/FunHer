@@ -41,9 +41,22 @@
 }
 
 #pragma mark -- 分享
-- (NSString *)shareFiles {
-    
-    return @"";
+- (NSArray *)shareFiles {
+    NSMutableArray *temp = @[].mutableCopy;
+    NSArray *results = [self selectedItemArray];
+    [results enumerateObjectsUsingBlock:^(FHFileEditCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *imageArr = [FHReadFileSession entityListToDic:[FHReadFileSession imageRLMsByParentId:obj.fileObj.objId]];
+        NSMutableArray *fileArr = @[].mutableCopy;
+        [imageArr enumerateObjectsUsingBlock:^(NSDictionary  *_Nonnull imgFile, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *fileName = imgFile[@"name"];
+            NSURL *itemUrl = [NSURL fileURLWithPath:[NSString sampleImagePath:fileName]];
+            if (itemUrl) {
+                [fileArr addObject:itemUrl];
+            }
+        }];
+        [temp addObjectsFromArray:fileArr];
+    }];
+    return [NSArray arrayWithArray:temp];
 }
 
 #pragma mark -- 合并
@@ -80,12 +93,20 @@
 
 #pragma mark -- 移动
 - (void)moveFileToFolder:(NSString *)folderId {
-    
+    NSString *parentID = @"1922E29D-BD28-4E17-9570-E243C9D76ECA";
+    NSArray *results = [self selectedItemArray];
+    [results enumerateObjectsUsingBlock:^(FHFileEditCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [FHFileDataSession editDocumentPath:obj.fileObj.objId withParentId:parentID];
+    }];
 }
 
 #pragma mark -- 复制
 - (void)copyFileToFolder:(NSString *)folderId {
-    
+    NSString *parentID = @"1922E29D-BD28-4E17-9570-E243C9D76ECA";
+    NSArray *results = [self selectedItemArray];
+    [results enumerateObjectsUsingBlock:^(FHFileEditCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [FHFileDataSession copyDocument:obj.fileObj.objId withParentId:parentID];
+    }];
 }
 
 #pragma mark -- 删除

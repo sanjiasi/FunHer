@@ -196,6 +196,17 @@
     return nil;
 }
 
+- (FHFileCellModel *)fileModelWithId:(NSString *)objId {
+    __block FHFileCellModel *model;
+    [self.dataArray enumerateObjectsUsingBlock:^(FHFileCellModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.fileObj.objId isEqualToString:objId]) {
+            model = obj;
+            *stop = YES;
+        }
+    }];
+    return model;
+}
+
 #pragma mark -- getter and setters
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
