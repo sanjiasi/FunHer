@@ -155,6 +155,7 @@
 
 #pragma mark -- 选择文件
 - (void)selectItemsAction {
+    if (self.present.dataArray.count == 0) return;
     self.present.selectedIndex = nil;
     [self goToSelectedItems];
 }
@@ -219,6 +220,7 @@
 }
 
 - (void)configContentView {
+    self.view.backgroundColor = kViewBGColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
     [self.superContentView addSubview:self.libraryBtn];
@@ -327,7 +329,7 @@
         
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = UIColor.whiteColor;
+        colView.backgroundColor = kViewBGColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
         __weak typeof(self) weakSelf = self;
         [colView addLongPressGestureWithDidSelected:^(NSIndexPath * _Nonnull indexPath) {

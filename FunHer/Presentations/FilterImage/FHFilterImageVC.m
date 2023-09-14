@@ -125,6 +125,7 @@
 }
 
 - (void)configContentView {
+    self.view.backgroundColor = UIColor.whiteColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.showImgView];
     [self.superContentView addSubview:self.bottomFunctionView];
@@ -163,11 +164,7 @@
     
     UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
     self.showImgView.mainImage = cropImg;
-    
-//    [LZDispatchManager mainQueueHandler:^{
-//        UIImage *cropImg = [UIImage imageWithContentsOfFile:self.cropImgPath];
-//        self.showImgView.mainImage = cropImg;
-//    }];
+
 }
 
 #pragma mark -- getter and setters

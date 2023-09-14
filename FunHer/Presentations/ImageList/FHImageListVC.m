@@ -85,6 +85,7 @@
 }
 
 - (void)configContentView {
+    self.view.backgroundColor = kViewBGColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
     [self.superContentView addSubview:self.libraryBtn];
@@ -178,7 +179,7 @@
         
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = RGB(244, 244, 244);
+        colView.backgroundColor = kViewBGColor;
         [colView registerClass:[FHImageCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHImageCollectionCell class])];
         _collectionView = colView;
     }

@@ -188,6 +188,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 选择文件
 - (void)selectItemsAction {
+    if (self.present.dataArray.count == 0) return;
     self.present.selectedIndex = nil;
     [self goToSelectedItems];
 }
@@ -281,6 +282,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 - (void)configContentView {
     FHMenuHeight = 80;
+    self.view.backgroundColor = kViewBGColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
     [self.superContentView addSubview:self.cameraBtn];
