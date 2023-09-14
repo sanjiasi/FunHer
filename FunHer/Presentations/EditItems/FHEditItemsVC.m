@@ -12,6 +12,7 @@
 #import "FHFileEditCollectionCell.h"
 #import "FHEditedCollectionView.h"
 #import "FHCollectionMenu.h"
+#import "FHFileBoardVC.h"
 
 @interface FHEditItemsVC ()
 @property (nonatomic, strong) UIView *superContentView;
@@ -84,10 +85,10 @@
 - (void)copyAcion {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
     UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:@"Move to" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self handleMoveFile];
+        [self selecteMoveCopyTargetFile:FileHandleTypeMove];
     }];
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Copy To" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self handleCopyFile];
+        [self selecteMoveCopyTargetFile:FileHandleTypeCopy];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     UIColor * titleColor = UIColor.blackColor;
@@ -99,21 +100,40 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+#pragma mark -- 选择复制/移动的目的地
+- (void)selecteMoveCopyTargetFile:(FileHandleType)handleType {
+    FHFileBoardVC *nextVC = [[FHFileBoardVC alloc] init];
+    nextVC.fileObjId = FHParentIdByHome;
+    nextVC.fileHandleType = handleType;
+    nextVC.folderType = YES;
+    nextVC.selectedCount = [[self.present selectedItemArray] count];
+    nextVC.callBackFilePathBlock = ^(NSString * _Nonnull objectId) {
+        if (handleType == FileHandleTypeMove) {
+            [self handleMoveFile:objectId];
+        } else {
+            [self handleCopyFile:objectId];
+        }
+    };
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
 #pragma mark -- 移动
-- (void)handleMoveFile {
-    [self.present moveFileToFolder:@""];
+- (void)handleMoveFile:(NSString *)objId {
+    [self.present moveFileToFolder:objId];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.moveCopyToPathBlock) {
-        self.moveCopyToPathBlock(@"1922E29D-BD28-4E17-9570-E243C9D76ECA");
+        self.moveCopyToPathBlock(objId);
     }
 }
 
 #pragma mark -- 拷贝
-- (void)handleCopyFile {
-    [self.present copyFileToFolder:@""];
+- (void)handleCopyFile:(NSString *)objId {
+    [self.present copyFileToFolder:objId];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.moveCopyToPathBlock) {
-        self.moveCopyToPathBlock(@"1922E29D-BD28-4E17-9570-E243C9D76ECA");
+        self.moveCopyToPathBlock(objId);
     }
 }
 

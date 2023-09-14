@@ -14,6 +14,10 @@
 #import "FHFileModel.h"
 #import "FHImageListVC.h"
 #import "FHCropImageVC.h"
+#import "FHNotificationManager.h"
+#import "FHCameraVC.h"
+#import "UICollectionView+LongPressGesture.h"
+#import "FHEditItemsVC.h"
 
 @interface FHFileChildListVC ()
 @property (nonatomic, strong) UIView *superContentView;
@@ -21,6 +25,8 @@
 @property (nonatomic, strong) FHFileChildListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 @property (nonatomic, weak) UIViewController *photoSender;
+@property (nonatomic, strong) UIButton *libraryBtn;
+@property (nonatomic, strong) UIButton *cameraBtn;
 
 @end
 
@@ -39,7 +45,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self refreshWithNewData];
 }
 
@@ -84,6 +89,52 @@
     }];
 }
 
+#pragma mark -- 批量处理Assets
+- (void)handleAssets:(NSArray *)assets {
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    __weak typeof(self) weakSelf = self;
+    [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
+        [SVProgressHUD dismiss];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (imagePaths.count == 1) {
+            NSString *path = imagePaths[0];
+            [strongSelf handleCropImage:path.fileName];
+            return;
+        }
+        [strongSelf refreshWithNewData];
+    }];
+}
+
+#pragma mark -- 跳转去裁剪图片
+- (void)handleCropImage:(NSString *)fileName {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.fileName = fileName;
+    UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:NO completion:nil];
+    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
+}
+
+#pragma mark -- 打开相机拍照
+- (void)takePhotoByCamera {
+    FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
+    cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    __weak typeof(self) weakSelf = self;
+    cameraVC.getPhotoBlock = ^(NSData * _Nonnull photoImage) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf savePhotoToFilter:photoImage];
+    };
+    [self.navigationController presentViewController:cameraVC animated:YES completion:nil];
+}
+
+#pragma mark -- 拍照获取的照片去做滤镜处理
+- (void)savePhotoToFilter:(NSData *)photoImage {
+    UIImage *img = [UIImage imageWithData:photoImage];
+    NSString *imgPath = [self.present saveOriginalPhoto:photoImage imageSize:img.size atIndex:0];
+    [self handleCropImage:[imgPath fileName]];
+}
+
 #pragma mark -- 新建文件夹
 - (void)addNewFolder {
     __weak typeof(self) weakSelf = self;
@@ -102,27 +153,42 @@
     }];
 }
 
-#pragma mark -- 批量处理Assets
-- (void)handleAssets:(NSArray *)assets {
-    [SVProgressHUD show];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    __weak typeof(self) weakSelf = self;
-    [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
-        [SVProgressHUD dismiss];
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (imagePaths.count == 1) {
-            NSString *path = imagePaths[0];
-            [strongSelf handleCropImage:path.fileName];
-            return;
-        }
-        [strongSelf refreshWithNewData];
-    }];
+#pragma mark -- 选择文件
+- (void)selectItemsAction {
+    self.present.selectedIndex = nil;
+    [self goToSelectedItems];
 }
 
-- (void)handleCropImage:(NSString *)fileName {
-    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
-    cropVC.fileName = fileName;
-    [self.navigationController pushViewController:cropVC animated:YES];
+- (void)goToSelectedItems {
+    FHEditItemsVC *vc = [[FHEditItemsVC alloc] init];
+    vc.parentId = self.present.fileObjId;
+    if (self.present.selectedIndex) {
+        if (![self.present canSelectedToEdit]) {
+            return;
+        }
+        vc.selectedIndex = self.present.selectedIndex;
+        vc.selectedItem = self.present.selectedObjectId;
+    }
+    __weak typeof(self) weakSelf = self;
+    vc.moveCopyToPathBlock = ^(NSString * _Nonnull objectId) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        FHFileCellModel *model = [strongSelf.present fileModelWithId:objectId];
+        [strongSelf goToPushFolderVC:model];
+    };
+    vc.mergeToNewFileBlock = ^(NSString * _Nonnull objectId) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        FHFileCellModel *model = [strongSelf.present fileModelWithId:objectId];
+        [strongSelf goToPushDocVC:model];
+    };
+    vc.deleteFileBlock = ^{
+        // 刷新
+    };
+    vc.shareFileBlock = ^{
+        // 暂无需要处理
+    };
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:NO completion:nil];
 }
 
 #pragma mark -- public methods
@@ -130,40 +196,54 @@
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
     } withMainCompleted:^{
-//        [self endPullRefreshing];
         [self.collectionView reloadData];
     }];
 }
 
+#pragma mark -- 增加文档并刷新
+- (void)addDocAndRefresh:(NSNotification *)noti {
+    NSDictionary *userInfo = noti.userInfo;
+    [LZDispatchManager globalQueueHandler:^{
+        NSDictionary *newDoc = [self.present createDocWithImage:userInfo];
+        FHFileCellModel *model = [self.present buildCellModelWihtObject:newDoc];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self goToPushDocVC:model];
+        });
+    }];
+    [FHNotificationManager removeNotiOberver:self forName:FHCreateDocNotification];
+}
+
 #pragma mark -- private methods
 - (void)configNavBar {
-    [self setRigthButton:@"Add" withSelector:@selector(addPhotoFromLibrary)];
+    [self setRigthButton:@"Select" withSelector:@selector(selectItemsAction)];
 }
 
 - (void)configContentView {
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
+    [self.superContentView addSubview:self.libraryBtn];
+    [self.superContentView addSubview:self.cameraBtn];
     
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.leading.trailing.equalTo(self.view).offset(0);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(-60);
+        make.bottom.equalTo(self.superContentView).offset(0);
     }];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"Create Folder" forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addNewFolder) forControlEvents:UIControlEventTouchUpInside];
-    [self.superContentView addSubview:btn];
+    [self.libraryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.cameraBtn.mas_leading).offset(-20);
+        make.centerY.equalTo(self.cameraBtn.mas_centerY).offset(0);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
+    }];
     
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.superContentView);
-        make.size.mas_equalTo(CGSizeMake(160, 60));
-        make.top.equalTo(self.collectionView.mas_bottom);
+    [self.cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.superContentView).offset(-25);
+        make.bottom.equalTo(self.superContentView).offset(-80);
+        make.size.mas_equalTo(CGSizeMake(80, 80));
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -197,11 +277,10 @@
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    btn.tag = 115;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
 }
@@ -250,6 +329,12 @@
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         colView.backgroundColor = UIColor.whiteColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
+        __weak typeof(self) weakSelf = self;
+        [colView addLongPressGestureWithDidSelected:^(NSIndexPath * _Nonnull indexPath) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.present.selectedIndex = indexPath;
+            [strongSelf goToSelectedItems];
+        }];
         _collectionView = colView;
     }
     return _collectionView;
@@ -269,6 +354,28 @@
         _superContentView = content;
     }
     return _superContentView;
+}
+
+- (UIButton *)libraryBtn {
+    if (!_libraryBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"Photo" forState:UIControlStateNormal];
+        [btn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];
+        _libraryBtn = btn;
+    }
+    return _libraryBtn;
+}
+
+- (UIButton *)cameraBtn {
+    if (!_cameraBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"Camera" forState:UIControlStateNormal];
+        [btn setTitleColor:kThemeColor forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
+        _cameraBtn = btn;
+    }
+    return _cameraBtn;
 }
 
 - (void)dealloc {

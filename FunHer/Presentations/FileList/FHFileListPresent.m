@@ -104,9 +104,6 @@
         [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     }
     return imgPath;
-//    NSString *imgName = [NSString nameByRemoveIndex:imgPath.fileName];
-//    NSString *originalPath = [[NSString originalDir] stringByAppendingPathComponent:imgName];
-//    [LZFileManager copyItemAtPath:imgPath toPath:originalPath overwrite:YES];
 }
 
 
@@ -138,9 +135,9 @@
     } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
         NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
         if (firstImg) {
-            model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
+            model.thumbNail = [NSString thumbImagePath:firstImg[@"name"]];
         } else {
-            model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:@"placeHolder.jpg"];
+            model.thumbNail = [NSString thumbImagePath:@"placeHolder.jpg"];
         }
         if (![LZFileManager isExistsAtPath:model.thumbNail]) {
             [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];

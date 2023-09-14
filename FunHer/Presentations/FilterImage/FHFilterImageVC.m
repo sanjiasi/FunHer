@@ -70,7 +70,7 @@
         }
     } else {
         [self.present createDocWithImage];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -134,7 +134,7 @@
     
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
     [self.showImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);

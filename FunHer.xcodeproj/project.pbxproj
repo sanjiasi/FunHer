@@ -27,6 +27,11 @@
 		671CAB222A67C0EB006140A8 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB212A67C0EB006140A8 /* NSString+TextSize.m */; };
 		671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 671CAB252A67C546006140A8 /* NSDate+Format.m */; };
 		673E2A2E2AAEE3DC000D0077 /* NSString+Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A2D2AAEE3DC000D0077 /* NSString+Device.m */; };
+		673E2A352AB1B9F4000D0077 /* FHFileBoardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A342AB1B9F4000D0077 /* FHFileBoardVC.m */; };
+		673E2A382AB29A74000D0077 /* FHBoardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A372AB29A74000D0077 /* FHBoardTableView.m */; };
+		673E2A3B2AB2A7E0000D0077 /* FHBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A3A2AB2A7E0000D0077 /* FHBoardCell.m */; };
+		673E2A3E2AB2A7FF000D0077 /* FHBoardCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */; };
+		673E2A412AB2B0C1000D0077 /* FHBoardPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A402AB2B0C1000D0077 /* FHBoardPresent.m */; };
 		67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */; };
 		67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB92A77882C00E87AF5 /* FHFileListVC.m */; };
 		67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BBC2A77963600E87AF5 /* FHFileListPresent.m */; };
@@ -199,6 +204,16 @@
 		671CAB292A67C850006140A8 /* FHServiceCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceCommand.h; sourceTree = "<group>"; };
 		673E2A2C2AAEE3DC000D0077 /* NSString+Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Device.h"; sourceTree = "<group>"; };
 		673E2A2D2AAEE3DC000D0077 /* NSString+Device.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Device.m"; sourceTree = "<group>"; };
+		673E2A332AB1B9F4000D0077 /* FHFileBoardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileBoardVC.h; sourceTree = "<group>"; };
+		673E2A342AB1B9F4000D0077 /* FHFileBoardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileBoardVC.m; sourceTree = "<group>"; };
+		673E2A362AB29A74000D0077 /* FHBoardTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBoardTableView.h; sourceTree = "<group>"; };
+		673E2A372AB29A74000D0077 /* FHBoardTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardTableView.m; sourceTree = "<group>"; };
+		673E2A392AB2A7E0000D0077 /* FHBoardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBoardCell.h; sourceTree = "<group>"; };
+		673E2A3A2AB2A7E0000D0077 /* FHBoardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardCell.m; sourceTree = "<group>"; };
+		673E2A3C2AB2A7FF000D0077 /* FHBoardCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBoardCellModel.h; sourceTree = "<group>"; };
+		673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardCellModel.m; sourceTree = "<group>"; };
+		673E2A3F2AB2B0C1000D0077 /* FHBoardPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBoardPresent.h; sourceTree = "<group>"; };
+		673E2A402AB2B0C1000D0077 /* FHBoardPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardPresent.m; sourceTree = "<group>"; };
 		67406BB32A77861600E87AF5 /* FHCollectionAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCollectionAdapter.h; sourceTree = "<group>"; };
 		67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCollectionAdapter.m; sourceTree = "<group>"; };
 		67406BB82A77882C00E87AF5 /* FHFileListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileListVC.h; sourceTree = "<group>"; };
@@ -675,6 +690,23 @@
 			path = AppDelegateService;
 			sourceTree = "<group>";
 		};
+		673E2A322AB1B9BE000D0077 /* FileBoard */ = {
+			isa = PBXGroup;
+			children = (
+				673E2A332AB1B9F4000D0077 /* FHFileBoardVC.h */,
+				673E2A342AB1B9F4000D0077 /* FHFileBoardVC.m */,
+				673E2A3F2AB2B0C1000D0077 /* FHBoardPresent.h */,
+				673E2A402AB2B0C1000D0077 /* FHBoardPresent.m */,
+				673E2A362AB29A74000D0077 /* FHBoardTableView.h */,
+				673E2A372AB29A74000D0077 /* FHBoardTableView.m */,
+				673E2A392AB2A7E0000D0077 /* FHBoardCell.h */,
+				673E2A3A2AB2A7E0000D0077 /* FHBoardCell.m */,
+				673E2A3C2AB2A7FF000D0077 /* FHBoardCellModel.h */,
+				673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */,
+			);
+			path = FileBoard;
+			sourceTree = "<group>";
+		};
 		67406BB22A77858C00E87AF5 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,6 +719,7 @@
 		67406BB62A77878900E87AF5 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				673E2A322AB1B9BE000D0077 /* FileBoard */,
 				675775C52AA99E4C0007838E /* EditItems */,
 				675775BE2AA873150007838E /* Camera */,
 				6749B3552A8F6BC300EEE913 /* FilterImage */,
@@ -1500,12 +1533,14 @@
 				67406C1F2A78CA8100E87AF5 /* ZLPhotoBrowserCell.m in Sources */,
 				6753E2B02A9755E7007EDE64 /* UIButton+LongTap.m in Sources */,
 				67406C232A78CA8100E87AF5 /* ZLInteractiveTrasition.m in Sources */,
+				673E2A3B2AB2A7E0000D0077 /* FHBoardCell.m in Sources */,
 				67406C3C2A78CA8100E87AF5 /* ZLPhotoConfiguration.m in Sources */,
 				6753E2A92A9743E5007EDE64 /* FHFilterImagePresent.m in Sources */,
 				6774FEDC2A6E6745005F0DB9 /* LZDocManager.m in Sources */,
 				67406C722A7CFC2B00E87AF5 /* ShowPicCollectionViewCell.m in Sources */,
 				67406C272A78CA8100E87AF5 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				67406BCE2A789F2D00E87AF5 /* LZFileManager.m in Sources */,
+				673E2A3E2AB2A7FF000D0077 /* FHBoardCellModel.m in Sources */,
 				67406C202A78CA8100E87AF5 /* ZLForceTouchPreviewController.m in Sources */,
 				6749B33F2A8CCF5C00EEE913 /* CropView.swift in Sources */,
 				67406C242A78CA8100E87AF5 /* ZLPullDownInteractiveTransition.m in Sources */,
@@ -1528,6 +1563,7 @@
 				675775D42AA9A3BE0007838E /* FHSystemActionManager.m in Sources */,
 				67406C5C2A7CDE1700E87AF5 /* FHFileChildListPresent.m in Sources */,
 				67406C622A7CE50100E87AF5 /* FHImageListPresent.m in Sources */,
+				673E2A412AB2B0C1000D0077 /* FHBoardPresent.m in Sources */,
 				6753E2CE2A987F6C007EDE64 /* UIImage+Filter.m in Sources */,
 				67406C3A2A78CA8100E87AF5 /* ZLPhotoModel.m in Sources */,
 				67406C1C2A78CA8100E87AF5 /* UIControl+EnlargeTouchArea.m in Sources */,
@@ -1563,8 +1599,10 @@
 				6749B3472A8DB91C00EEE913 /* FHMagnifierView.m in Sources */,
 				675775D72AAAADCC0007838E /* FHEditedCollectionView.m in Sources */,
 				67406C212A78CA8100E87AF5 /* ZLPhotoManager.m in Sources */,
+				673E2A382AB29A74000D0077 /* FHBoardTableView.m in Sources */,
 				6774FEE92A6EA6F5005F0DB9 /* FHReadFileSession.m in Sources */,
 				676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */,
+				673E2A352AB1B9F4000D0077 /* FHFileBoardVC.m in Sources */,
 				6753E2BB2A97562B007EDE64 /* MenuItem.m in Sources */,
 				67406C2E2A78CA8100E87AF5 /* ZLVideoPlayerControl.m in Sources */,
 				675775B72AA6DE270007838E /* FHPDFTool.m in Sources */,

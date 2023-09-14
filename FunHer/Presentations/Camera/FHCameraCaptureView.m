@@ -249,7 +249,7 @@
     if (!_focusView) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
         view.layer.borderWidth = 1.0;
-        view.layer.borderColor =[UIColor whiteColor].CGColor;
+        view.layer.borderColor = [UIColor colorWithRed:226/255.0 green:156/255.0 blue:91/255.0 alpha:1.0].CGColor;
         view.backgroundColor = [UIColor clearColor];
         view.hidden = YES;
         _focusView = view;

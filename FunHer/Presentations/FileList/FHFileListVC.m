@@ -59,9 +59,6 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     [self refreshWithNewData];
 }
 
-//    [LZDBService clearRealmDB];
-//    [LZFileManager removeItemAtPath:[NSString imageBox]];
-
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFileCellModel *)model {
     if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
@@ -165,7 +162,9 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 - (void)handleCropImage:(NSString *)fileName {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.fileName = fileName;
-    [self.navigationController pushViewController:cropVC animated:YES];
+    UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:NO completion:nil];
     [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
 }
 
@@ -189,7 +188,6 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 选择文件
 - (void)selectItemsAction {
-    NSLog(@"%s",__func__);
     self.present.selectedIndex = nil;
     [self goToSelectedItems];
 }
@@ -265,10 +263,11 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 - (void)addDocAndRefresh:(NSNotification *)noti {
     NSDictionary *userInfo = noti.userInfo;
     [LZDispatchManager globalQueueHandler:^{
-        [self.present createDocWithImage:userInfo];
-        [self configData];
-    } withMainCompleted:^{
-        [self.collectionView reloadData];
+        NSDictionary *newDoc = [self.present createDocWithImage:userInfo];
+        FHFileCellModel *model = [self.present buildCellModelWihtObject:newDoc];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self goToPushDocVC:model];
+        });
     }];
     [FHNotificationManager removeNotiOberver:self forName:FHCreateDocNotification];
 }
@@ -291,6 +290,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
         make.leading.trailing.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
+    
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.leading.trailing.equalTo(self.superContentView);
         make.top.equalTo(self.superContentView).offset(10);
@@ -449,7 +449,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
         [ovalBtn setTitle:@"Camera" forState:UIControlStateNormal];
         ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [ovalBtn setTitleColor:kThemeColor forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
         _cameraBtn = ovalBtn;
     }

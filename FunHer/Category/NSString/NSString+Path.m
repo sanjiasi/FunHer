@@ -95,7 +95,7 @@
 }
 
 + (NSString *)defaultDocName {
-    return [NSString stringWithFormat:@"Doc %@",[NSDate timeFormatYMMDD:[NSDate date]]];
+    return [NSString stringWithFormat:@"Doc %@",[NSDate timeFormatMDYHM:[NSDate date]]];
 }
 
 #pragma mark -- 存储缩率图

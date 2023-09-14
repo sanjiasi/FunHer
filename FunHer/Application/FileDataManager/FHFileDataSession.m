@@ -210,9 +210,22 @@
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
     if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
     RLMResults<ImageRLM *> *results = [FHReadFileSession imageRLMsByParentId:appDoc.Id];
+    for (ImageRLM *object in results) {
+        [self removeImageFile:object.name];
+    }
     [LZDocManager removeEntityList:results];
     [self removeDoc:appDoc];
 }
+
++ (void)removeImageFile:(NSString *)fileName {
+    NSString *thumbPath = [NSString thumbImagePath:fileName];
+    NSString *samplePath = [NSString sampleImagePath:fileName];
+    NSString *originalPath = [NSString originalImagePath:fileName];
+    [LZFileManager removeItemAtPath:thumbPath];
+    [LZFileManager removeItemAtPath:samplePath];
+    [LZFileManager removeItemAtPath:originalPath];
+}
+
 
 #pragma mark -- 修改文档名称
 + (void)editDocumentName:(NSString *)name withId:(NSString *)objId {
@@ -278,12 +291,28 @@
     RLMResults<ImageRLM *> *imgs = [FHReadFileSession imageRLMsByParentId:objId];
     NSMutableArray *copyImgs = @[].mutableCopy;
     for (ImageRLM *imgFile in imgs) {
-        ImageRLM *copyImg = [self buildImageWithName:imgFile.name byIndex:imgFile.picIndex atPath:copyDoc.pathId];
+        NSString *imageName = [NSString stringWithFormat:@"%@%@",[NSString imageName], FHFilePathExtension];
+        [self copyImageFile:imgFile.name toPath:imageName];
+        ImageRLM *copyImg = [self buildImageWithName:imageName byIndex:imgFile.picIndex atPath:copyDoc.pathId];
         [copyImgs addObject:copyImg];
     }
     [LZImageManager batchAddEntityList:copyImgs];
     [LZDocManager addEntity:copyDoc];
     return copyDoc.Id;
+}
+
++ (void)copyImageFile:(NSString *)fileName toPath:(NSString *)newFileName {
+    NSString *thumbPath = [NSString thumbImagePath:fileName];
+    NSString *samplePath = [NSString sampleImagePath:fileName];
+    NSString *originalPath = [NSString originalImagePath:fileName];
+    
+    NSString *thumbPath2 = [NSString thumbImagePath:newFileName];
+    NSString *samplePath2 = [NSString sampleImagePath:newFileName];
+    NSString *originalPath2 = [NSString originalImagePath:newFileName];
+    
+    [LZFileManager copyItemAtPath:thumbPath toPath:thumbPath2];
+    [LZFileManager copyItemAtPath:samplePath toPath:samplePath2];
+    [LZFileManager copyItemAtPath:originalPath toPath:originalPath2];
 }
 
 #pragma mark -- 构造DocRLM
@@ -403,14 +432,14 @@
     NSMutableArray *newImages = @[].mutableCopy;
     NSMutableArray *images = [FHReadFileSession imageRLMsOrderByImageIds:imageIds];
     NSInteger start = [FHReadFileSession lastImageIndexByParentId:newDocId] + 1;
-    for (int i = 0; i < images.count; i++) {
-        if (i < images.count) {//
-            ImageRLM *imgEntity = images[i];
-            NSInteger picIndex = i + start;
-            ImageRLM *copyImg = [self buildImageWithName:imgEntity.name byIndex:picIndex atPath:newDoc.pathId];
-            [newImages addObject:copyImg];
-        }
-    }
+    [images enumerateObjectsUsingBlock:^(ImageRLM * _Nonnull imgFile, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *imageName = [NSString stringWithFormat:@"%@%@",[NSString imageName], FHFilePathExtension];
+        [self copyImageFile:imgFile.name toPath:imageName];
+        NSInteger picIndex = idx + start;
+        ImageRLM *copyImg = [self buildImageWithName:imageName byIndex:picIndex atPath:newDoc.pathId];
+        [newImages addObject:copyImg];
+    }];
+    
     [self batchCreateImages:newImages];
     [self updateDoc:newDocId byTransaction:^{
         newDoc.uTime = [NSDate utcStamp];

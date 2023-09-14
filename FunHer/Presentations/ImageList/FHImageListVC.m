@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) FHImageListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
+@property (nonatomic, strong) UIButton *libraryBtn;
 
 @end
 
@@ -80,20 +81,27 @@
 
 #pragma mark -- private methods
 - (void)configNavBar {
-    [self setRigthButton:@"Add" withSelector:@selector(addPhotoFromLibrary)];
+//    [self setRigthButton:@"Add" withSelector:@selector(addPhotoFromLibrary)];
 }
 
 - (void)configContentView {
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.collectionView];
+    [self.superContentView addSubview:self.libraryBtn];
     
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.leading.trailing.equalTo(self.view).offset(0);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.leading.trailing.equalTo(self.superContentView);
+    }];
+    
+    [self.libraryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.superContentView).offset(-25);
+        make.bottom.equalTo(self.superContentView).offset(-80);
+        make.size.mas_equalTo(CGSizeMake(80, 80));
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -191,6 +199,17 @@
         _superContentView = content;
     }
     return _superContentView;
+}
+
+- (UIButton *)libraryBtn {
+    if (!_libraryBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"Photo" forState:UIControlStateNormal];
+        [btn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];
+        _libraryBtn = btn;
+    }
+    return _libraryBtn;
 }
 
 - (void)dealloc {

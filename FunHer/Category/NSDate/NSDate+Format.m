@@ -73,7 +73,7 @@
 }
 
 + (NSString *)timeFormatMDYHM:(NSDate *)date {
-    NSString *locationString = [self timeFormatString:@"MM dd, yyyy, HH:mm" withDate:date];
+    NSString *locationString = [self timeFormatString:@"MM-dd-yyyy HH.mm" withDate:date];
     return locationString;
 }
 

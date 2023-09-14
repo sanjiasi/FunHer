@@ -21,6 +21,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 @property (nonatomic ,strong) CropView * cropView;
 @property (nonatomic ,strong) FHMagnifierView *magnifierView;
 @property (nonatomic, strong) FHCropImagePresent *present;
+@property (nonatomic, strong) UIButton *actionBtn;//执行
 
 @end
 
@@ -74,31 +75,49 @@ CGFloat const kCameraToolsViewHeight = 60;
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark -- public methods
-
+- (void)clickCancel {
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark -- private methods
 - (void)configNavBar {
-    [self setRigthButton:@"Done" withSelector:@selector(cropImageDone)];
+    [self setLeftButton:@"Cancel" withSelector:@selector(clickCancel)];
+//    [self setRigthButton:@"Done" withSelector:@selector(cropImageDone)];
 }
 
+- (void)setLeftButton:(nullable NSString *)title withSelector:(SEL)selector {
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 44)];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = barItem;
+}
+
+
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    btn.tag = 115;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
 }
 
 - (void)configContentView {
+    self.view.backgroundColor = UIColor.whiteColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.leading.trailing.equalTo(self.view).offset(0);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-kBottomSafeHeight);
     }];
     [self.superContentView addSubview:self.cropView];
+    UIView *bottomView = [[UIView alloc] init];
+    bottomView.backgroundColor = UIColor.whiteColor;
+    [self.superContentView addSubview:bottomView];
+    [bottomView addSubview:self.actionBtn];
     
     [self.cropView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.superContentView).offset(CropView_X);
@@ -106,6 +125,18 @@ CGFloat const kCameraToolsViewHeight = 60;
         make.top.equalTo(self.superContentView).offset(CropView_Y);
         make.bottom.equalTo(self.superContentView).offset(-kCameraToolsViewHeight - CropView_Y);
     }];
+    
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self.superContentView);
+        make.height.mas_equalTo(70);
+    }];
+    
+    [self.actionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(bottomView).offset(-15);
+        make.centerY.equalTo(bottomView);
+        make.size.mas_equalTo(CGSizeMake(80, 40));
+    }];
+    
     [self.superContentView.superview layoutIfNeeded];
 }
 
@@ -155,6 +186,20 @@ CGFloat const kCameraToolsViewHeight = 60;
         _present = [[FHCropImagePresent alloc] init];
     }
     return _present;
+}
+
+- (UIButton *)actionBtn {
+    if (!_actionBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"Crop" forState:UIControlStateNormal];
+        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [btn setBackgroundColor:kThemeColor];
+        [btn addTarget:self action:@selector(cropImageDone) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.cornerRadius = 4;
+        btn.layer.masksToBounds = YES;
+        _actionBtn = btn;
+    }
+    return _actionBtn;
 }
 
 - (void)dealloc {

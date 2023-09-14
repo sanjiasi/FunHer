@@ -27,12 +27,38 @@
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
         NSArray *array = [NSString sortPicArrayAtPath:[NSString tempDocPath]];
-        
+        [self addImages:array];
         [self refreshData];
         if (completion) {
             completion(array);
         }
     }];
+}
+
+- (void)addImages:(NSArray *)imgs {
+    NSInteger start = [FHReadFileSession lastImageIndexByParentId:self.fileObjId] + 1;
+    [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *imgPath = [NSString tempImagePath:name];
+        NSString *imgName = [NSString nameByRemoveIndex:name];
+        NSString *originalPath = [NSString originalImagePath:imgName];
+        [LZFileManager copyItemAtPath:imgPath toPath:originalPath overwrite:YES];
+        [self saveSampleImage:[UIImage imageWithContentsOfFile:originalPath] withName:imgName];
+        NSInteger picIndex = idx + start;
+        [FHFileDataSession addImage:imgName byIndex:picIndex withParentId:self.fileObjId];
+    }];
+}
+
+- (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
+    NSString *sampeImagePath = [NSString sampleImagePath:name];
+    BOOL result = [UIImage saveImage:img atPath:sampeImagePath];
+    if (result) {
+        //保存图片并生成一张缩率图
+        NSData *sampleData = [UIImage saveImageForData:img];
+        [UIImage resizeThumbImage:sampleData imageSize:img.size saveAtPath:[NSString thumbImagePath:name]];
+    } else {
+        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:sampeImagePath overwrite:YES];
+        [self getEventWithName:@"write error"];
+    }
 }
 
 - (void)refreshData {
@@ -57,17 +83,24 @@
     NSMutableArray *temp = @[].mutableCopy;
     NSArray *imgList = [FHReadFileSession entityListToDic:[FHReadFileSession sortImageRLMsByParentId:self.fileObjId]];
     [imgList enumerateObjectsUsingBlock:^(NSDictionary *object, NSUInteger idx, BOOL * _Nonnull stop) {
-        FHImageCellModel *model = [FHImageCellModel createModelWithParam:object];
-        if ([model.fileObj.type isEqualToString:@"3"]) {//图片
-            model.thumbNail = [NSString thumbImagePath:model.fileObj.name];
-            model.fileName = [NSString stringWithFormat:@"%@  %@",@(idx+1), model.fileSize];
-            if (![LZFileManager isExistsAtPath:model.thumbNail]) {
-                [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
-            }
+        FHImageCellModel *model = [self buildCellModelWihtObject:object atIndex:idx];
+        if (model) {
+            [temp addObject:model];
         }
-        [temp addObject:model];
     }];
     self.dataArray = temp;
+}
+
+- (FHImageCellModel *)buildCellModelWihtObject:(NSDictionary *)object atIndex:(NSUInteger)idx {
+    FHImageCellModel *model = [FHImageCellModel createModelWithParam:object];
+    if ([model.fileObj.type isEqualToString:@"3"]) {//图片
+        model.thumbNail = [NSString thumbImagePath:model.fileObj.name];
+        model.fileName = [NSString stringWithFormat:@"%@  %@",@(idx+1), model.fileSize];
+        if (![LZFileManager isExistsAtPath:model.thumbNail]) {
+            [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
+        }
+    }
+    return model;
 }
 
 #pragma mark -- getter and setters

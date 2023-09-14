@@ -93,7 +93,7 @@
 
 #pragma mark -- 移动
 - (void)moveFileToFolder:(NSString *)folderId {
-    NSString *parentID = @"1922E29D-BD28-4E17-9570-E243C9D76ECA";
+    NSString *parentID = folderId;
     NSArray *results = [self selectedItemArray];
     [results enumerateObjectsUsingBlock:^(FHFileEditCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [FHFileDataSession editDocumentPath:obj.fileObj.objId withParentId:parentID];
@@ -102,7 +102,7 @@
 
 #pragma mark -- 复制
 - (void)copyFileToFolder:(NSString *)folderId {
-    NSString *parentID = @"1922E29D-BD28-4E17-9570-E243C9D76ECA";
+    NSString *parentID = folderId;
     NSArray *results = [self selectedItemArray];
     [results enumerateObjectsUsingBlock:^(FHFileEditCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [FHFileDataSession copyDocument:obj.fileObj.objId withParentId:parentID];
@@ -113,18 +113,8 @@
 - (void)deleteFiles {
     NSArray *results = [self selectedItemArray];
     [results enumerateObjectsUsingBlock:^(FHFileEditCellModel *   _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self removeImage:obj.fileName];
         [FHFileDataSession deleteDocumentWithId:obj.fileObj.objId];
     }];
-}
-
-- (void)removeImage:(NSString *)fileName {
-    NSString *thumbPath = [NSString thumbImagePath:fileName];
-    NSString *samplePath = [NSString sampleImagePath:fileName];
-    NSString *originalPath = [NSString originalImagePath:fileName];
-    [LZFileManager removeItemAtPath:thumbPath];
-    [LZFileManager removeItemAtPath:samplePath];
-    [LZFileManager removeItemAtPath:originalPath];
 }
 
 #pragma mark -- private methods

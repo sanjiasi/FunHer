@@ -20,13 +20,30 @@
 }
 
 #pragma mark -- 新建文档
+- (NSDictionary *)createDocWithImage:(NSDictionary *)info {
+    NSString *fileName = info[@"fileName"];//临时存放原图片名
+    NSString *sampleImgPath = info[@"sampleImage"];//处理后的展示图
+    NSString *originalName = [NSString nameByRemoveIndex:fileName];
+    NSString *originalPath = [NSString originalImagePath:originalName];
+    //保存原图
+    [LZFileManager copyItemAtPath:[NSString tempImagePath:fileName] toPath:originalPath overwrite:YES];
+    [self saveSampleImage:[UIImage imageWithContentsOfFile:sampleImgPath] withName:originalName];
+    //新增文档数据
+    NSDictionary *doc = [FHFileDataSession addDocument:[NSString defaultDocName] withParentId:self.fileObjId];
+    //新增图片数据
+    [FHFileDataSession addImage:originalName byIndex:0 withParentId:doc[@"Id"]];
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];//清空临时目录
+    return doc;
+}
+
+#pragma mark -- 新建文档
 - (void)createDocWithImages:(NSArray *)imgs {
-//    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.fileObjId];
-//    [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSString *thumbName = [NSString nameByRemoveIndex:name];
-//        [FHFileDataSession addImage:thumbName byIndex:idx withParentId:doc[@"Id"]];
-//    }];
-    NSDictionary *doc = [FHFileDataSession addDocument:[NSDate timeFormatYMMDD:[NSDate date]] withParentId:self.fileObjId];
+    NSString *docName = [NSString defaultDocName];
+    [self createDoc:docName withImages:imgs];
+}
+
+- (NSDictionary *)createDoc:(NSString *)name withImages:(NSArray *)imgs {
+    NSDictionary *doc = [FHFileDataSession addDocument:name withParentId:self.fileObjId];
     [imgs enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *imgPath = [NSString tempImagePath:name];
         NSString *imgName = [NSString nameByRemoveIndex:name];
@@ -35,6 +52,7 @@
         [self saveSampleImage:[UIImage imageWithContentsOfFile:originalPath] withName:imgName];
         [FHFileDataSession addImage:imgName byIndex:idx withParentId:doc[@"Id"]];
     }];
+    return doc;
 }
 
 - (void)saveSampleImage:(UIImage *)img withName:(NSString *)name {
@@ -73,18 +91,20 @@
     }];
 }
 
-- (void)refreshData {
-    [self loadData];
-}
-
-- (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
+- (NSString *)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
     NSString *imgPath = [NSString imagePathAtTempDocWithIndex:idx];
-    BOOL result =[UIImage resizeOriginalImage:data imageSize:size saveAtPath:imgPath];
+    BOOL result = [UIImage resizeOriginalImage:data imageSize:size saveAtPath:imgPath];
     if (!result) {
         [self getEventWithName:@"write error"];
         [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     }
+    return imgPath;
 }
+
+- (void)refreshData {
+    [self loadData];
+}
+
 
 #pragma mark -- private methods
 - (void)loadData {
@@ -94,23 +114,41 @@
     NSMutableArray *dataArr = [NSMutableArray arrayWithArray:homeFolderList];
     [dataArr addObjectsFromArray:homeDocList];
     [dataArr enumerateObjectsUsingBlock:^(NSDictionary *object, NSUInteger idx, BOOL * _Nonnull stop) {
-        FHFileCellModel *model = [FHFileCellModel createModelWithParam:object];
-        if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
-            model.thumbNail = @"";//没有图片
-        } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
-            NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
-            if (firstImg) {
-                model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:firstImg[@"name"]];
-            } else {
-                model.thumbNail = [[NSString thumbDir] stringByAppendingPathComponent:@"placeHolder.jpg"];
-            }
-            if (![LZFileManager isExistsAtPath:model.thumbNail]) {
-                [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
-            }
+        FHFileCellModel *model = [self buildCellModelWihtObject:object];
+        if (model) {
+            [temp addObject:model];
         }
-        [temp addObject:model];
     }];
     self.dataArray = temp;
+}
+
+- (FHFileCellModel *)buildCellModelWihtObject:(NSDictionary *)object {
+    FHFileCellModel *model = [FHFileCellModel createModelWithParam:object];
+    if ([model.fileObj.type isEqualToString:@"1"]) {//文件夹
+        model.thumbNail = @"";//没有图片
+    } else if ([model.fileObj.type isEqualToString:@"2"]) {//文档
+        NSDictionary *firstImg = [FHReadFileSession firstImageDicByDoc:model.fileObj.objId];
+        if (firstImg) {
+            model.thumbNail = [NSString thumbImagePath:firstImg[@"name"]];
+        } else {
+            model.thumbNail = [NSString thumbImagePath:@"placeHolder.jpg"];
+        }
+        if (![LZFileManager isExistsAtPath:model.thumbNail]) {
+            [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:model.thumbNail overwrite:YES];
+        }
+    }
+    return model;
+}
+
+- (FHFileCellModel *)fileModelWithId:(NSString *)objId {
+    __block FHFileCellModel *model;
+    [self.dataArray enumerateObjectsUsingBlock:^(FHFileCellModel *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.fileObj.objId isEqualToString:objId]) {
+            model = obj;
+            *stop = YES;
+        }
+    }];
+    return model;
 }
 
 #pragma mark -- getter and setters
@@ -119,6 +157,29 @@
         _dataArray = @[].mutableCopy;
     }
     return _dataArray;
+}
+
+- (NSString *)selectedObjectId {
+    NSString *objId;
+    if (self.selectedIndex) {
+        if (self.selectedIndex.item < self.dataArray.count) {
+            FHFileCellModel *model = self.dataArray[self.selectedIndex.item];
+            objId = model.fileObj.objId;
+        }
+    }
+    return objId;
+}
+
+- (BOOL)canSelectedToEdit {
+    if (self.selectedIndex) {
+        if (self.selectedIndex.item < self.dataArray.count) {
+            FHFileCellModel *model = self.dataArray[self.selectedIndex.item];
+            if ([model.fileObj.type isEqualToString:@"2"]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
 }
 
 @end

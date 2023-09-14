@@ -43,16 +43,18 @@
 
 #pragma mark -- event response
 - (void)clickCancelBtn {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)clickTakePhoto {
+    [SVProgressHUD show];
     [self disableTakeBtn];
     [self.cameraView takePhoto];
     __weak typeof(self) weakSelf = self;
     self.cameraView.takePhotoBlock = ^(NSData * _Nonnull photoImage) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf ableTakeBtn];
+        [SVProgressHUD dismiss];
         if (photoImage) {
             strongSelf.captureImageView.image = [UIImage imageWithData:photoImage];
             [strongSelf getImageCompleted:photoImage];
@@ -129,7 +131,7 @@
         [ovalBtn setTitle:@"Take" forState:UIControlStateNormal];
         ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [ovalBtn setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(clickTakePhoto) forControlEvents:UIControlEventTouchUpInside];
         _takePhotoBtn = ovalBtn;
     }
@@ -142,7 +144,7 @@
         [ovalBtn setTitle:@"Cancel" forState:UIControlStateNormal];
         ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [ovalBtn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
         _cancelBtn = ovalBtn;
     }
