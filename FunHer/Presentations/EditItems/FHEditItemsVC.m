@@ -11,14 +11,14 @@
 #import "FHFileEditCellModel.h"
 #import "FHFileEditCollectionCell.h"
 #import "FHEditedCollectionView.h"
-#import "FHCollectionMenu.h"
+#import "FHTabbar.h"
 #import "FHFileBoardVC.h"
 
 @interface FHEditItemsVC ()
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic, strong) FHEditedCollectionView *collectionView;
 @property (nonatomic, strong) FHEditItemPresent *present;
-@property (nonatomic, strong) FHCollectionMenu *funcMenu;
+@property (nonatomic, strong) FHTabbar *funcMenu;
 @property (nonatomic, strong) UIButton *navRightBtn;
 
 @end
@@ -58,6 +58,9 @@
 #pragma mark -- event response
 #pragma mark -- share
 - (void)shareAction {
+    if ([[self.present selectedItemArray] count] < 1) {
+        return;
+    }
     [SVProgressHUD show];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray *shareItems = [self.present shareFiles];
@@ -83,6 +86,9 @@
 
 #pragma mark -- move/copy
 - (void)copyAcion {
+    if ([[self.present selectedItemArray] count] < 1) {
+        return;
+    }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
     UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:@"Move to" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self selecteMoveCopyTargetFile:FileHandleTypeMove];
@@ -139,6 +145,9 @@
 
 #pragma mark -- merge
 - (void)mergeAction {
+    if ([[self.present selectedItemArray] count] < 2) {
+        return;
+    }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Select a Merging Method" message:nil preferredStyle:IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
     UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:@"Merge And Keep Old Document" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self handleMergeAndKeepOldFile];
@@ -176,6 +185,9 @@
 
 #pragma mark -- delete
 - (void)deleteAction {
+    if ([[self.present selectedItemArray] count] < 1) {
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     [self takeAlertWithTitle:@"Warning" message:@"Are you sure you want to delete all selected documents ?" actionBlock:^{
         [weakSelf handleDeleteFile];
@@ -212,7 +224,8 @@
     } else {
         [self.navRightBtn setTitle:@"Select All" forState:UIControlStateNormal];
     }
-    self.title = [NSString stringWithFormat:@"已选择%@项",@(results.count)];
+    self.title = [NSString stringWithFormat:@"%@ Selected",@(results.count)];
+    [self.funcMenu reloadWithItems:self.present.funcItems];
 }
 
 #pragma mark -- public methods
@@ -230,7 +243,7 @@
 
 #pragma mark -- 配置导航栏和子视图
 - (void)configNavBar {
-    self.title = self.selectedItem ? @"Selected 1" : @"Selected 0";
+    self.title = self.selectedItem ? @"1 Selected" : @"0 Selected";
     [self setLeftButton:@"Cancel" withSelector:@selector(clickCancelBtn)];
     [self setRigthButton:@"Select All" withSelector:@selector(clickSelectedAll)];//Deselect All
 }
@@ -336,10 +349,10 @@
     return _collectionView;
 }
 
-- (FHCollectionMenu *)funcMenu {
+- (FHTabbar *)funcMenu {
     __weak typeof(self) weakSelf = self;
     if (!_funcMenu) {
-        _funcMenu = [[FHCollectionMenu alloc] initWithItems:[self.present funcItems] menuHeight:49 actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
+        _funcMenu = [[FHTabbar alloc] initWithItems:self.present.funcItems menuHeight:49 actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
             NSLog(@"i = %@, func = %@", @(idx), selector);
             [weakSelf invokeWithSelector:selector];
         }];

@@ -1,25 +1,24 @@
 //
-//  FHCollectionMenu.m
+//  FHTabbar.m
 //  FunHer
 //
-//  Created by GLA on 2023/8/4.
+//  Created by GLA on 2023/9/15.
 //
 
-#import "FHCollectionMenu.h"
-#import "FHBarItemCell.h"
+#import "FHTabbar.h"
+#import "FHTabBarItem.h"
 #import "FHTabMenuAdapter.h"
 
-@interface FHCollectionMenu ()
+@interface FHTabbar ()
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) FHTabMenuAdapter *collectionAdapter;
 @property (nonatomic, copy) NSArray *dataSource;
 @property (nonatomic, copy) ClickForAction actionBlock;
 @property (nonatomic, assign) CGFloat menuHeight;
 
-
 @end
 
-@implementation FHCollectionMenu
+@implementation FHTabbar
 
 #pragma mark -- life cycle
 - (instancetype)initWithItems:(NSArray *)itemArr menuHeight:(CGFloat)height actionBlock:(nonnull ClickForAction)action {
@@ -54,6 +53,11 @@
     [self.collectionView reloadData];
 }
 
+- (void)reloadWithItems:(NSArray *)itemArr {
+    _dataSource = itemArr;
+    [self configData];
+}
+
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idx withModel:(NSDictionary *)model {
     if (model[@"selector"]) {
@@ -68,10 +72,10 @@
 - (FHTabMenuAdapter *)collectionAdapter {
     __weak typeof(self) weakSelf = self;
     if (!_collectionAdapter) {
-        FHTabMenuAdapter *adapter = [[FHTabMenuAdapter alloc] initWithIdentifier:NSStringFromClass([FHBarItemCell class]) configureBlock:^(FHBarItemCell *cell, NSDictionary *model, NSIndexPath * _Nonnull indexPath) {
+        FHTabMenuAdapter *adapter = [[FHTabMenuAdapter alloc] initWithIdentifier:NSStringFromClass([FHTabBarItem class]) configureBlock:^(FHTabBarItem *cell, NSDictionary *model, NSIndexPath * _Nonnull indexPath) {
             cell.showImg.image = [UIImage imageNamed:model[@"image"]];
             cell.titleLab.text = model[@"title"];
-            cell.enable = YES;
+            cell.enable = [model[@"enable"] boolValue];
         } didSelectedBlock:^(NSDictionary *model, NSIndexPath * _Nonnull indexPath) {
             [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];
@@ -97,13 +101,12 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor clearColor];//RGB(241, 241, 241);
+        _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        [_collectionView registerClass:[FHBarItemCell class] forCellWithReuseIdentifier:NSStringFromClass([FHBarItemCell class])];
+        [_collectionView registerClass:[FHTabBarItem class] forCellWithReuseIdentifier:NSStringFromClass([FHTabBarItem class])];
     }
     return _collectionView;
 }
-
 
 @end

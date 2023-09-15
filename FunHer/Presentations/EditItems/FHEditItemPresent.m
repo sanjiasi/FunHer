@@ -37,6 +37,14 @@
         }
     }];
     self.selectedAll = results.count == allDocs.count;//全选
+    BOOL enable = results.count > 0;
+    NSMutableArray *data = @[].mutableCopy;
+    [self.funcItems enumerateObjectsUsingBlock:^(NSDictionary  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableDictionary *temp = obj.mutableCopy;
+        [temp setValue:@(enable) forKey:@"enable"];
+        [data addObject:[NSDictionary dictionaryWithDictionary:temp]];
+    }];
+    self.funcItems = data;
     return results;
 }
 
@@ -153,12 +161,16 @@
 }
 
 #pragma mark -- getter and setters
-- (NSArray *)funcItems {
-    return @[@{@"image": @"close_navItem", @"title": @"Share", @"selector": @"shareAction"},
-             @{@"image": @"close_navItem", @"title": @"Move/Copy", @"selector": @"copyAcion"},
-             @{@"image": @"close_navItem", @"title": @"Merge", @"selector": @"mergeAction"},
-             @{@"image": @"close_navItem", @"title": @"Delete", @"selector": @"deleteAction"},
-    ];
+- (NSMutableArray *)funcItems {
+    if (!_funcItems) {
+        BOOL enableEdit = self.selectedItem ? YES : NO;
+        _dataArray = @[@{@"image": @"close_navItem", @"title": @"Share", @"selector": @"shareAction", @"enable":@(enableEdit)},
+                       @{@"image": @"close_navItem", @"title": @"Move/Copy", @"selector": @"copyAcion", @"enable":@(enableEdit)},
+                       @{@"image": @"close_navItem", @"title": @"Merge", @"selector": @"mergeAction", @"enable":@(enableEdit)},
+                       @{@"image": @"close_navItem", @"title": @"Delete", @"selector": @"deleteAction", @"enable":@(enableEdit)},
+        ].mutableCopy;
+    }
+    return _funcItems;
 }
 
 - (NSMutableArray *)dataArray {

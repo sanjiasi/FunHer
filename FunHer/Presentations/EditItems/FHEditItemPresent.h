@@ -14,11 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *parentId;//父目录对象Id
 @property (nonatomic, copy) NSString *selectedItem;//已经选中的对象Id
 @property (nonatomic, assign) BOOL selectedAll;
+@property (nonatomic, strong) NSMutableArray *funcItems;
 
 ///-- 刷新数据
 - (void)refreshData;
-
-- (NSArray *)funcItems;
 
 - (void)handSelectedAll;
 

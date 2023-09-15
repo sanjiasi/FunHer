@@ -32,6 +32,8 @@
 		673E2A3B2AB2A7E0000D0077 /* FHBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A3A2AB2A7E0000D0077 /* FHBoardCell.m */; };
 		673E2A3E2AB2A7FF000D0077 /* FHBoardCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */; };
 		673E2A412AB2B0C1000D0077 /* FHBoardPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A402AB2B0C1000D0077 /* FHBoardPresent.m */; };
+		673E2A452AB44B88000D0077 /* FHTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A442AB44B88000D0077 /* FHTabbar.m */; };
+		673E2A482AB44EF5000D0077 /* FHTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E2A472AB44EF5000D0077 /* FHTabBarItem.m */; };
 		67406BB52A77861600E87AF5 /* FHCollectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */; };
 		67406BBA2A77882C00E87AF5 /* FHFileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BB92A77882C00E87AF5 /* FHFileListVC.m */; };
 		67406BBD2A77963600E87AF5 /* FHFileListPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406BBC2A77963600E87AF5 /* FHFileListPresent.m */; };
@@ -214,6 +216,10 @@
 		673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardCellModel.m; sourceTree = "<group>"; };
 		673E2A3F2AB2B0C1000D0077 /* FHBoardPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHBoardPresent.h; sourceTree = "<group>"; };
 		673E2A402AB2B0C1000D0077 /* FHBoardPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHBoardPresent.m; sourceTree = "<group>"; };
+		673E2A432AB44B88000D0077 /* FHTabbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHTabbar.h; sourceTree = "<group>"; };
+		673E2A442AB44B88000D0077 /* FHTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTabbar.m; sourceTree = "<group>"; };
+		673E2A462AB44EF5000D0077 /* FHTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHTabBarItem.h; sourceTree = "<group>"; };
+		673E2A472AB44EF5000D0077 /* FHTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTabBarItem.m; sourceTree = "<group>"; };
 		67406BB32A77861600E87AF5 /* FHCollectionAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHCollectionAdapter.h; sourceTree = "<group>"; };
 		67406BB42A77861600E87AF5 /* FHCollectionAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHCollectionAdapter.m; sourceTree = "<group>"; };
 		67406BB82A77882C00E87AF5 /* FHFileListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileListVC.h; sourceTree = "<group>"; };
@@ -654,6 +660,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				673E2A422AB44B54000D0077 /* Tabbar */,
 				675775D12AA9A37D0007838E /* SystemAction */,
 				675775B42AA6DDEF0007838E /* PDF */,
 				675775B02AA0265C0007838E /* Notification */,
@@ -705,6 +712,17 @@
 				673E2A3D2AB2A7FF000D0077 /* FHBoardCellModel.m */,
 			);
 			path = FileBoard;
+			sourceTree = "<group>";
+		};
+		673E2A422AB44B54000D0077 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				673E2A432AB44B88000D0077 /* FHTabbar.h */,
+				673E2A442AB44B88000D0077 /* FHTabbar.m */,
+				673E2A462AB44EF5000D0077 /* FHTabBarItem.h */,
+				673E2A472AB44EF5000D0077 /* FHTabBarItem.m */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		67406BB22A77858C00E87AF5 /* Adapter */ = {
@@ -1568,6 +1586,7 @@
 				67406C3A2A78CA8100E87AF5 /* ZLPhotoModel.m in Sources */,
 				67406C1C2A78CA8100E87AF5 /* UIControl+EnlargeTouchArea.m in Sources */,
 				671CAB182A6773B2006140A8 /* UIViewController+Alert.m in Sources */,
+				673E2A452AB44B88000D0077 /* FHTabbar.m in Sources */,
 				67406C8A2A81D31C00E87AF5 /* UIImage+Resize.m in Sources */,
 				6774FEB12A6A1309005F0DB9 /* FHLibraryCommand.m in Sources */,
 				6774FEB92A6A2D02005F0DB9 /* InAppStoreManager.m in Sources */,
@@ -1593,6 +1612,7 @@
 				67406C552A7CA1C400E87AF5 /* FHCollectionMenu.m in Sources */,
 				67406C332A78CA8100E87AF5 /* ZLClipItem.m in Sources */,
 				675775D02AA9A32C0007838E /* UICollectionView+LongPressGesture.m in Sources */,
+				673E2A482AB44EF5000D0077 /* FHTabBarItem.m in Sources */,
 				6753E2C12A97565A007EDE64 /* TORoundedButton.m in Sources */,
 				67406BC72A77A14200E87AF5 /* FHFileModel.m in Sources */,
 				67406C2C2A78CA8100E87AF5 /* ZLEditViewController.m in Sources */,
