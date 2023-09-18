@@ -37,9 +37,14 @@
         }
     }];
     self.selectedAll = results.count == allDocs.count;//全选
-    BOOL enable = results.count > 0;
+    
     NSMutableArray *data = @[].mutableCopy;
     [self.funcItems enumerateObjectsUsingBlock:^(NSDictionary  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *selectorName = obj[@"selector"];
+        BOOL enable = results.count > 0;
+        if ([selectorName isEqualToString:@"mergeAction"]) {
+            enable = results.count > 1;
+        }
         NSMutableDictionary *temp = obj.mutableCopy;
         [temp setValue:@(enable) forKey:@"enable"];
         [data addObject:[NSDictionary dictionaryWithDictionary:temp]];
@@ -164,10 +169,10 @@
 - (NSMutableArray *)funcItems {
     if (!_funcItems) {
         BOOL enableEdit = self.selectedItem ? YES : NO;
-        _dataArray = @[@{@"image": @"close_navItem", @"title": @"Share", @"selector": @"shareAction", @"enable":@(enableEdit)},
-                       @{@"image": @"close_navItem", @"title": @"Move/Copy", @"selector": @"copyAcion", @"enable":@(enableEdit)},
-                       @{@"image": @"close_navItem", @"title": @"Merge", @"selector": @"mergeAction", @"enable":@(enableEdit)},
-                       @{@"image": @"close_navItem", @"title": @"Delete", @"selector": @"deleteAction", @"enable":@(enableEdit)},
+        _funcItems = @[@{@"image": @"edit_share", @"title": @"Share", @"selector": @"shareAction", @"enable":@(enableEdit)},
+                       @{@"image": @"edit_copy", @"title": @"Move/Copy", @"selector": @"copyAcion", @"enable":@(enableEdit)},
+                       @{@"image": @"edit_merge", @"title": @"Merge", @"selector": @"mergeAction", @"enable":@(enableEdit)},
+                       @{@"image": @"edit_delete", @"title": @"Delete", @"selector": @"deleteAction", @"enable":@(enableEdit)},
         ].mutableCopy;
     }
     return _funcItems;

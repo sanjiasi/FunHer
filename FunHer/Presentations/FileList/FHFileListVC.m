@@ -253,6 +253,14 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 #pragma mark -- public methods
 #pragma mark -- 刷新数据
 - (void)refreshWithNewData {
+    static BOOL first = YES;
+    if (first) {
+        first = NO;
+        self.present.dataArray = [KAppDelegate.homeData mutableCopy];
+        [self.collectionAdapter addDataArray:self.present.dataArray];
+        [self.collectionView reloadData];
+        return;
+    }
     [LZDispatchManager globalQueueHandler:^{
         [self configData];
     } withMainCompleted:^{
@@ -338,18 +346,16 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn.titleLabel setFont:PingFang_R_FONT_(13)];
+    [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = barItem;
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"edit_selected_all"] forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    btn.tag = 115;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
 }
@@ -448,11 +454,10 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 - (UIButton *)cameraBtn {
     if (!_cameraBtn) {
         UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [ovalBtn setTitle:@"Camera" forState:UIControlStateNormal];
-        ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:kThemeColor forState:UIControlStateNormal];
+        [ovalBtn setImage:[UIImage imageNamed:@"take_camera"] forState:UIControlStateNormal];
+        [ovalBtn setBackgroundColor:UIColor.whiteColor];
         [ovalBtn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
+        ovalBtn.layer.cornerRadius = 30;
         _cameraBtn = ovalBtn;
     }
     return _cameraBtn;

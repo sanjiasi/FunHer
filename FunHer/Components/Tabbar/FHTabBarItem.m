@@ -65,7 +65,7 @@
 - (UIView *)mask {
     if (!_mask) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = RGBA(153, 153, 153, 0.5);
+        view.backgroundColor = RGBA(255, 255, 255, 0.5);;
         _mask = view;
     }
     return _mask;
@@ -83,7 +83,7 @@
 - (UILabel *)titleLab {
     if (!_titleLab) {
         UILabel *lab = [[UILabel alloc] init];
-        lab.textColor = kTextBlackColor;
+        lab.textColor = RGBA(122, 122, 122, 1.0);
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = PingFang_R_FONT_(11);
         lab.adjustsFontSizeToFitWidth = YES;

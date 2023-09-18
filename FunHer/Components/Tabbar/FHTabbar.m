@@ -60,6 +60,8 @@
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idx withModel:(NSDictionary *)model {
+    BOOL enable = [model[@"enable"] boolValue];
+    if (!enable) return;
     if (model[@"selector"]) {
         if (self.actionBlock) {
             self.actionBlock(idx.item, model[@"selector"]);

@@ -18,6 +18,7 @@
 #import "FHCameraVC.h"
 #import "UICollectionView+LongPressGesture.h"
 #import "FHEditItemsVC.h"
+#import "ImageTitleButton.h"
 
 @interface FHFileChildListVC ()
 @property (nonatomic, strong) UIView *superContentView;
@@ -25,8 +26,8 @@
 @property (nonatomic, strong) FHFileChildListPresent *present;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
 @property (nonatomic, weak) UIViewController *photoSender;
-@property (nonatomic, strong) UIButton *libraryBtn;
-@property (nonatomic, strong) UIButton *cameraBtn;
+@property (nonatomic, strong) ImageTitleButton *libraryBtn;
+@property (nonatomic, strong) ImageTitleButton *cameraBtn;
 
 @end
 
@@ -233,19 +234,21 @@
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(0);
+        make.bottom.equalTo(self.libraryBtn.mas_top).offset(-10);
     }];
     
     [self.libraryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.cameraBtn.mas_leading).offset(-20);
+        make.leading.equalTo(self.superContentView).offset(25);
+        make.trailing.equalTo(self.superContentView.mas_centerX).offset(-10);
         make.centerY.equalTo(self.cameraBtn.mas_centerY).offset(0);
-        make.size.mas_equalTo(CGSizeMake(60, 60));
+        make.height.mas_equalTo(50);
     }];
     
     [self.cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.superContentView.mas_centerX).offset(10);
         make.trailing.equalTo(self.superContentView).offset(-25);
-        make.bottom.equalTo(self.superContentView).offset(-80);
-        make.size.mas_equalTo(CGSizeMake(80, 80));
+        make.bottom.equalTo(self.superContentView).offset(-25);
+        make.height.mas_equalTo(50);
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -279,9 +282,8 @@
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 44)];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [btn setImage:[UIImage imageNamed:@"edit_selected_all"] forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
@@ -358,23 +360,33 @@
     return _superContentView;
 }
 
-- (UIButton *)libraryBtn {
+- (ImageTitleButton *)libraryBtn {
     if (!_libraryBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        ImageTitleButton *btn = [[ImageTitleButton alloc] initWithStyle:(EImageLeftTitleRightCenter)];
+        [btn setImage:[UIImage imageNamed:@"input_photo"] forState:UIControlStateNormal];
         [btn setTitle:@"Photo" forState:UIControlStateNormal];
-        [btn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
+        [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [btn.titleLabel setFont:PingFang_M_FONT_(16)];
         [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.cornerRadius = 8;
+        [btn setBackgroundColor:UIColor.whiteColor];
+        btn.padding = CGSizeMake(10, 0);
         _libraryBtn = btn;
     }
     return _libraryBtn;
 }
 
-- (UIButton *)cameraBtn {
+- (ImageTitleButton *)cameraBtn {
     if (!_cameraBtn) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        ImageTitleButton *btn = [[ImageTitleButton alloc] initWithStyle:(EImageLeftTitleRightCenter)];
+        [btn setImage:[UIImage imageNamed:@"take_camera"] forState:UIControlStateNormal];
         [btn setTitle:@"Camera" forState:UIControlStateNormal];
-        [btn setTitleColor:kThemeColor forState:UIControlStateNormal];
+        [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [btn.titleLabel setFont:PingFang_M_FONT_(16)];
         [btn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.cornerRadius = 8;
+        [btn setBackgroundColor:UIColor.whiteColor];
+        btn.padding = CGSizeMake(10, 0);
         _cameraBtn = btn;
     }
     return _cameraBtn;

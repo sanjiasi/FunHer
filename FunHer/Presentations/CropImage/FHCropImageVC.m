@@ -32,7 +32,7 @@ CGFloat const kCameraToolsViewHeight = 60;
     [super viewDidLoad];
     [self configNavBar];
     [self configContentView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self configData];
     });
 }
@@ -191,12 +191,10 @@ CGFloat const kCameraToolsViewHeight = 60;
 - (UIButton *)actionBtn {
     if (!_actionBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"Crop" forState:UIControlStateNormal];
-        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"done_btn"] forState:UIControlStateNormal];
         [btn setBackgroundColor:kThemeColor];
         [btn addTarget:self action:@selector(cropImageDone) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 4;
-        btn.layer.masksToBounds = YES;
         _actionBtn = btn;
     }
     return _actionBtn;

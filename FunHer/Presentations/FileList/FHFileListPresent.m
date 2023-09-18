@@ -214,7 +214,7 @@
 
 - (NSArray *)funcItems {
     return @[@{@"image": @"input_doc", @"title": @"Import Files", @"selector": @"addPhotoFromFiles"},
-             @{@"image": @"input_phtoto", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
+             @{@"image": @"input_photo", @"title": @"Import Images", @"selector": @"addPhotoFromLibrary"},
              @{@"image": @"add_folder", @"title": @"CreateFolders", @"selector": @"addNewFolder"},
     ];
 }

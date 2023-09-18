@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "FHServiceComandsManager.h"
 #import "FHFileListVC.h"
+#import "FHFileListPresent.h"
 
 @interface AppDelegate ()
 
@@ -23,9 +24,16 @@
     [[FHServiceComandsManager configurations] enumerateObjectsUsingBlock:^(id<FHServiceCommand>  _Nonnull commad, NSUInteger idx, BOOL * _Nonnull stop) {
         [commad execute];
     }];
-    
+    [self configHomeData];
+    sleep(1.0);
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)configHomeData {
+    FHFileListPresent *present = [[FHFileListPresent alloc] init];
+    [present refreshData];
+    self.homeData = [NSArray arrayWithArray:present.dataArray];
 }
 
 @end

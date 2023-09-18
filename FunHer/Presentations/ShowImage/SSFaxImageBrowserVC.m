@@ -49,7 +49,9 @@
 - (void)clickCropImage {
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.objId = self.currentModel.fileObj.objId;
-    [self.navigationController pushViewController:cropVC animated:YES];
+    UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark -- 设置导航栏

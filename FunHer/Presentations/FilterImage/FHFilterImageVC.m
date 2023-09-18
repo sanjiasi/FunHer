@@ -11,13 +11,14 @@
 #import "FHCollectionAdapter.h"
 #import "FHFilterCollectionCell.h"
 #import "FHFilterCellModel.h"
+#import "ImageTitleButton.h"
 
 @interface FHFilterImageVC ()
 @property (nonatomic, strong) FHFilterImagePresent *present;
 @property (nonatomic, strong) UIView *superContentView;
 @property (nonatomic ,strong) PhotoEditScrollView *showImgView;
 @property (nonatomic, strong) UIView *bottomFunctionView;
-@property (nonatomic, strong) UIButton *rotateBtn;
+@property (nonatomic, strong) ImageTitleButton *rotateBtn;
 @property (nonatomic, strong) UIButton *completedBtn;
 @property (nonatomic, strong) UICollectionView *filterShowcase;
 @property (nonatomic, strong) FHCollectionAdapter *collectionAdapter;
@@ -63,15 +64,15 @@
 - (void)clickCompletedBtn {
     if (self.objId) {
         [self.present refreshImage];
-        NSArray *vcArr = self.navigationController.viewControllers;
-        if (vcArr.count > 4) {
-            UIViewController *vc = vcArr[vcArr.count -4];
-            [self.navigationController popToViewController:vc animated:YES];
-        }
+//        NSArray *vcArr = self.navigationController.viewControllers;
+//        if (vcArr.count > 4) {
+//            UIViewController *vc = vcArr[vcArr.count -4];
+//            [self.navigationController popToViewController:vc animated:YES];
+//        }
     } else {
         [self.present createDocWithImage];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -- public methods
@@ -139,21 +140,21 @@
     }];
     [self.showImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.equalTo(self.superContentView);
-        make.bottom.equalTo(self.superContentView).offset(-134);
+        make.bottom.equalTo(self.superContentView).offset(-140);
     }];
     [self.bottomFunctionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.leading.trailing.equalTo(self.superContentView);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(50);
     }];
     [self.rotateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.bottomFunctionView);
         make.leading.equalTo(self.bottomFunctionView).offset(15);
-        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.size.mas_equalTo(CGSizeMake(60, 40));
     }];
     [self.completedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.bottomFunctionView);
         make.trailing.equalTo(self.bottomFunctionView).offset(-15);
-        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.size.mas_equalTo(CGSizeMake(60, 36));
     }];
     [self.filterShowcase mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.superContentView);
@@ -206,12 +207,14 @@
     return _bottomFunctionView;
 }
 
-- (UIButton *)rotateBtn {
+- (ImageTitleButton *)rotateBtn {
     if (!_rotateBtn) {
-        UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        ImageTitleButton *ovalBtn = [[ImageTitleButton alloc] initWithStyle:EImageTopTitleBottom];
+        [ovalBtn setImage:[UIImage imageNamed:@"rotate_btn"] forState:UIControlStateNormal];
         [ovalBtn setTitle:@"Rotate" forState:UIControlStateNormal];
-        ovalBtn.titleLabel.font = PingFang_R_FONT_(15);
-        [ovalBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [ovalBtn.titleLabel setFont:PingFang_R_FONT_(11)];
+        [ovalBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [ovalBtn setTitleColor:RGB(177, 177, 177) forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(clickRotateBtn) forControlEvents:UIControlEventTouchUpInside];
         _rotateBtn = ovalBtn;
     }
@@ -221,10 +224,10 @@
 - (UIButton *)completedBtn {
     if (!_completedBtn) {
         UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [ovalBtn setTitle:@"Done" forState:UIControlStateNormal];
-        ovalBtn.titleLabel.font = PingFang_R_FONT_(15);
-        [ovalBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [ovalBtn setImage:[UIImage imageNamed:@"done_btn"] forState:UIControlStateNormal];
+        [ovalBtn setBackgroundColor:kThemeColor];
         [ovalBtn addTarget:self action:@selector(clickCompletedBtn) forControlEvents:UIControlEventTouchUpInside];
+        ovalBtn.layer.cornerRadius = 4;
         _completedBtn = ovalBtn;
     }
     return _completedBtn;
@@ -236,7 +239,7 @@
         FHCollectionAdapter *adapter = [[FHCollectionAdapter alloc] initWithIdentifier:NSStringFromClass([FHFilterCollectionCell class]) configureBlock:^(FHFilterCollectionCell *cell, FHFilterCellModel *model, NSIndexPath * _Nonnull indexPath) {
             cell.showImg.image = [UIImage imageWithContentsOfFile:model.image];
             cell.titleLab.text = model.title;
-            cell.titleLab.backgroundColor = model.isSelect ? RGBA(48, 108, 205, 1) : RGBA(51, 51, 51, 0.3);
+            cell.titleLab.backgroundColor = model.isSelect ? kThemeColor : RGBA(51, 51, 51, 0.3);
         } didSelectedBlock:^(FHFilterCellModel *model, NSIndexPath * _Nonnull indexPath) {
             [weakSelf collectionViewDidSelected:indexPath withModel:model];
         }];

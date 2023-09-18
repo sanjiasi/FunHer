@@ -129,6 +129,7 @@
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
+		676E7A932AB834B40045A0E1 /* FHFileDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 676E7A922AB834B40045A0E1 /* FHFileDataHandler.m */; };
 		6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */; };
 		6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */; };
 		6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */; };
@@ -411,6 +412,8 @@
 		676D7CEE2A70EF550077762A /* GCDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
 		676D7CF22A70F1030077762A /* FHToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHToast.h; sourceTree = "<group>"; };
 		676D7CF32A70F1030077762A /* FHToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHToast.m; sourceTree = "<group>"; };
+		676E7A912AB834B40045A0E1 /* FHFileDataHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileDataHandler.h; sourceTree = "<group>"; };
+		676E7A922AB834B40045A0E1 /* FHFileDataHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileDataHandler.m; sourceTree = "<group>"; };
 		6774FEA32A6A1177005F0DB9 /* FHServiceComandsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceComandsManager.h; sourceTree = "<group>"; };
 		6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHServiceComandsManager.m; sourceTree = "<group>"; };
 		6774FEA62A6A11E9005F0DB9 /* FHRootVCCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHRootVCCommand.h; sourceTree = "<group>"; };
@@ -660,6 +663,7 @@
 		671CAB272A67C6B2006140A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				676E7A902AB8346C0045A0E1 /* Singleton */,
 				673E2A422AB44B54000D0077 /* Tabbar */,
 				675775D12AA9A37D0007838E /* SystemAction */,
 				675775B42AA6DDEF0007838E /* PDF */,
@@ -1186,6 +1190,15 @@
 			path = Toast;
 			sourceTree = "<group>";
 		};
+		676E7A902AB8346C0045A0E1 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				676E7A912AB834B40045A0E1 /* FHFileDataHandler.h */,
+				676E7A922AB834B40045A0E1 /* FHFileDataHandler.m */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		6774FEB22A6A148E005F0DB9 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1603,6 +1616,7 @@
 				67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */,
 				67406C2F2A78CA8100E87AF5 /* ZLNoAuthorityViewController.m in Sources */,
 				675775DD2AAAB3BB0007838E /* FHFileEditCollectionCell.m in Sources */,
+				676E7A932AB834B40045A0E1 /* FHFileDataHandler.m in Sources */,
 				67406C292A78CA8100E87AF5 /* ZLPlayer.m in Sources */,
 				67406C2B2A78CA8100E87AF5 /* ToastUtils.m in Sources */,
 				671CAB262A67C546006140A8 /* NSDate+Format.m in Sources */,
@@ -1842,8 +1856,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Run the application to access the camera to scan documents";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "add photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Run the application to access the gallery to get documents";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1882,8 +1899,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Run the application to access the camera to scan documents";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "add photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Run the application to access the gallery to get documents";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

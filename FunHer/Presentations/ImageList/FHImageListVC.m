@@ -101,8 +101,8 @@
     
     [self.libraryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.superContentView).offset(-25);
-        make.bottom.equalTo(self.superContentView).offset(-80);
-        make.size.mas_equalTo(CGSizeMake(80, 80));
+        make.bottom.equalTo(self.superContentView).offset(-60);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
     self.collectionView.dataSource = self.collectionAdapter;
@@ -205,7 +205,9 @@
 - (UIButton *)libraryBtn {
     if (!_libraryBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"Photo" forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"input_photo"] forState:UIControlStateNormal];
+        [btn setBackgroundColor:UIColor.whiteColor];
+        btn.layer.cornerRadius = 30;
         [btn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];
         _libraryBtn = btn;
