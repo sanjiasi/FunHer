@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBr6hwsWJx4H0sWb0vr5fVrQjwV3eM4-iw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>91719717640</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gla.FunHer</string>
+	<key>PROJECT_ID</key>
+	<string>lightscanner-36e7a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lightscanner-36e7a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:91719717640:ios:1bcea1260167224b8cd2bd</string>
+</dict>
+</plist>

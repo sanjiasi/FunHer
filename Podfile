@@ -10,11 +10,15 @@ target 'FunHer' do
   pod 'YYModel', '~> 1.0.4'
   pod 'Masonry', '~> 1.1.0'
   pod 'Realm', '~> 10.29.0'#数据库
-  pod 'MJRefresh', '~> 3.7.5'#拉下刷新组件  https://www.yii666.com/blog/143543.html
+  pod 'MJRefresh', '~> 3.7.5'#拉下刷新组件
   pod 'SVProgressHUD', '~> 2.2.5'
   pod 'SDWebImage', '~>5.0'
   pod 'GPUImage', '~> 0.1.7'
   pod 'OpenCV', '~>3.4.6'
+  
+  # Firebase
+  pod 'FirebaseAnalytics', '~> 10.11.0' #分析
+  pod 'FirebaseCrashlytics', '~> 10.11.0' #崩溃收集
   
   target 'FunHerTests' do
     inherit! :search_paths

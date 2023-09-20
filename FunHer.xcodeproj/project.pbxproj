@@ -130,6 +130,11 @@
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
 		676E7A932AB834B40045A0E1 /* FHFileDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 676E7A922AB834B40045A0E1 /* FHFileDataHandler.m */; };
+		676E7A952ABADF900045A0E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 676E7A942ABADF900045A0E1 /* GoogleService-Info.plist */; };
+		676E7A962ABADF900045A0E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 676E7A942ABADF900045A0E1 /* GoogleService-Info.plist */; };
+		676E7A972ABADF900045A0E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 676E7A942ABADF900045A0E1 /* GoogleService-Info.plist */; };
+		676E7A9B2ABAE78A0045A0E1 /* FHFirebaseCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676E7A9A2ABAE78A0045A0E1 /* FHFirebaseCoreManager.m */; };
+		676E7A9F2ABAF3770045A0E1 /* FHAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676E7A9E2ABAF3770045A0E1 /* FHAnalyticsManager.m */; };
 		6774FEA52A6A1177005F0DB9 /* FHServiceComandsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */; };
 		6774FEA82A6A11E9005F0DB9 /* FHRootVCCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEA72A6A11E9005F0DB9 /* FHRootVCCommand.m */; };
 		6774FEAB2A6A126F005F0DB9 /* FHRealmDBCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774FEAA2A6A126F005F0DB9 /* FHRealmDBCommand.m */; };
@@ -414,6 +419,11 @@
 		676D7CF32A70F1030077762A /* FHToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHToast.m; sourceTree = "<group>"; };
 		676E7A912AB834B40045A0E1 /* FHFileDataHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileDataHandler.h; sourceTree = "<group>"; };
 		676E7A922AB834B40045A0E1 /* FHFileDataHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFileDataHandler.m; sourceTree = "<group>"; };
+		676E7A942ABADF900045A0E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		676E7A992ABAE78A0045A0E1 /* FHFirebaseCoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFirebaseCoreManager.h; sourceTree = "<group>"; };
+		676E7A9A2ABAE78A0045A0E1 /* FHFirebaseCoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHFirebaseCoreManager.m; sourceTree = "<group>"; };
+		676E7A9D2ABAF3770045A0E1 /* FHAnalyticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHAnalyticsManager.h; sourceTree = "<group>"; };
+		676E7A9E2ABAF3770045A0E1 /* FHAnalyticsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHAnalyticsManager.m; sourceTree = "<group>"; };
 		6774FEA32A6A1177005F0DB9 /* FHServiceComandsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHServiceComandsManager.h; sourceTree = "<group>"; };
 		6774FEA42A6A1177005F0DB9 /* FHServiceComandsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHServiceComandsManager.m; sourceTree = "<group>"; };
 		6774FEA62A6A11E9005F0DB9 /* FHRootVCCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHRootVCCommand.h; sourceTree = "<group>"; };
@@ -552,6 +562,7 @@
 				671CAADE2A66622B006140A8 /* LaunchScreen.storyboard */,
 				671CAAE12A66622B006140A8 /* Info.plist */,
 				671CAAE22A66622B006140A8 /* main.m */,
+				676E7A942ABADF900045A0E1 /* GoogleService-Info.plist */,
 			);
 			path = FunHer;
 			sourceTree = "<group>";
@@ -806,6 +817,7 @@
 		67406BD02A78CA4F00E87AF5 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				676E7A982ABAE7060045A0E1 /* Firebase */,
 				67406BD12A78CA8100E87AF5 /* ZLPhotoBrowser */,
 			);
 			path = Library;
@@ -1199,6 +1211,17 @@
 			path = Singleton;
 			sourceTree = "<group>";
 		};
+		676E7A982ABAE7060045A0E1 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				676E7A992ABAE78A0045A0E1 /* FHFirebaseCoreManager.h */,
+				676E7A9A2ABAE78A0045A0E1 /* FHFirebaseCoreManager.m */,
+				676E7A9D2ABAF3770045A0E1 /* FHAnalyticsManager.h */,
+				676E7A9E2ABAF3770045A0E1 /* FHAnalyticsManager.m */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		6774FEB22A6A148E005F0DB9 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1346,7 @@
 				671CAACA2A66622A006140A8 /* Frameworks */,
 				671CAACB2A66622A006140A8 /* Resources */,
 				0A8576F4805A85E4351FA5CE /* [CP] Embed Pods Frameworks */,
+				676E7A9C2ABAEAAB0045A0E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1421,6 +1445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				671CAAE02A66622B006140A8 /* LaunchScreen.storyboard in Resources */,
+				676E7A952ABADF900045A0E1 /* GoogleService-Info.plist in Resources */,
 				67406C362A78CA8100E87AF5 /* ZLPhotoBrowserCell.xib in Resources */,
 				67406C342A78CA8100E87AF5 /* ZLPhotoBrowser.bundle in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
@@ -1434,6 +1459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676E7A962ABADF900045A0E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,6 +1467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676E7A972ABADF900045A0E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1480,6 +1507,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FunHer-FunHerUITests/Pods-FunHer-FunHerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		676E7A9C2ABAEAAB0045A0E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		6B9CFA30A7ADF0F74BD2FD8A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1565,6 +1611,7 @@
 				6753E2B02A9755E7007EDE64 /* UIButton+LongTap.m in Sources */,
 				67406C232A78CA8100E87AF5 /* ZLInteractiveTrasition.m in Sources */,
 				673E2A3B2AB2A7E0000D0077 /* FHBoardCell.m in Sources */,
+				676E7A9B2ABAE78A0045A0E1 /* FHFirebaseCoreManager.m in Sources */,
 				67406C3C2A78CA8100E87AF5 /* ZLPhotoConfiguration.m in Sources */,
 				6753E2A92A9743E5007EDE64 /* FHFilterImagePresent.m in Sources */,
 				6774FEDC2A6E6745005F0DB9 /* LZDocManager.m in Sources */,
@@ -1572,6 +1619,7 @@
 				67406C272A78CA8100E87AF5 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				67406BCE2A789F2D00E87AF5 /* LZFileManager.m in Sources */,
 				673E2A3E2AB2A7FF000D0077 /* FHBoardCellModel.m in Sources */,
+				676E7A9F2ABAF3770045A0E1 /* FHAnalyticsManager.m in Sources */,
 				67406C202A78CA8100E87AF5 /* ZLForceTouchPreviewController.m in Sources */,
 				6749B33F2A8CCF5C00EEE913 /* CropView.swift in Sources */,
 				67406C242A78CA8100E87AF5 /* ZLPullDownInteractiveTransition.m in Sources */,
@@ -1849,8 +1897,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				DEVELOPMENT_TEAM = 95M78V6P24;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1892,8 +1941,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q4CBEAS4L8;
+				DEVELOPMENT_TEAM = 95M78V6P24;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;

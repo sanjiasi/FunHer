@@ -141,6 +141,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 打开相机拍照
 - (void)takePhotoByCamera {
+    @[][1];return;
     FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
     cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
     __weak typeof(self) weakSelf = self;

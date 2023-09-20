@@ -22,9 +22,7 @@
 #import "ZLCustomCamera.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ZLInteractiveAnimateProtocol.h"
-//#import "CameraCropSetView.h"
-//#import "CameraFilterView.h"
-//#import "UIButton+Inset.h"
+#import "UIButton+Inset.h"
 #import "SSPopListView.h"
 
 typedef NS_ENUM(NSUInteger, SlideSelectType) {
@@ -67,8 +65,6 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 @property (nonatomic, assign) NSInteger columnLayout;//分几列 默认3列
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic ,strong) UIView * coverView;//覆盖层
-//@property (nonatomic ,strong) CameraCropSetView * cropView;
-//@property (nonatomic ,strong) CameraFilterView * filterView;
 @property (nonatomic ,strong) UIButton *btnShowPhotos;
 @property (nonatomic, strong) NSMutableArray<ZLAlbumListModel *> *arrayDataSources;
 @property (nonatomic, strong) NSArray<ZLAlbumListModel *> *albumArt;
@@ -1395,13 +1391,14 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     if (!_btnShowPhotos) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, kScreenWidth-150, 44);
-//        [btn setImage:[UIImage imageNamed:@"bule_arrowdown"] forState:UIControlStateNormal];
-//        [btn setImage:[UIImage imageNamed:@"bule_arrowup"] forState:UIControlStateSelected];
+        [btn setImage:[UIImage imageNamed:@"bule_arrowdown"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"bule_arrowup"] forState:UIControlStateSelected];
         [btn setTitle:self.albumListModel.title forState:UIControlStateNormal];//All
         btn.titleLabel.font = PingFang_M_FONT_(18);
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [btn addTarget:self action:@selector(showPhotoLibrary:) forControlEvents:UIControlEventTouchUpInside];
+        [btn layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleRight imageTitleSpace:5];
         _btnShowPhotos = btn;
     }
     return _btnShowPhotos;

@@ -6,10 +6,12 @@
 //
 
 #import "FHLibraryCommand.h"
+#import "FHFirebaseCoreManager.h"
 
 @implementation FHLibraryCommand
 
 - (void)execute {
+    [FHFirebaseCoreManager configure];//放在最前面
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
     NSLog(@"library");
 }
