@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getEventWithName:NSStringFromClass([self class])];
     self.present.fileObjId = self.fileObjId;
     self.title = self.fileName;
     self.view.backgroundColor = UIColor.whiteColor;
@@ -53,6 +54,7 @@
 
 #pragma mark -- 打开相册找照片
 - (void)addPhotoFromLibrary {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [FHPhotoLibrary configPhotoPickerWithMaxImagesCount:0 sender:self selectedImageCompletion:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
         [self handleAssets:assets];
     }];
@@ -216,7 +218,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"%s", __func__);
+    DELog(@"%s", __func__);
 }
 
 @end

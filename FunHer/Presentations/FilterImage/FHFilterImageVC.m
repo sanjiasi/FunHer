@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configNavBar];
     [self configContentView];
     [self configData];
@@ -41,6 +42,7 @@
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath withModel:(FHFilterCellModel *)model {
+    [self getEventWithName:[NSString stringWithFormat:@"collectionViewDidSelected_%@",@(idxPath.item)]];
     [LZDispatchManager globalQueueHandler:^{
         [self.present didSelected:idxPath.item];
     } withMainCompleted:^{
@@ -53,6 +55,7 @@
 #pragma mark -- event response
 #pragma mark -- 旋转图片
 - (void)clickRotateBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [LZDispatchManager globalQueueHandler:^{
         [self.present rotateImageByRight];
     } withMainCompleted:^{
@@ -62,13 +65,9 @@
 
 #pragma mark -- 渲染图片完成 --》生成新图片
 - (void)clickCompletedBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if (self.objId) {
         [self.present refreshImage];
-//        NSArray *vcArr = self.navigationController.viewControllers;
-//        if (vcArr.count > 4) {
-//            UIViewController *vc = vcArr[vcArr.count -4];
-//            [self.navigationController popToViewController:vc animated:YES];
-//        }
     } else {
         [self.present createDocWithImage];
     }
@@ -275,6 +274,10 @@
         _showAnimationView = imgV;
     }
     return _showAnimationView;
+}
+
+- (void)dealloc {
+    DELog(@"%s", __func__);
 }
 
 @end

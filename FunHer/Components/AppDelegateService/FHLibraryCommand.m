@@ -11,9 +11,9 @@
 @implementation FHLibraryCommand
 
 - (void)execute {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [FHFirebaseCoreManager configure];//放在最前面
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
-    NSLog(@"library");
 }
 
 @end

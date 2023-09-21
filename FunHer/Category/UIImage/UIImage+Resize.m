@@ -94,7 +94,7 @@ BOOL CGImageWriteToFile(CGImageRef image, NSString *path) {
     CGImageRelease(image);
     BOOL isSucceed = YES;
     if (!CGImageDestinationFinalize(destination)) {
-        NSLog(@"Failed to write image to %@", path);
+        DELog(@"Failed to write image to %@", path);
         isSucceed = NO;
     }
     CFRelease(destination);

@@ -177,7 +177,7 @@
         NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init]; NSError *error;
         [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL * _Nonnull newURL) { //读取文件
             if (error) {
-                NSLog(@"读取错误error == %@",error);
+                DELog(@"读取错误error == %@",error);
             } else {
                 NSString *fileName = [newURL lastPathComponent];
                 NSString *lowString = fileName.lowercaseString;

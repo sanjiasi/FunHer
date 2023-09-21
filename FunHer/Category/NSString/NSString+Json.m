@@ -21,7 +21,7 @@
                                                         options:NSJSONReadingMutableContainers
                                                           error:&err];
     if(err) {
-        NSLog(@"json解析失败：%@",err);
+        DELog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;
@@ -39,7 +39,7 @@
                                                         options:NSJSONReadingAllowFragments
                                                           error:&err];
     if(err) {
-        NSLog(@"json解析失败：%@",err);
+        DELog(@"json解析失败：%@",err);
         return nil;
     }
     return arr;

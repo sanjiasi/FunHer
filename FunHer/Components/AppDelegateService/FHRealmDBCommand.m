@@ -11,6 +11,7 @@
 @implementation FHRealmDBCommand
 
 - (void)execute {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [LZDBService configDBWithIdentifier:@"lz"];//构建数据库
     [LZDBService realmDBMigration];//数据库版本迁移 新增数据库表字段，记得更新数据库版本号
 }

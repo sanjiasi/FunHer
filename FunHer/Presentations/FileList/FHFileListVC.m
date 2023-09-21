@@ -46,6 +46,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     self.title = @"Files";
     self.view.backgroundColor = UIColor.whiteColor;
     [self configNavBar];
@@ -109,6 +110,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 打开文件(app)找图片
 - (void)addPhotoFromFiles {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     NSArray *documentTypes = @[@"public.image",@"com.adobe.pdf"];
     UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes inMode:UIDocumentPickerModeOpen];
     documentPicker.delegate = self;
@@ -117,6 +119,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 打开相册找照片
 - (void)addPhotoFromLibrary {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [FHPhotoLibrary configPhotoPickerWithMaxImagesCount:0 sender:self selectedImageCompletion:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
         [self handleAssets:assets];
     }];
@@ -141,7 +144,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 打开相机拍照
 - (void)takePhotoByCamera {
-    @[][1];return;
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
     cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
     __weak typeof(self) weakSelf = self;
@@ -171,12 +174,13 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 新建文件夹
 - (void)addNewFolder {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     __weak typeof(self) weakSelf = self;
     [self takeAlertWithTitle:@"Create new folder" placeHolder:@"New Folder" actionBlock:^(NSString * _Nonnull fieldText) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf handleCreateFolder:fieldText];
     } cancelBlock:^{
-        NSLog(@"cancel");
+        DELog(@"cancel");
     }];
 }
 
@@ -189,12 +193,14 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 选择文件
 - (void)selectItemsAction {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if (self.present.dataArray.count == 0) return;
     self.present.selectedIndex = nil;
     [self goToSelectedItems];
 }
 
 - (void)goToSelectedItems {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHEditItemsVC *vc = [[FHEditItemsVC alloc] init];
     vc.parentId = FHParentIdByHome;
     if (self.present.selectedIndex) {
@@ -228,6 +234,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 
 #pragma mark -- 反馈
 - (void)sendEmialFeedback {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     if (!mailClass) {
         return;
@@ -445,7 +452,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     __weak typeof(self) weakSelf = self;
     if (!_funcMenu) {
         _funcMenu = [[FHCollectionMenu alloc] initWithItems:[self.present funcItems] menuHeight:FHMenuHeight actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
-            NSLog(@"i = %@, func = %@", @(idx), selector);
+            DELog(@"i = %@, func = %@", @(idx), selector);
             [weakSelf invokeWithSelector:selector];
         }];
     }

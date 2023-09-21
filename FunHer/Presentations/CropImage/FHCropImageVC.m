@@ -30,6 +30,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 #pragma mark -- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configNavBar];
     [self configContentView];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -59,8 +60,9 @@ CGFloat const kCameraToolsViewHeight = 60;
 #pragma mark -- event response
 #pragma mark -- 裁剪图片完成
 - (void)cropImageDone {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     UIImage *imageOne =  [self.cropView cropAndTransform];
-    NSLog(@"done -- %@",NSStringFromCGSize(imageOne.size));
+    DELog(@"done -- %@",NSStringFromCGSize(imageOne.size));
     NSString *cropImagePath = [self.present saveCropImage:imageOne];
     if ([LZFileManager isExistsAtPath:cropImagePath]) {
         FHFilterImageVC *filerVC = [[FHFilterImageVC alloc] init];
@@ -69,13 +71,12 @@ CGFloat const kCameraToolsViewHeight = 60;
         filerVC.cropImgPath = cropImagePath;
         [self.navigationController pushViewController:filerVC animated:YES];
     } else {
-        NSLog(@"done -- No crop image");
+        DELog(@"done -- No crop image");
     }
-//    [self.present createDocWithImage:imageOne];
-//    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark -- public methods
 - (void)clickCancel {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -165,7 +166,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 }
 
 - (CropView*)cropView {
-    if (!_cropView) {//WithFrame:CGRectMake(CropView_X, CropView_Y , kScreenWidth-30, ((kScreenHeight - kCameraToolsViewHeight-kNavBarAndStatusBarHeight-kBottomSafeHeight)*(kScreenWidth-30))/kScreenWidth)
+    if (!_cropView) {
         _cropView = [[CropView alloc] init];
         _cropView.cropViewDelegate = self;
     }
@@ -201,7 +202,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 }
 
 - (void)dealloc {
-    NSLog(@"%s", __func__);
+    DELog(@"%s", __func__);
 }
 
 @end

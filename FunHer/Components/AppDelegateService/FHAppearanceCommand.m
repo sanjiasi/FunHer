@@ -10,6 +10,7 @@
 @implementation FHAppearanceCommand
 
 - (void)execute {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self configureNavigationBar];
 }
 
@@ -20,12 +21,14 @@
     //去掉导航下边的黑线
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     NSDictionary *textAtt = @{NSForegroundColorAttributeName:RGBA(51, 51, 51, 1.0)};
-    if (@available(iOS 15.0, *)){
+    if (@available(iOS 13.0, *)){
         UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
         [appearance configureWithOpaqueBackground];
         appearance.backgroundColor = [UIColor whiteColor];
         appearance.titleTextAttributes = textAtt;
         appearance.shadowColor = [UIColor clearColor];
+//        appearance.backButtonAppearance = nil;
+//        [appearance setBackIndicatorImage:[UIImage imageNamed:@"backItem"] transitionMaskImage:[UIImage new]];
         [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
         [[UINavigationBar appearance] setStandardAppearance:appearance];
     } else {

@@ -31,6 +31,7 @@
 }
 
 - (void)configHomeData {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHFileListPresent *present = [[FHFileListPresent alloc] init];
     [present refreshData];
     self.homeData = [NSArray arrayWithArray:present.dataArray];

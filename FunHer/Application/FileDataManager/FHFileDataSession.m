@@ -51,7 +51,7 @@
 #pragma mark -- 修改文件夹名称
 + (void)editFolderName:(NSString *)name withId:(NSString *)objId {
     FolderRLM *appFolder = [LZFolderManager entityWithId:objId];
-    if (!appFolder) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appFolder) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateFolder:objId byTransaction:^{
         appFolder.uTime = [NSDate utcStamp];
         appFolder.name = name;
@@ -62,7 +62,7 @@
 #pragma mark -- 修改文件夹密码
 + (void)editFolderPassword:(NSString *)password withId:(NSString *)objId {
     FolderRLM *appFolder = [LZFolderManager entityWithId:objId];
-    if (!appFolder) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appFolder) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateFolder:objId byTransaction:^{
         appFolder.uTime = [NSDate utcStamp];
         appFolder.password = password;
@@ -122,7 +122,7 @@
 + (void)copyFolder:(NSString *)objId withParentId:(NSString *)parentId {
     NSString *pathId = [self pathIdByParentId:parentId];
     FolderRLM *folderEntity = [LZFolderManager entityWithId:objId];;//移动对象文件夹
-    if (!folderEntity) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!folderEntity) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     FolderRLM *newFather = [[FolderRLM alloc] initWithValue:folderEntity];
     newFather.Id = [[NSUUID UUID] UUIDString];
     newFather.parentId = parentId;
@@ -160,18 +160,18 @@
 /// 增 -- folder
 + (void)createFolder:(FolderRLM *)entity {
     [LZFolderManager addEntity:entity];
-    NSLog(@"record add -- folder =%@",entity.Id);
+    DELog(@"record add -- folder =%@",entity.Id);
 }
 
 /// 改 -- folder
 + (void)updateFolder:(NSString *)objId byTransaction:(void(^)(void))transcation {
     [LZFolderManager updateTransactionWithBlock:transcation];
-    NSLog(@"record update -- folder =%@",objId);
+    DELog(@"record update -- folder =%@",objId);
 }
 
 /// 删 -- folder
 + (void)removeFolder:(FolderRLM *)entity {
-    NSLog(@"record delete -- folder =%@",entity.Id);
+    DELog(@"record delete -- folder =%@",entity.Id);
     [LZFolderManager removeEntity:entity];
 }
 
@@ -208,7 +208,7 @@
 #pragma mark -- 删除文档
 + (void)deleteDocumentWithId:(NSString *)objId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     RLMResults<ImageRLM *> *results = [FHReadFileSession imageRLMsByParentId:appDoc.Id];
     for (ImageRLM *object in results) {
         [self removeImageFile:object.name];
@@ -230,7 +230,7 @@
 #pragma mark -- 修改文档名称
 + (void)editDocumentName:(NSString *)name withId:(NSString *)objId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateDoc:objId byTransaction:^{
         appDoc.uTime = [NSDate utcStamp];
         appDoc.name = name;
@@ -240,7 +240,7 @@
 #pragma mark -- 修改文档密码
 + (void)editDocumentPassword:(NSString *)password withId:(NSString *)objId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     if (NULLString(appDoc.password) && NULLString(password)) {//没有密码的情况下，不需要对密码置空
         return;
     }
@@ -254,7 +254,7 @@
 #pragma mark -- 修改文档浏览时间
 + (void)editDocumentReadingTimeWithId:(NSString *)objId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateDoc:objId byTransaction:^{
         appDoc.rTime = [NSDate utcStamp];
     }];
@@ -263,7 +263,7 @@
 #pragma mark -- 修改文档路径：移动
 + (void)editDocumentPath:(NSString *)objId withParentId:(NSString *)parentId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     NSString *pathId = [self pathIdByParentId:parentId];
     RLMResults<ImageRLM *> *images = [FHReadFileSession imageRLMsByParentId:objId];
     NSString *docPathId = [pathId stringByAppendingPathComponent:objId];
@@ -284,7 +284,7 @@
 #pragma mark -- 拷贝文档
 + (NSString *)copyDocument:(NSString *)objId withParentId:(NSString *)parentId {
     DocRLM *appDoc = [LZDocManager entityWithId:objId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return nil;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return nil;}
     NSString *pathId = [self pathIdByParentId:parentId];
     DocRLM *copyDoc = [self buildDocWithName:appDoc.name atPath:pathId];
     
@@ -331,18 +331,18 @@
 /// 增 -- doc
 + (void)createDoc:(DocRLM *)entity {
     [LZDocManager addEntity:entity];
-    NSLog(@"record add -- doc =%@",entity.Id);
+    DELog(@"record add -- doc =%@",entity.Id);
 }
 
 /// 改 -- doc
 + (void)updateDoc:(NSString *)objId byTransaction:(void(^)(void))transcation {
     [LZDocManager updateTransactionWithBlock:transcation];
-    NSLog(@"record update -- doc =%@",objId);
+    DELog(@"record update -- doc =%@",objId);
 }
 
 /// 删 -- doc
 + (void)removeDoc:(DocRLM *)entity {
-    NSLog(@"record delete -- doc =%@",entity.Id);
+    DELog(@"record delete -- doc =%@",entity.Id);
     [LZDocManager removeEntity:entity];
 }
 
@@ -355,7 +355,7 @@
 + (NSDictionary *)addImage:(NSString *)name byIndex:(NSInteger)index withParentId:(NSString *)parentId {
     NSDictionary *dic;
     DocRLM *appDoc = [LZDocManager entityWithId:parentId];
-    if (!appDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return dic;}
+    if (!appDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return dic;}
     NSString *pathId = appDoc.pathId;
     ImageRLM *entity = [self buildImageWithName:name byIndex:index atPath:pathId];
     if (entity) {
@@ -368,14 +368,14 @@
 #pragma mark -- 删除图片
 + (void)deleteImageWithId:(NSString *)objId {
     ImageRLM *image = [LZImageManager entityWithId:objId];
-    if (!image) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!image) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self removeImage:image];
 }
 
 #pragma mark -- 更新图片
 + (void)updateImageWithId:(NSString *)objId {
     ImageRLM *image = [LZImageManager entityWithId:objId];
-    if (!image) { [self getEventWithName:NSStringFromSelector(_cmd)]; return;}
+    if (!image) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return;}
     [self updateImage:objId byTransaction:^{
         image.uTime = [NSDate utcStamp];
         image.fileLength = [[LZFileManager sizeOfFileAtPath:image.filePath] longValue];
@@ -387,7 +387,7 @@
 #pragma mark -- 批量修改图片路径：移动 文档的所有图片
 + (NSArray *)batchMoveImagesWithParentId:(NSString *)parentId toNewDoc:(NSString *)newDocId {
     DocRLM *doc = [LZDocManager entityWithId:parentId];
-    if (!doc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return @[];}
+    if (!doc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return @[];}
     NSArray *imgIds = [self imageIdsByParentId:parentId];
     NSArray *newImgs = [self batchMoveImageWithIds:imgIds toNewDoc:newDocId];
     [self removeDoc:doc];
@@ -397,7 +397,7 @@
 #pragma mark -- 批量移动图片 文档的部分图片 修改parentId、pathId、picIndex
 + (NSArray *)batchMoveImageWithIds:(NSArray *)imageIds toNewDoc:(NSString *)newDocId  {
     DocRLM *newDoc = [LZDocManager entityWithId:newDocId];
-    if (!newDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return @[];}
+    if (!newDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return @[];}
     NSMutableArray *newImages = @[].mutableCopy;
     NSMutableArray *images = [FHReadFileSession imageRLMsOrderByImageIds:imageIds];
     NSInteger start = [FHReadFileSession lastImageIndexByParentId:newDocId] + 1;
@@ -428,7 +428,7 @@
 #pragma mark -- 批量复制图片 修改parentId、pathId、picIndex
 + (NSArray *)batchCopyImageWithIds:(NSArray *)imageIds toNewDoc:(NSString *)newDocId {
     DocRLM *newDoc = [LZDocManager entityWithId:newDocId];
-    if (!newDoc) { [self getEventWithName:NSStringFromSelector(_cmd)]; return @[];}
+    if (!newDoc) { [self getErrorWithName:NSStringFromSelector(_cmd)]; return @[];}
     NSMutableArray *newImages = @[].mutableCopy;
     NSMutableArray *images = [FHReadFileSession imageRLMsOrderByImageIds:imageIds];
     NSInteger start = [FHReadFileSession lastImageIndexByParentId:newDocId] + 1;
@@ -474,25 +474,25 @@
 /// 增 -- img
 + (void)createImage:(ImageRLM *)entity {
     [LZImageManager addEntity:entity];
-    NSLog(@"record add -- img =%@",entity.Id);
+    DELog(@"record add -- img =%@",entity.Id);
 }
 
 + (void)batchCreateImages:(NSArray *)entityList {
     [LZImageManager batchAddEntityList:entityList];
     [entityList enumerateObjectsUsingBlock:^(ImageRLM *entity, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"record add -- img =%@",entity.Id);
+        DELog(@"record add -- img =%@",entity.Id);
     }];
 }
 
 /// 改 -- img
 + (void)updateImage:(NSString *)objId byTransaction:(void(^)(void))transcation {
     [LZImageManager updateTransactionWithBlock:transcation];
-    NSLog(@"record update -- img =%@",objId);
+    DELog(@"record update -- img =%@",objId);
 }
 
 /// 删 -- img
 + (void)removeImage:(ImageRLM *)entity {
-    NSLog(@"record delete -- doc =%@",entity.Id);
+    DELog(@"record delete -- doc =%@",entity.Id);
     [LZImageManager removeEntity:entity];
 }
 

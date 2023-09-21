@@ -21,7 +21,7 @@
     // Confirm that the length of the user name is small enough
     // to be recast when calling the hash function.
     if (accountNameLen > UINT32_MAX) {
-        NSLog(@"Account name too long to hash: %@", userAccountName);
+        DELog(@"Account name too long to hash: %@", userAccountName);
         return nil;
     }
     CC_SHA256(accountName, (CC_LONG)accountNameLen, hashedChars);

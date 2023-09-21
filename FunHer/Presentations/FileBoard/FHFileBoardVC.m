@@ -26,11 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configContentView];
     [self configData];
 }
 
 - (void)clickCancelBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if (self.clickCancelBlock) {
         self.clickCancelBlock();
     }
@@ -38,6 +40,7 @@
 }
 
 - (void)clickActionBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     if (self.callBackFilePathBlock) {
         self.callBackFilePathBlock(self.present.selectedObjId);
@@ -45,6 +48,7 @@
 }
 
 - (void)goToNextFolderVC {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHFileBoardVC *nextVC = [[FHFileBoardVC alloc] init];
     nextVC.fileObjId = self.present.selectedObjId;
     nextVC.fileHandleType = self.fileHandleType;
@@ -202,6 +206,10 @@
         _actionBtn = btn;
     }
     return _actionBtn;
+}
+
+- (void)dealloc {
+    DELog(@"%s", __func__);
 }
 
 @end

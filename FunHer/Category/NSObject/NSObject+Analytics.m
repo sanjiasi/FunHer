@@ -10,21 +10,28 @@
 
 @implementation NSObject (Analytics)
 
+#pragma mark -- 收集错误
+- (void)getErrorWithName:(NSString *)name {
+    if (DEBUG) {
+        NSString *func = [self eventNameWithFunc:name];
+        DELog(@"event = %@",func);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[FHToast shareInstance] makeToast:func];
+        });
+    }
+}
+
 #pragma mark -- 收集问题分析
 - (void)getEventWithName:(NSString *)name {
     NSString *func = [self eventNameWithFunc:name];
     [FHAnalyticsManager logEventWithName:func];
-//    NSLog(@"analytics = %@",func);
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [[FHToast shareInstance] makeToast:func];
-//    });
 }
 
 - (void)getEvent:(NSString *)name parameters:(NSDictionary *)params {
     NSString *func = [self eventNameWithFunc:name];
     [FHAnalyticsManager logEvent:func parameters:params];
-//    NSLog(@"analytics = %@ - %@",func, params);
 }
+
 
 - (NSString *)eventNameWithFunc:(NSString *)func   {
     NSString *selfClass = NSStringFromClass([self class]);

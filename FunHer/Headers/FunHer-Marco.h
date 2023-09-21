@@ -9,6 +9,16 @@
 #define FunHer_Marco_h
 
 #pragma mark -- functions
+
+#ifdef DEBUG
+#define DELog(format, ...) NSLog(@" %s [第%d行] \n %@", __FUNCTION__, __LINE__, [NSString stringWithFormat:format, ##__VA_ARGS__]);
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define DELog(...)
+#define debugMethod()
+#endif
+
+
 // 字符串判空
 #define NULLString(string) ((![string isKindOfClass:[NSString class]]) || (string == nil) || [string isEqualToString:@""] || [string isEqualToString:@"<null>"] || [string isKindOfClass:[NSNull class]]||[[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
 

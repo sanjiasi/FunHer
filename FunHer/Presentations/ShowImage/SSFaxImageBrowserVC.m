@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configNavBar];
     [self configContentView];
 }
@@ -47,6 +48,7 @@
 }
 
 - (void)clickCropImage {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
     cropVC.objId = self.currentModel.fileObj.objId;
     UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
@@ -90,6 +92,10 @@
         _imageBrowser = [[SSImageBrowser alloc] initWithFrame:CGRectMake(0, kNavBarAndStatusBarHeight, kScreenWidth, kScreenHeight - kNavBarAndStatusBarHeight - 49 - kBottomSafeHeight)];
     }
     return _imageBrowser;
+}
+
+- (void)dealloc {
+    DELog(@"%s", __func__);
 }
 
 @end

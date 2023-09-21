@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configContentView];
     [LZFileManager removeItemAtPath:[NSString tempDocPath]];
 }
@@ -43,10 +44,12 @@
 
 #pragma mark -- event response
 - (void)clickCancelBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)clickTakePhoto {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [SVProgressHUD show];
     [self disableTakeBtn];
     [self.cameraView takePhoto];
@@ -149,6 +152,10 @@
         _cancelBtn = ovalBtn;
     }
     return _cancelBtn;
+}
+
+- (void)dealloc {
+    DELog(@"%s", __func__);
 }
 
 @end

@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     self.present.fileObjId = self.fileObjId;
     self.title = self.fileName;
     self.view.backgroundColor = UIColor.whiteColor;
@@ -85,6 +86,7 @@
 
 #pragma mark -- 打开相册找照片
 - (void)addPhotoFromLibrary {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [FHPhotoLibrary configPhotoPickerWithMaxImagesCount:0 sender:self selectedImageCompletion:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
         [self handleAssets:assets];
     }];
@@ -119,6 +121,7 @@
 
 #pragma mark -- 打开相机拍照
 - (void)takePhotoByCamera {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHCameraVC *cameraVC = [[FHCameraVC alloc] init];
     cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
     __weak typeof(self) weakSelf = self;
@@ -138,12 +141,13 @@
 
 #pragma mark -- 新建文件夹
 - (void)addNewFolder {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     __weak typeof(self) weakSelf = self;
     [self takeAlertWithTitle:@"Create new folder" placeHolder:@"New Folder" actionBlock:^(NSString * _Nonnull fieldText) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf handleCreateFolder:fieldText];
     } cancelBlock:^{
-        NSLog(@"cancel");
+        DELog(@"cancel");
     }];
 }
 
@@ -156,12 +160,14 @@
 
 #pragma mark -- 选择文件
 - (void)selectItemsAction {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if (self.present.dataArray.count == 0) return;
     self.present.selectedIndex = nil;
     [self goToSelectedItems];
 }
 
 - (void)goToSelectedItems {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHEditItemsVC *vc = [[FHEditItemsVC alloc] init];
     vc.parentId = self.present.fileObjId;
     if (self.present.selectedIndex) {
@@ -393,7 +399,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"%s", __func__);
+    DELog(@"%s", __func__);
 }
 
 @end

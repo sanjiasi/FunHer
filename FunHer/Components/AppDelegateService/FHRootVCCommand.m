@@ -11,6 +11,7 @@
 @implementation FHRootVCCommand
 
 - (void)execute {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHFileListVC *vc = [[FHFileListVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     KAppDelegate.window.rootViewController = nav;

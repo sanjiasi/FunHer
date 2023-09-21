@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getEventWithName:NSStringFromClass([self class])];
     [self configNavBar];
     [self configContentView];
 }
@@ -47,9 +48,10 @@
 
 #pragma mark -- Delegate
 - (void)collectionViewDidSelected:(NSIndexPath *)idxPath {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     FHFileEditCellModel *model = self.present.dataArray[idxPath.item];
     if ([model.fileObj.type isEqualToString:@"2"]) {//文档
-        NSLog(@"selected == %@",model.fileName);
+        DELog(@"selected == %@",model.fileName);
         [self refreshNavBarBySelected];
     }
 }
@@ -58,6 +60,7 @@
 #pragma mark -- event response
 #pragma mark -- share
 - (void)shareAction {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if ([[self.present selectedItemArray] count] < 1) {
         return;
     }
@@ -86,6 +89,7 @@
 
 #pragma mark -- move/copy
 - (void)copyAcion {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if ([[self.present selectedItemArray] count] < 1) {
         return;
     }
@@ -108,6 +112,7 @@
 
 #pragma mark -- 选择复制/移动的目的地
 - (void)selecteMoveCopyTargetFile:(FileHandleType)handleType {
+    [self getEventWithName:@"selectTarget"];
     FHFileBoardVC *nextVC = [[FHFileBoardVC alloc] init];
     nextVC.fileObjId = FHParentIdByHome;
     nextVC.fileHandleType = handleType;
@@ -127,6 +132,7 @@
 
 #pragma mark -- 移动
 - (void)handleMoveFile:(NSString *)objId {
+    [self getEventWithName:@"move"];
     [self.present moveFileToFolder:objId];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.moveCopyToPathBlock) {
@@ -136,6 +142,7 @@
 
 #pragma mark -- 拷贝
 - (void)handleCopyFile:(NSString *)objId {
+    [self getEventWithName:@"copy"];
     [self.present copyFileToFolder:objId];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.moveCopyToPathBlock) {
@@ -145,6 +152,7 @@
 
 #pragma mark -- merge
 - (void)mergeAction {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if ([[self.present selectedItemArray] count] < 2) {
         return;
     }
@@ -167,6 +175,7 @@
 
 #pragma mark -- 合并且保留原文件 等同于拷贝文件
 - (void)handleMergeAndKeepOldFile {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     NSString *docId = [self.present mergeFiles];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.mergeToNewFileBlock) {
@@ -176,6 +185,7 @@
 
 #pragma mark -- 合并且删除原文件 等同往主文件移动文件
 - (void)handleMergeAndDeleteOldFile {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     NSString *docId = [self.present mergeFilesDeleteOldFile];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.mergeToNewFileBlock) {
@@ -185,6 +195,7 @@
 
 #pragma mark -- delete
 - (void)deleteAction {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     if ([[self.present selectedItemArray] count] < 1) {
         return;
     }
@@ -192,11 +203,12 @@
     [self takeAlertWithTitle:@"Warning" message:@"Are you sure you want to delete all selected documents ?" actionBlock:^{
         [weakSelf handleDeleteFile];
     } cancelBlock:^{
-        NSLog(@"cancel");
+        DELog(@"cancel");
     }];
 }
 
 - (void)handleDeleteFile {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self.present deleteFiles];
     [self dismissViewControllerAnimated:NO completion:nil];
     if (self.deleteFileBlock) {
@@ -206,11 +218,13 @@
 
 #pragma mark -- 取消
 - (void)clickCancelBtn {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark -- 全选/取消全选
 - (void)clickSelectedAll {
+    [self getEventWithName:NSStringFromSelector(_cmd)];
     [self.present handSelectedAll];
     self.collectionView.dataArray = self.present.dataArray;
     [self.collectionView reloadData];
@@ -353,12 +367,16 @@
     __weak typeof(self) weakSelf = self;
     if (!_funcMenu) {
         _funcMenu = [[FHTabbar alloc] initWithItems:self.present.funcItems menuHeight:49 actionBlock:^(NSInteger idx, NSString * _Nonnull selector) {
-            NSLog(@"i = %@, func = %@", @(idx), selector);
+            DELog(@"i = %@, func = %@", @(idx), selector);
             [weakSelf invokeWithSelector:selector];
         }];
         _funcMenu.bgColor = UIColor.whiteColor;
     }
     return _funcMenu;
+}
+
+- (void)dealloc {
+    DELog(@"%s", __func__);
 }
 
 @end

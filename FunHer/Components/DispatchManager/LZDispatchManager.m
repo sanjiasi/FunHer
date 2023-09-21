@@ -102,7 +102,6 @@
         }
     }
     newImg = [UIImage imageWithCGImage:[image CGImage] scale:[image scale] orientation: changeOr];//这里只是改变了图片的imageOrientation属性 imageview加载图片时会根据图片的imageOrientation对图片进行旋转
-    NSLog(@"imageOrientation==%ld",newImg.imageOrientation);
     return newImg;
 }
 

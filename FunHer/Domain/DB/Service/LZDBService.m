@@ -26,7 +26,7 @@ static NSUInteger  const REALM_SCHAME_VERSION = 1;
         defaultConfig.fileURL = [NSURL fileURLWithPath:dbFile];
         defaultConfig.schemaVersion = 1;
         [RLMRealmConfiguration setDefaultConfiguration:defaultConfig];
-//        NSLog(@"DBPath:%@",defaultConfig.fileURL);
+        DELog(@"DBPath:%@",defaultConfig.fileURL);
     }
 }
 

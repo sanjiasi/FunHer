@@ -79,7 +79,7 @@
 //@param message  显示的文本内容 @param duration 显示时间
 - (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration {
     if (![NSThread isMainThread]) {
-        NSLog(@"***********************(take on main thread)*****************");
+        DELog(@"***********************(take on main thread)*****************");
         return;
     }
 
@@ -117,7 +117,7 @@
 #pragma mark -- 加载动画
 - (void)makeLoading {
     if (![NSThread isMainThread]) {
-        NSLog(@"***********************(take on main thread)*****************");
+        DELog(@"***********************(take on main thread)*****************");
         return;
     }
     

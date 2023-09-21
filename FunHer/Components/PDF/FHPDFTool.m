@@ -41,7 +41,7 @@
     CGPDFPageRetain(pageRef);
     // determine the size of the PDF page
     CGFloat pixe = [UIScreen mainScreen].scale;
-    NSLog(@"pixe==%.2f yyy==%.2f",pixe,kScreenHeight*1.0/kScreenWidth);
+    DELog(@"pixe==%.2f yyy==%.2f",pixe,kScreenHeight*1.0/kScreenWidth);
     CGFloat scaleCustom = 3;
     CGRect pageRect = CGPDFPageGetBoxRect(pageRef, kCGPDFMediaBox);
     // renders its content.
