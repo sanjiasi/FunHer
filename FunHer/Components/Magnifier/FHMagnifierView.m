@@ -14,7 +14,7 @@
     if (self) {
         self.userInteractionEnabled = NO;
         _aimSize = 10;
-        _aimColor = UIColor.blackColor;
+        _aimColor = kBlackColor;
         [KAppWindow addSubview:self];
         
         self.frame = CGRectMake(0, 0, 120, 120);

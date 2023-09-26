@@ -179,10 +179,10 @@
 - (UILabel *)pageLabel {
     if (!_pageLabel) {
         _pageLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, kScreenHeight- Bottom_H - kBottomSafeHeight-30-30, 100, 30)];
-        _pageLabel.backgroundColor = RGBA(61, 131, 215, 0.7);
+        _pageLabel.backgroundColor = RGBA(76, 134, 255, 0.7);
         _pageLabel.font = PingFang_R_FONT_(13);
         _pageLabel.textAlignment = NSTextAlignmentCenter;
-        _pageLabel.textColor = [UIColor whiteColor];
+        _pageLabel.textColor = kWhiteColor;
         _pageLabel.clipsToBounds = YES;
         _pageLabel.layer.cornerRadius = 12;
     }

@@ -70,7 +70,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc] init];
-        _bgView.backgroundColor = UIColor.whiteColor;
+        _bgView.backgroundColor = kWhiteColor;
     }
     return _bgView;
 }
@@ -87,7 +87,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.textColor = RGBA(34, 34, 34, 1.0);
+        _titleLabel.textColor = kTextBlackColor;
         _titleLabel.font = PingFang_R_FONT_(16);
         _titleLabel.numberOfLines = 1;
         _titleLabel.textAlignment = NSTextAlignmentNatural;
@@ -99,7 +99,7 @@
 - (UILabel *)numLabel {
     if (!_numLabel) {
         _numLabel = [[UILabel alloc] init];
-        _numLabel.textColor = UIColor.grayColor;
+        _numLabel.textColor = kTextGrayColor;
         _numLabel.textAlignment = NSTextAlignmentCenter;
         _numLabel.font = PingFang_R_FONT_(13);
     }

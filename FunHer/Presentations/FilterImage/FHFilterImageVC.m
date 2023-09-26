@@ -125,7 +125,7 @@
 }
 
 - (void)configContentView {
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.showImgView];
     [self.superContentView addSubview:self.bottomFunctionView];
@@ -200,7 +200,7 @@
 - (UIView *)bottomFunctionView {
     if (!_bottomFunctionView) {
         UIView *content = [[UIView alloc] init];
-        content.backgroundColor = UIColor.whiteColor;
+        content.backgroundColor = kWhiteColor;
         _bottomFunctionView = content;
     }
     return _bottomFunctionView;

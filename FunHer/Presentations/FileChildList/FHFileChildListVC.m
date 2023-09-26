@@ -39,7 +39,7 @@
     [self getEventWithName:NSStringFromClass([self class])];
     self.present.fileObjId = self.fileObjId;
     self.title = self.fileName;
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self configNavBar];
     [self configContentView];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
@@ -376,7 +376,7 @@
         [btn.titleLabel setFont:PingFang_M_FONT_(16)];
         [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 8;
-        [btn setBackgroundColor:UIColor.whiteColor];
+        [btn setBackgroundColor:kWhiteColor];
         btn.padding = CGSizeMake(10, 0);
         _libraryBtn = btn;
     }
@@ -392,7 +392,7 @@
         [btn.titleLabel setFont:PingFang_M_FONT_(16)];
         [btn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 8;
-        [btn setBackgroundColor:UIColor.whiteColor];
+        [btn setBackgroundColor:kWhiteColor];
         btn.padding = CGSizeMake(10, 0);
         _cameraBtn = btn;
     }

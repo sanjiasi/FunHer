@@ -90,7 +90,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = UIColor.whiteColor;
+        view.backgroundColor = kWhiteColor;
         view.layer.cornerRadius = 5;
         view.layer.borderColor = RGBA(210, 210, 210, 1.0).CGColor;
         view.layer.borderWidth = 0.5;
@@ -103,7 +103,7 @@
 - (UIView *)maskView {
     if (!_maskView) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = RGBA(210, 210, 210, 0.3);//RGBA(255, 255, 255, 0.3);
+        view.backgroundColor = RGBA(210, 210, 210, 0.3);
         _maskView = view;
     }
     return _maskView;
@@ -115,7 +115,7 @@
         imgV.image = [UIImage imageNamed:@"placeholder"];
         imgV.contentMode = UIViewContentModeScaleAspectFill;
         imgV.clipsToBounds = YES;
-        imgV.backgroundColor = RGB(241, 241, 241);
+        imgV.backgroundColor = kViewBGColor;
         _showImg = imgV;
     }
     return _showImg;

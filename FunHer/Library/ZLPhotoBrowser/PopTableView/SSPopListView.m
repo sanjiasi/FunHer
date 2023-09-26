@@ -88,7 +88,7 @@ UITableViewDataSource
 }
 
 - (void)configContentView {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = KAppWindow;
     [keyWindow addSubview:self];
 //    self.backgroundColor = [UIColor viewControllerBackGroundColor:RGBA(0, 0, 0, 0.5) defaultColor:RGBA(0, 0, 0, 0.3)];
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -163,7 +163,7 @@ UITableViewDataSource
 - (UIView *)settingView {
     if (!_settingView) {
         _settingView = [[UIView alloc] init];
-        _settingView.backgroundColor = [UIColor whiteColor];
+        _settingView.backgroundColor = kWhiteColor;
     }
     return _settingView;
 }

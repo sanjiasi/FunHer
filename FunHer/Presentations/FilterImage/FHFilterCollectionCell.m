@@ -49,7 +49,7 @@
     if (!_titleLab) {
         UILabel *lab = [[UILabel alloc] init];
         lab.backgroundColor = RGBA(51, 51, 51, 0.3);
-        lab.textColor = UIColor.whiteColor;
+        lab.textColor = kWhiteColor;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = PingFang_R_FONT_(11);
         lab.lineBreakMode = NSLineBreakByTruncatingTail;

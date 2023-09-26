@@ -32,7 +32,7 @@
     [self getEventWithName:NSStringFromClass([self class])];
     self.present.fileObjId = self.fileObjId;
     self.title = self.fileName;
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self configNavBar];
     [self configContentView];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
@@ -170,7 +170,7 @@
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     btn.tag = 115;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -238,7 +238,7 @@
     if (!_libraryBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:@"input_photo"] forState:UIControlStateNormal];
-        [btn setBackgroundColor:UIColor.whiteColor];
+        [btn setBackgroundColor:kWhiteColor];
         btn.layer.cornerRadius = 30;
         [btn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(addPhotoFromLibrary) forControlEvents:UIControlEventTouchUpInside];

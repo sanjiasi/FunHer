@@ -61,7 +61,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = UIColor.whiteColor;
+        view.backgroundColor = kWhiteColor;
         view.layer.cornerRadius = 5;
         view.layer.borderColor = RGBA(210, 210, 210, 1.0).CGColor;
         view.layer.borderWidth = 0.5;

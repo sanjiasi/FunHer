@@ -21,21 +21,14 @@
 #pragma mark -- life cycle
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        //        _lastPosY = 0;
-        self.backgroundColor = UIColor.whiteColor;//[UIColor viewControllerBackGroundColor:KAppDarkBackgroundColor defaultColor:KAppBackgroundColor];
+        self.backgroundColor = kWhiteColor;
         self.dataSource = self;
         self.delegate = self;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
         self.bounces = YES;
         self.alwaysBounceVertical = YES;
-//        [self configContentView];
         [self registerClass:[FHFileEditCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileEditCollectionCell class])];
-        
-        //        [self registerClass:[DocumentHeadReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DocumentHeaderIdentifier];
-        //        [self registerClass:[DocumentFooterReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:DocumentFooterIdentifier];
-        //        [self registerClass:[DocSectionOneHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DocumentOneHeaderIdentifier];
-        
     }
     return self;
 }

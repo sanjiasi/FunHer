@@ -119,9 +119,13 @@ return safeAreaInsets.bottom;\
                                             green:(g)/255.f \
                                              blue:(b)/255.f \
                                             alpha:(a)]
+
 #define kThemeColor            RGBA(76, 134, 255, 1.0)
-#define kViewBGColor            RGBA(247, 247, 247, 1.0)
-#define kTextBlackColor            RGBA(33, 33, 33, 1.0)
+#define kWhiteColor            UIColor.systemBackgroundColor
+#define kBlackColor            UIColor.labelColor
+#define kViewBGColor           [UIColor colorNamed:@"AdBgColor"]  //RGBA(247, 247, 247, 1.0)
+#define kTextBlackColor        [UIColor colorNamed:@"AdTextBlack"] //RGBA(33, 33, 33, 1.0)
 #define kTextGrayColor            RGBA(177, 177, 177, 1.0)
+
 
 #endif /* FunHer_Marco_h */

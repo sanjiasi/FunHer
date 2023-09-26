@@ -1395,7 +1395,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         [btn setImage:[UIImage imageNamed:@"bule_arrowup"] forState:UIControlStateSelected];
         [btn setTitle:self.albumListModel.title forState:UIControlStateNormal];//All
         btn.titleLabel.font = PingFang_M_FONT_(18);
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [btn addTarget:self action:@selector(showPhotoLibrary:) forControlEvents:UIControlEventTouchUpInside];
         [btn layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleRight imageTitleSpace:5];

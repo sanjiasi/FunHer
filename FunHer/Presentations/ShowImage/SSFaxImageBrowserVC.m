@@ -58,14 +58,14 @@
 
 #pragma mark -- 设置导航栏
 - (void)configNavBar {
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [self setRigthButton:@"Crop" withSelector:@selector(clickCropImage)];
 }
 
 - (void)setRigthButton:(nullable NSString *)title withSelector:(SEL)selector {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     btn.tag = 115;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];

@@ -53,6 +53,7 @@
     ac.configuration.indexLabelBgColor = kThemeColor;
     ac.configuration.bottomBtnsNormalBgColor = kThemeColor;
     ac.configuration.bottomBtnsDisableBgColor = RGBA(31, 61, 115, 1.0);
+    ac.configuration.navBarColor = kWhiteColor;
     ac.configuration.shouldAnialysisAsset = NO;
     return ac;
 }

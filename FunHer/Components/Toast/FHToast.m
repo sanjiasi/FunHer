@@ -23,7 +23,7 @@
         self.backgroundColor = RGBA(0, 0, 0, 0.6);
         self.numberOfLines = 0;
         self.textAlignment = NSTextAlignmentCenter;
-        self.textColor = UIColor.whiteColor;
+        self.textColor = UIColor.systemBackgroundColor;
         self.font = PingFang_R_FONT_(15);
     }
     return self;

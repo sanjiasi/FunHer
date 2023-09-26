@@ -48,16 +48,22 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     // Do any additional setup after loading the view.
     [self getEventWithName:NSStringFromClass([self class])];
     self.title = @"Files";
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self configNavBar];
     [self configContentView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self.navigationController.navigationBar setTranslucent:NO];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self refreshWithNewData];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if (@available(iOS 13.0, *)) {
+        return UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? UIStatusBarStyleDarkContent : UIStatusBarStyleLightContent;
+    } else {
+        return UIStatusBarStyleDefault;
+    }
 }
 
 #pragma mark -- Delegate
@@ -354,7 +360,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
 - (void)setLeftButton:(nullable NSString *)title withSelector:(SEL)selector {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
     [btn.titleLabel setFont:PingFang_R_FONT_(13)];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -464,7 +470,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     if (!_cameraBtn) {
         UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [ovalBtn setImage:[UIImage imageNamed:@"take_camera"] forState:UIControlStateNormal];
-        [ovalBtn setBackgroundColor:UIColor.whiteColor];
+        [ovalBtn setBackgroundColor:kWhiteColor];
         [ovalBtn addTarget:self action:@selector(takePhotoByCamera) forControlEvents:UIControlEventTouchUpInside];
         ovalBtn.layer.cornerRadius = 30;
         _cameraBtn = ovalBtn;

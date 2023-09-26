@@ -74,13 +74,13 @@
 }
 
 - (void)configContentView {
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView addSubview:self.titleLab];
     [self.superContentView addSubview:self.contentLab];
     [self.superContentView addSubview:self.tableView];
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = UIColor.whiteColor;
+    bottomView.backgroundColor = kWhiteColor;
     [self.superContentView addSubview:bottomView];
     [bottomView addSubview:self.cancelBtn];
     [bottomView addSubview:self.actionBtn];
@@ -198,7 +198,7 @@
     if (!_actionBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"Copy" forState:UIControlStateNormal];
-        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [btn setTitleColor:kWhiteColor forState:UIControlStateNormal];
         [btn setBackgroundColor:kThemeColor];
         [btn addTarget:self action:@selector(clickActionBtn) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 4;

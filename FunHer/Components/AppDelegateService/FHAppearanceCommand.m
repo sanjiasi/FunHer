@@ -20,17 +20,15 @@
     [[UINavigationBar appearance] setTranslucent:NO];
     //去掉导航下边的黑线
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
-    [[UINavigationBar appearance] setTintColor:RGBA(51, 51, 51, 1.0)];
-    NSDictionary *textAtt = @{NSForegroundColorAttributeName:RGBA(51, 51, 51, 1.0)};
+    [[UINavigationBar appearance] setTintColor:kTextBlackColor];
+    NSDictionary *textAtt = @{NSForegroundColorAttributeName:kTextBlackColor};
     if (@available(iOS 13.0, *)){
         UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
         [appearance configureWithOpaqueBackground];
-        appearance.backgroundColor = [UIColor whiteColor];
+        appearance.backgroundColor = kWhiteColor;
         appearance.titleTextAttributes = textAtt;
         appearance.shadowColor = [UIColor clearColor];
         [appearance setBackIndicatorImage:[UIImage imageNamed:@"backItem"] transitionMaskImage:[UIImage imageNamed:@"backItem"]];
-        UIBarButtonItemAppearance *backBtnAppearance = [UIBarButtonItemAppearance new];
-    
         [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
         [[UINavigationBar appearance] setStandardAppearance:appearance];
     } else {

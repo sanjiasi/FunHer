@@ -109,7 +109,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 }
 
 - (void)configContentView {
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = kWhiteColor;
     [self.view addSubview:self.superContentView];
     [self.superContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
@@ -118,7 +118,7 @@ CGFloat const kCameraToolsViewHeight = 60;
     }];
     [self.superContentView addSubview:self.cropView];
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = UIColor.whiteColor;
+    bottomView.backgroundColor = kWhiteColor;
     [self.superContentView addSubview:bottomView];
     [bottomView addSubview:self.actionBtn];
     

@@ -55,7 +55,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = UIColor.whiteColor;
+        view.backgroundColor = kWhiteColor;
         view.layer.cornerRadius = 8.0;
         view.clipsToBounds = YES;
         _bgView = view;

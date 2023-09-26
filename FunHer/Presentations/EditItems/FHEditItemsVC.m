@@ -101,7 +101,7 @@
         [self selecteMoveCopyTargetFile:FileHandleTypeCopy];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    UIColor * titleColor = UIColor.blackColor;
+    UIColor * titleColor = kTextBlackColor;
     [archiveAction setValue:titleColor forKey:@"_titleTextColor"];
     [otherAction setValue:titleColor forKey:@"_titleTextColor"];
     [alertController addAction:archiveAction];
@@ -164,7 +164,7 @@
         [self handleMergeAndDeleteOldFile];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    UIColor * titleColor = UIColor.blackColor;
+    UIColor * titleColor = kTextBlackColor;
     [archiveAction setValue:titleColor forKey:@"_titleTextColor"];
     [otherAction setValue:titleColor forKey:@"_titleTextColor"];
     [alertController addAction:archiveAction];
@@ -310,7 +310,7 @@
 - (void)setLeftButton:(nullable NSString *)title withSelector:(SEL)selector {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn.titleLabel setFont:PingFang_R_FONT_(13)];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -351,7 +351,7 @@
         layout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
         
         FHEditedCollectionView *colView = [[FHEditedCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = kViewBGColor;//UIColor.whiteColor;
+        colView.backgroundColor = kViewBGColor;;
         __weak typeof(self) weakSelf = self;
         colView.didSelectedBlock = ^(NSIndexPath * _Nonnull aIndex) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -370,7 +370,7 @@
             DELog(@"i = %@, func = %@", @(idx), selector);
             [weakSelf invokeWithSelector:selector];
         }];
-        _funcMenu.bgColor = UIColor.whiteColor;
+        _funcMenu.bgColor = kWhiteColor;
     }
     return _funcMenu;
 }

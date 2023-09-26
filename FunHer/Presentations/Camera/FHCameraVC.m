@@ -77,12 +77,12 @@
 #pragma mark -- public methods
 - (void)disableTakeBtn {
     self.takePhotoBtn.enabled = NO;
-    [self.takePhotoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.takePhotoBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
 }
 
 - (void)ableTakeBtn {
     self.takePhotoBtn.enabled = YES;
-    [self.takePhotoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.takePhotoBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
 }
 
 #pragma mark -- private methods
@@ -91,7 +91,7 @@
 }
 
 - (void)configContentView {
-    self.view.backgroundColor = UIColor.blackColor;
+    self.view.backgroundColor = kBlackColor;
     [self.view addSubview:self.cameraView];
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.takePhotoBtn];

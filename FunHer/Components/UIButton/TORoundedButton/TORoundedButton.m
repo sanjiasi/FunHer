@@ -123,7 +123,7 @@ static inline BOOL TO_ROUNDED_BUTTON_FLOATS_MATCH(CGFloat firstValue, CGFloat se
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.textColor = kWhiteColor;
     self.titleLabel.font = buttonFont;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10) {
         self.titleLabel.adjustsFontForContentSizeCategory = YES;
