@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, FilterType) {
 - (void)createDocWithImage { 
     UIImage *img = [UIImage imageWithContentsOfFile:self.filterImage];
     if (img) {
-        [FHNotificationManager pushNotificationName:FHCreateDocNotification withObject:self info:@{@"fileName": self.fileName, @"sampleImage": self.filterImage}];
+        [FHNotificationManager pushNotificationName:FHAddImageByDocNotification withObject:self info:@{@"fileName": self.fileName, @"sampleImage": self.filterImage}];
     } else {
         [self getEventWithName:@"no filter image"];
     }

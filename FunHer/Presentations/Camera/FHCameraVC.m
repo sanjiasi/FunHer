@@ -45,6 +45,7 @@
 #pragma mark -- event response
 - (void)clickCancelBtn {
     [self getEventWithName:NSStringFromSelector(_cmd)];
+    [self.cameraView sessionStop];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -56,6 +57,7 @@
     __weak typeof(self) weakSelf = self;
     self.cameraView.takePhotoBlock = ^(NSData * _Nonnull photoImage) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.cameraView sessionStop];
         [strongSelf ableTakeBtn];
         [SVProgressHUD dismiss];
         if (photoImage) {

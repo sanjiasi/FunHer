@@ -169,7 +169,8 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController presentViewController:nav animated:NO completion:nil];
-    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
+    [FHNotificationManager addNotiOberver:self forName:FHAddImageByDocNotification selector:@selector(addDocAndRefresh:)];
 }
 
 #pragma mark -- 新建文件夹
@@ -286,7 +287,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
             [self goToPushDocVC:model];
         });
     }];
-    [FHNotificationManager removeNotiOberver:self forName:FHCreateDocNotification];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
 }
 
 #pragma mark -- private methods
@@ -418,7 +419,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
         layout.headerReferenceSize = CGSizeMake(kScreenWidth, FHMenuHeight + 0);
         
         UICollectionView *colView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        colView.backgroundColor = kViewBGColor;//UIColor.whiteColor;
+        colView.backgroundColor = kViewBGColor;
         [colView registerClass:[FHFileCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([FHFileCollectionCell class])];
         [colView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:FHTabCollectionHeaderIdentifier];
         __weak typeof(self) weakSelf = self;

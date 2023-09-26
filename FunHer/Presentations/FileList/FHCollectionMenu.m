@@ -39,7 +39,7 @@
 }
 
 - (void)configContentView {
-    self.backgroundColor = RGB(241, 241, 241);
+    self.backgroundColor = kViewBGColor;
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.top.bottom.equalTo(self);

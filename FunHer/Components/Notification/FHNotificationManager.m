@@ -8,7 +8,7 @@
 #import "FHNotificationManager.h"
 
 #pragma mark -- NSNotification
-NSString * const FHCreateDocNotification            = @"FHCreateDocNotificationKey";//创建新文档
+NSString * const FHAddImageByDocNotification            = @"FHAddImageByDocNotificationKey";//在文档中添加新图片,没有文档则新建文档
 
 @implementation FHNotificationManager
 

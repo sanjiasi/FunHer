@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 解析图片
 - (void)anialysisAssets:(NSArray *)assets completion:(void (^)(NSArray *imagePaths))completion;
 
+/// 新增处理后的图片
+/// - Parameter info: 图片数据
+- (NSDictionary *)createImage:(NSDictionary *)info;
+
 @end
 
 NS_ASSUME_NONNULL_END

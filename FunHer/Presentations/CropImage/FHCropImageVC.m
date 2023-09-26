@@ -11,6 +11,7 @@
 #import "FHReadFileSession.h"
 #import "FHCropImagePresent.h"
 #import "FHFilterImageVC.h"
+#import "FHNotificationManager.h"
 
 CGFloat const CropView_Y = 45;
 CGFloat const  CropView_X = 15;
@@ -77,6 +78,7 @@ CGFloat const kCameraToolsViewHeight = 60;
 #pragma mark -- public methods
 - (void)clickCancel {
     [self getEventWithName:NSStringFromSelector(_cmd)];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
     [LZFileManager removeItemAtPath:[NSString imageTempBox]];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

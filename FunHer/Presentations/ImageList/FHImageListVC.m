@@ -13,6 +13,8 @@
 #import "FHPhotoLibrary.h"
 #import "FHFileModel.h"
 #import "SSFaxImageBrowserVC.h"
+#import "FHCropImageVC.h"
+#import "FHNotificationManager.h"
 
 @interface FHImageListVC ()
 @property (nonatomic, strong) UIView *superContentView;
@@ -68,8 +70,24 @@
     [self.present anialysisAssets:assets completion:^(NSArray * _Nonnull imagePaths) {
         [SVProgressHUD dismiss];
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (imagePaths.count == 1) {
+            NSString *path = imagePaths[0];
+            [strongSelf handleCropImage:path.fileName];
+            return;
+        }
         [strongSelf refreshWithNewData];
     }];
+}
+
+#pragma mark -- 跳转去裁剪图片
+- (void)handleCropImage:(NSString *)fileName {
+    FHCropImageVC *cropVC = [[FHCropImageVC alloc] init];
+    cropVC.fileName = fileName;
+    UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:nav animated:NO completion:nil];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
+    [FHNotificationManager addNotiOberver:self forName:FHAddImageByDocNotification selector:@selector(addImageAndRefresh:)];
 }
 
 #pragma mark -- public methods
@@ -79,6 +97,18 @@
     } withMainCompleted:^{
         [self.collectionView reloadData];
     }];
+}
+
+#pragma mark -- 增加图片并刷新
+- (void)addImageAndRefresh:(NSNotification *)noti {
+    NSDictionary *userInfo = noti.userInfo;
+    [LZDispatchManager globalQueueHandler:^{
+        [self.present createImage:userInfo];
+        [self configData];
+    } withMainCompleted:^{
+        [self.collectionView reloadData];
+    }];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
 }
 
 #pragma mark -- private methods

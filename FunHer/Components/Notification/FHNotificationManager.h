@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const FHCreateDocNotification; ///创建新文档
+extern NSString * const FHAddImageByDocNotification; ///在文档中添加新图片
 
 @interface FHNotificationManager : NSObject
 

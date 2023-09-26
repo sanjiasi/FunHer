@@ -27,8 +27,10 @@
     }];
     [LZDispatchManager groupTask:groupE withCompleted:^{
         NSArray *array = [NSString sortPicArrayAtPath:[NSString tempDocPath]];
-        [self addImages:array];
-        [self refreshData];
+        if (array.count > 1) {
+            [self addImages:array];
+            [self refreshData];
+        }
         if (completion) {
             completion(array);
         }
@@ -61,21 +63,36 @@
     }
 }
 
+#pragma mark -- 新建图片
+- (NSDictionary *)createImage:(NSDictionary *)info {
+    NSString *fileName = info[@"fileName"];//临时存放原图片名
+    NSString *sampleImgPath = info[@"sampleImage"];//处理后的展示图
+    NSString *originalName = [NSString nameByRemoveIndex:fileName];
+    NSString *originalPath = [NSString originalImagePath:originalName];
+    //保存原图
+    [LZFileManager copyItemAtPath:[NSString tempImagePath:fileName] toPath:originalPath overwrite:YES];
+    [self saveSampleImage:[UIImage imageWithContentsOfFile:sampleImgPath] withName:originalName];
+    //新增图片数据
+    NSInteger start = [FHReadFileSession lastImageIndexByParentId:self.fileObjId] + 1;
+    NSDictionary *img = [FHFileDataSession addImage:originalName byIndex:start withParentId:self.fileObjId];
+    [LZFileManager removeItemAtPath:[NSString imageTempBox]];//清空临时目录
+    return img;
+}
+
+
 - (void)refreshData {
     [self loadData];
 }
 
 
-- (void)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
+- (NSString *)saveOriginalPhoto:(NSData *)data imageSize:(CGSize)size atIndex:(NSUInteger)idx {
     NSString *imgPath = [NSString imagePathAtTempDocWithIndex:idx];
-    BOOL result =[UIImage resizeThumbImage:data imageSize:size saveAtPath:imgPath];
+    BOOL result = [UIImage resizeOriginalImage:data imageSize:size saveAtPath:imgPath];
     if (!result) {
         [self getEventWithName:@"write error"];
-    } else {
-        NSString *thumbName = [NSString nameByRemoveIndex:imgPath.fileName];
-        NSString *thumbDirPath = [[NSString thumbDir] stringByAppendingPathComponent:thumbName];
-        [LZFileManager copyItemAtPath:imgPath toPath:thumbDirPath overwrite:YES];
+        [LZFileManager copyItemAtPath:[NSString getLocalPlaceHolderFile] toPath:imgPath overwrite:YES];
     }
+    return imgPath;
 }
 
 #pragma mark -- private methods

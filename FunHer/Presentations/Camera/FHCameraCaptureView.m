@@ -72,6 +72,7 @@
 
 - (void)sessionStop {
     [self.captureSession stopRunning];
+    [self.videoPreviewLayer removeFromSuperlayer];
 }
 
 - (void)sessionRun {

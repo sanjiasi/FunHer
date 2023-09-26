@@ -116,7 +116,8 @@
     UINavigationController *nav = [[UINavigationController  alloc] initWithRootViewController:cropVC];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController presentViewController:nav animated:NO completion:nil];
-    [FHNotificationManager addNotiOberver:self forName:FHCreateDocNotification selector:@selector(addDocAndRefresh:)];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
+    [FHNotificationManager addNotiOberver:self forName:FHAddImageByDocNotification selector:@selector(addDocAndRefresh:)];
 }
 
 #pragma mark -- 打开相机拍照
@@ -218,7 +219,7 @@
             [self goToPushDocVC:model];
         });
     }];
-    [FHNotificationManager removeNotiOberver:self forName:FHCreateDocNotification];
+    [FHNotificationManager removeNotiOberver:self forName:FHAddImageByDocNotification];
 }
 
 #pragma mark -- private methods

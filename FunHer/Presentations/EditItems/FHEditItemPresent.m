@@ -171,7 +171,7 @@
         BOOL enableEdit = self.selectedItem ? YES : NO;
         _funcItems = @[@{@"image": @"edit_share", @"title": @"Share", @"selector": @"shareAction", @"enable":@(enableEdit)},
                        @{@"image": @"edit_copy", @"title": @"Move/Copy", @"selector": @"copyAcion", @"enable":@(enableEdit)},
-                       @{@"image": @"edit_merge", @"title": @"Merge", @"selector": @"mergeAction", @"enable":@(enableEdit)},
+                       @{@"image": @"edit_merge", @"title": @"Merge", @"selector": @"mergeAction", @"enable":@(NO)},
                        @{@"image": @"edit_delete", @"title": @"Delete", @"selector": @"deleteAction", @"enable":@(enableEdit)},
         ].mutableCopy;
     }
