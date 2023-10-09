@@ -99,9 +99,10 @@
     self.cameraView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.cameraView configContentView];
     
-    self.cancelBtn.frame = CGRectMake(20, self.view.frame.size.height - 60, 60, 60);
-    self.takePhotoBtn.frame = CGRectMake(self.view.frame.size.width/2 - 30, self.view.frame.size.height - 60, 60, 60);
-    self.captureImageView.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 60, 60, 60);
+    
+    self.cancelBtn.frame = CGRectMake(20, self.view.frame.size.height - 60 - kBottomSafeHeight - 20, 60, 60);
+    self.takePhotoBtn.frame = CGRectMake(self.view.frame.size.width/2 - 30, self.view.frame.size.height - 60 - kBottomSafeHeight - 20, 60, 60);
+    self.captureImageView.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 60 - kBottomSafeHeight - 20, 60, 60);
 }
 
 #pragma mark -- lazy
@@ -133,10 +134,7 @@
 - (UIButton *)takePhotoBtn {
     if (!_takePhotoBtn) {
         UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [ovalBtn setTitle:@"Take" forState:UIControlStateNormal];
-        ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        [ovalBtn setImage:[UIImage imageNamed:@"camera_shot"] forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(clickTakePhoto) forControlEvents:UIControlEventTouchUpInside];
         _takePhotoBtn = ovalBtn;
     }
@@ -146,10 +144,7 @@
 - (UIButton *)cancelBtn {
     if (!_cancelBtn) {
         UIButton *ovalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [ovalBtn setTitle:@"Cancel" forState:UIControlStateNormal];
-        ovalBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        ovalBtn.titleLabel.textAlignment = NSTextAlignmentNatural;
-        [ovalBtn setTitleColor:UIColor.greenColor forState:UIControlStateNormal];
+        [ovalBtn setImage:[UIImage imageNamed:@"close_navItem"] forState:UIControlStateNormal];
         [ovalBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
         _cancelBtn = ovalBtn;
     }

@@ -33,7 +33,7 @@
     self.titleLab.text = cellModel.fileName;
     self.numLab.text = cellModel.countNum;
     self.uTimeLab.text = cellModel.uDate;
-    self.checkBox.hidden = !cellModel.isSelected;
+    self.checkBox.image = cellModel.isSelected ? [UIImage imageNamed:@"edit_check"] : [UIImage imageNamed:@"edit_uncheck"];
 }
 
 #pragma mark -- private methods
@@ -170,7 +170,7 @@
 - (UIImageView *)checkBox {
     if (!_checkBox) {
         UIImageView *imgV = [[UIImageView alloc] init];
-        imgV.image = [UIImage imageNamed:@"close_navItem"];
+        imgV.image = [UIImage imageNamed:@"edit_uncheck"];
         _checkBox = imgV;
     }
     return _checkBox;
