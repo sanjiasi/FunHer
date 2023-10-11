@@ -39,6 +39,13 @@ CGFloat const kCameraToolsViewHeight = 60;
     });
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (_magnifierView) {
+        self.magnifierView.hidden = YES;
+    }
+}
+
 #pragma mark -- Delegate
 #pragma mark -- CropViewDelegate
 - (void)panChangePoint:(CGPoint)point{

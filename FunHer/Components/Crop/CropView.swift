@@ -118,15 +118,13 @@ public class CropView: UIView, UIGestureRecognizerDelegate {
         for i in stride(from: 0, to:7 , by: 2) {
             corners.append(cropCircles[i].center)
         }
-//        print(cropImageView.frame, corners, cropImageView.bounds)
+        
         let topWidth = distanceBetweenPoints(point1: corners[0], point2: corners[1])
         let bottomWidth = distanceBetweenPoints(point1: corners[3], point2: corners[2])
         let leftHeight = distanceBetweenPoints(point1: corners[0], point2: corners[3])
         let rightHeight = distanceBetweenPoints(point1: corners[1], point2: corners[2])
         let newWidth = max(topWidth, bottomWidth)
         let newHeight = max(leftHeight, rightHeight)
-//        let widthScale = cropImageView.image!.size.width/cropImageView.frame.size.width
-//        let heightScale = cropImageView.image!.size.height/cropImageView.frame.size.height
         let widthScale = originalImage!.size.width/cropImageView.frame.size.width
         let heightScale = originalImage!.size.height/cropImageView.frame.size.height
         var corners2 = [CGPoint]()
@@ -134,9 +132,11 @@ public class CropView: UIView, UIGestureRecognizerDelegate {
             let point = CGPoint(x: (cropCircles[i].center.x - cropImageView.frame.origin.x)  * widthScale, y: (cropCircles[i].center.y - cropImageView.frame.origin.y) * heightScale)
             corners2.append(point)
         }
-//        let newImage = OpenCVWrapper.getTransformedImage(newWidth*widthScale, newHeight*heightScale, cropImageView.image, &corners2, (cropImageView.image!.size))
         let newImage = OpenCVWrapper.getTransformedImage(newWidth*widthScale, newHeight*heightScale, originalImage, &corners2, (originalImage!.size))
-        return newImage!;
+        if newImage == nil {
+            return originalImage!
+        }
+        return newImage!
     }
     
     //MARK: Setup functions
@@ -187,7 +187,6 @@ public class CropView: UIView, UIGestureRecognizerDelegate {
                 endPoints.append(CGPoint(x: ppt.x + x, y: ppt.y + y))
             }
         }else{
-//            print("img =","siz==",cropImageView.image as Any,cropImageView.frame.size);
             if (autoCropPoints.count > 0) {
                 for ptVal:NSValue in autoCropPoints {
                     let ppt:CGPoint = ptVal.cgPointValue

@@ -313,7 +313,7 @@ double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 ) {
                                         8 * newImageMat.elemSize(),                           // Bits per pixel
                                         newImageMat.step[0],                                  // Bytes per row
                                         colorSpace2,                                     // Colorspace
-                                        kCGImageAlphaNone | kCGBitmapByteOrderDefault,  // Bitmap info flags
+                                        kCGImageAlphaNoneSkipLast | kCGBitmapByteOrderDefault,  // Bitmap info flags
                                         provider,                                       // CGDataProviderRef
                                         NULL,                                           // Decode
                                         false,                                          // Should interpolate
@@ -403,7 +403,7 @@ double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 ) {
                                         8 * newImageMat.elemSize(),                           // Bits per pixel
                                         newImageMat.step[0],                                  // Bytes per row
                                         colorSpace2,                                     // Colorspace
-                                        kCGImageAlphaNone | kCGBitmapByteOrderDefault,  // Bitmap info flags
+                                        kCGImageAlphaNoneSkipLast | kCGBitmapByteOrderDefault,  // Bitmap info flags
                                         provider,                                       // CGDataProviderRef
                                         NULL,                                           // Decode
                                         false,                                          // Should interpolate
