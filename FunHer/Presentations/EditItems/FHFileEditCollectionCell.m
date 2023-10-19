@@ -34,6 +34,7 @@
     self.numLab.text = cellModel.countNum;
     self.uTimeLab.text = cellModel.uDate;
     self.checkBox.image = cellModel.isSelected ? [UIImage imageNamed:@"edit_check"] : [UIImage imageNamed:@"edit_uncheck"];
+    self.checkBox.hidden = [cellModel.fileObj.type isEqualToString:@"1"];
 }
 
 #pragma mark -- private methods

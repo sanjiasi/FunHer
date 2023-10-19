@@ -121,6 +121,7 @@ return safeAreaInsets.bottom;\
                                             alpha:(a)]
 
 #define kThemeColor            RGBA(76, 134, 255, 1.0)
+#define kSubThemeColor         RGBA(65, 223, 163, 1.0)
 #define kWhiteColor            UIColor.systemBackgroundColor
 #define kBlackColor            UIColor.labelColor
 #define kViewBGColor           [UIColor colorNamed:@"AdBgColor"]  //RGBA(247, 247, 247, 1.0)

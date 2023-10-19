@@ -97,7 +97,7 @@
     UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:@"Move to" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self selecteMoveCopyTargetFile:FileHandleTypeMove];
     }];
-    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Copy To" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Copy to" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self selecteMoveCopyTargetFile:FileHandleTypeCopy];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -301,18 +301,18 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:kThemeColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn.titleLabel setFont:PingFang_R_FONT_(13)];
+    [btn.titleLabel setFont:PingFang_R_FONT_(17)];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = barItem;
     self.navRightBtn = btn;
 }
 
 - (void)setLeftButton:(nullable NSString *)title withSelector:(SEL)selector {
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 44)];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [btn.titleLabel setFont:PingFang_R_FONT_(13)];
+    [btn.titleLabel setFont:PingFang_R_FONT_(17)];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = barItem;
 }

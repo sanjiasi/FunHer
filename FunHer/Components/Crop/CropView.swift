@@ -14,9 +14,9 @@ public protocol CropViewDelegate:NSObjectProtocol{
 }
 public class CropView: UIView, UIGestureRecognizerDelegate {
     //MARK:Public Variables
-    public var rectangleBorderColor = UIColor(red: 61/255.0, green: 131/255.0, blue: 215/255.0, alpha: 1.0)
+    public var rectangleBorderColor = UIColor(red: 76/255.0, green: 134/255.0, blue: 255/255.0, alpha: 1.0)
     public var rectangleFillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-    public var circleBorderColor =  UIColor(red: 61/255.0, green: 131/255.0, blue: 215/255.0, alpha: 1.0)
+    public var circleBorderColor =  UIColor(red: 76/255.0, green: 134/255.0, blue: 255/255.0, alpha: 1.0)
     public var circleBackgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
     public var selectedCircleBorderColor = UIColor.clear//UIColor(red: 61/255.0, green: 131/255.0, blue: 215/255.0, alpha: 1.0)
     public var selectedCircleBackgroundColor = UIColor.clear//UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.3)
