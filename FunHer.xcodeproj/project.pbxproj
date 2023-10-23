@@ -77,7 +77,6 @@
 		67406C3C2A78CA8100E87AF5 /* ZLPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C1A2A78CA8100E87AF5 /* ZLPhotoConfiguration.m */; };
 		67406C402A78CDDE00E87AF5 /* FHPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C3F2A78CDDE00E87AF5 /* FHPhotoLibrary.m */; };
 		67406C442A78DD1100E87AF5 /* YYDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */; };
-		67406C462A79EC3C00E87AF5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 67406C452A79EC3C00E87AF5 /* placeholder.png */; };
 		67406C4D2A7C89DD00E87AF5 /* UILabel+Space.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C4C2A7C89DD00E87AF5 /* UILabel+Space.m */; };
 		67406C522A7C9CDA00E87AF5 /* FHFileChildListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C512A7C9CDA00E87AF5 /* FHFileChildListVC.m */; };
 		67406C552A7CA1C400E87AF5 /* FHCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C542A7CA1C400E87AF5 /* FHCollectionMenu.m */; };
@@ -95,6 +94,7 @@
 		67406C832A80E8A900E87AF5 /* NSObject+Selector.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C822A80E8A900E87AF5 /* NSObject+Selector.m */; };
 		67406C862A80ECE000E87AF5 /* FHTabMenuAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */; };
 		67406C8A2A81D31C00E87AF5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 67406C892A81D31C00E87AF5 /* UIImage+Resize.m */; };
+		6740941B2AE4E312008F902D /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6740941A2AE4E312008F902D /* placeholder.png */; };
 		6749B33F2A8CCF5C00EEE913 /* CropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6749B33E2A8CCF5C00EEE913 /* CropView.swift */; };
 		6749B3432A8DB29600EEE913 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3422A8DB29600EEE913 /* OpenCVWrapper.mm */; };
 		6749B3472A8DB91C00EEE913 /* FHMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6749B3462A8DB91C00EEE913 /* FHMagnifierView.m */; };
@@ -313,7 +313,6 @@
 		67406C3F2A78CDDE00E87AF5 /* FHPhotoLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHPhotoLibrary.m; sourceTree = "<group>"; };
 		67406C422A78DD1100E87AF5 /* YYDispatchQueuePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDispatchQueuePool.h; sourceTree = "<group>"; };
 		67406C432A78DD1100E87AF5 /* YYDispatchQueuePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDispatchQueuePool.m; sourceTree = "<group>"; };
-		67406C452A79EC3C00E87AF5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		67406C4B2A7C89DD00E87AF5 /* UILabel+Space.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Space.h"; sourceTree = "<group>"; };
 		67406C4C2A7C89DD00E87AF5 /* UILabel+Space.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Space.m"; sourceTree = "<group>"; };
 		67406C502A7C9CDA00E87AF5 /* FHFileChildListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHFileChildListVC.h; sourceTree = "<group>"; };
@@ -348,6 +347,7 @@
 		67406C852A80ECE000E87AF5 /* FHTabMenuAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTabMenuAdapter.m; sourceTree = "<group>"; };
 		67406C882A81D31C00E87AF5 /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		67406C892A81D31C00E87AF5 /* UIImage+Resize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		6740941A2AE4E312008F902D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		6749B33D2A8CCF5B00EEE913 /* FunHer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FunHer-Bridging-Header.h"; sourceTree = "<group>"; };
 		6749B33E2A8CCF5C00EEE913 /* CropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropView.swift; sourceTree = "<group>"; };
 		6749B3412A8DB29600EEE913 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
@@ -800,7 +800,7 @@
 		67406BCA2A77AE1F00E87AF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				67406C452A79EC3C00E87AF5 /* placeholder.png */,
+				6740941A2AE4E312008F902D /* placeholder.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1449,7 +1449,7 @@
 				67406C362A78CA8100E87AF5 /* ZLPhotoBrowserCell.xib in Resources */,
 				67406C342A78CA8100E87AF5 /* ZLPhotoBrowser.bundle in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
-				67406C462A79EC3C00E87AF5 /* placeholder.png in Resources */,
+				6740941B2AE4E312008F902D /* placeholder.png in Resources */,
 				67406C352A78CA8100E87AF5 /* ZLPhotoActionSheet.xib in Resources */,
 				6774FEBB2A6A2DD9005F0DB9 /* StoreList.plist in Resources */,
 			);
