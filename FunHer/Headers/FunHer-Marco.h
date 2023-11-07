@@ -12,10 +12,8 @@
 
 #ifdef DEBUG
 #define DELog(format, ...) NSLog(@" %s [第%d行] \n %@", __FUNCTION__, __LINE__, [NSString stringWithFormat:format, ##__VA_ARGS__]);
-#define debugMethod() NSLog(@"%s", __func__)
 #else
 #define DELog(...)
-#define debugMethod()
 #endif
 
 

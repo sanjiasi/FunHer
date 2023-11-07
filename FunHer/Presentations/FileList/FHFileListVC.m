@@ -255,7 +255,7 @@ NSString *const FHTabCollectionHeaderIdentifier = @"TabbarCollectionHeaderIdenti
     MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
     mailCompose.mailComposeDelegate = self;
     //主题
-    [mailCompose setSubject:@"Light Scanner Feedback"];
+    [mailCompose setSubject:@"Tink Scanner Feedback"];
     //收件人
     NSArray *toRecipients = [NSArray arrayWithObjects:@"guarenzhi@gmail.com",nil];
     [mailCompose setToRecipients:toRecipients];

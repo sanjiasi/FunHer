@@ -12,8 +12,9 @@
 
 #pragma mark -- 收集错误
 - (void)getErrorWithName:(NSString *)name {
+    [self eventNameWithFunc:name];
+    NSString *func = [self eventNameWithFunc:name];
     if (DEBUG) {
-        NSString *func = [self eventNameWithFunc:name];
         DELog(@"event = %@",func);
         dispatch_async(dispatch_get_main_queue(), ^{
             [[FHToast shareInstance] makeToast:func];

@@ -126,6 +126,8 @@
 		675775DD2AAAB3BB0007838E /* FHFileEditCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775DC2AAAB3BB0007838E /* FHFileEditCollectionCell.m */; };
 		675775E02AAAB4230007838E /* FHEditItemsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775DF2AAAB4230007838E /* FHEditItemsVC.m */; };
 		675775E32AAAB4880007838E /* FHEditItemPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775E22AAAB4880007838E /* FHEditItemPresent.m */; };
+		675AD8442AEAB19F007A1D6D /* logo_first@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675AD8422AEAB19F007A1D6D /* logo_first@3x.png */; };
+		675AD8452AEAB19F007A1D6D /* logo_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675AD8432AEAB19F007A1D6D /* logo_first@2x.png */; };
 		676D7CEB2A70EB1E0077762A /* NSObject+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */; };
 		676D7CEF2A70EF550077762A /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CEE2A70EF550077762A /* GCDTimer.m */; };
 		676D7CF42A70F1030077762A /* FHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 676D7CF32A70F1030077762A /* FHToast.m */; };
@@ -411,6 +413,8 @@
 		675775DF2AAAB4230007838E /* FHEditItemsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHEditItemsVC.m; sourceTree = "<group>"; };
 		675775E12AAAB4880007838E /* FHEditItemPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHEditItemPresent.h; sourceTree = "<group>"; };
 		675775E22AAAB4880007838E /* FHEditItemPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHEditItemPresent.m; sourceTree = "<group>"; };
+		675AD8422AEAB19F007A1D6D /* logo_first@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_first@3x.png"; sourceTree = "<group>"; };
+		675AD8432AEAB19F007A1D6D /* logo_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_first@2x.png"; sourceTree = "<group>"; };
 		676D7CE92A70EB1E0077762A /* NSObject+Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Analytics.h"; sourceTree = "<group>"; };
 		676D7CEA2A70EB1E0077762A /* NSObject+Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Analytics.m"; sourceTree = "<group>"; };
 		676D7CED2A70EF550077762A /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
@@ -800,6 +804,8 @@
 		67406BCA2A77AE1F00E87AF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				675AD8432AEAB19F007A1D6D /* logo_first@2x.png */,
+				675AD8422AEAB19F007A1D6D /* logo_first@3x.png */,
 				6740941A2AE4E312008F902D /* placeholder.png */,
 			);
 			path = Resources;
@@ -1448,6 +1454,8 @@
 				676E7A952ABADF900045A0E1 /* GoogleService-Info.plist in Resources */,
 				67406C362A78CA8100E87AF5 /* ZLPhotoBrowserCell.xib in Resources */,
 				67406C342A78CA8100E87AF5 /* ZLPhotoBrowser.bundle in Resources */,
+				675AD8452AEAB19F007A1D6D /* logo_first@2x.png in Resources */,
+				675AD8442AEAB19F007A1D6D /* logo_first@3x.png in Resources */,
 				671CAADD2A66622B006140A8 /* Assets.xcassets in Resources */,
 				6740941B2AE4E312008F902D /* placeholder.png in Resources */,
 				67406C352A78CA8100E87AF5 /* ZLPhotoActionSheet.xib in Resources */,
@@ -1896,7 +1904,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 95M78V6P24;
@@ -1904,7 +1912,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tink Scanner";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Run the application to access the camera to scan documents";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "add photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Run the application to access the gallery to get documents";
@@ -1918,7 +1926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1940,15 +1948,24 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 95M78V6P24;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FunHer/Headers/FunHer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"DEBUG=0",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FunHer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Light Scanner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tink Scanner";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Run the application to access the camera to scan documents";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "add photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Run the application to access the gallery to get documents";
@@ -1962,7 +1979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gla.FunHer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
